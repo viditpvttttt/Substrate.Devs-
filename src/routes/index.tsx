@@ -137,7 +137,7 @@ function Kernel() {
       className="relative isolate overflow-hidden border-y border-border/70 bg-card"
     >
       <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-      <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+      <div className="relative mx-auto max-w-3xl px-6 pt-28 pb-16 text-center sm:pt-36 sm:pb-20">
         <SpectralMark
           variant="kernel"
           className="mx-auto h-44 w-44 text-clay sm:h-56 sm:w-56"
