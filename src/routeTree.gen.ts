@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FolioRouteImport } from './routes/folio'
+import { Route as KernelRouteImport } from './routes/kernel'
+import { Route as StudioRouteImport } from './routes/studio'
+import { Route as VoidRouteImport } from './routes/void'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FolioRoute = FolioRouteImport.update({
+  id: '/folio',
+  path: '/folio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KernelRoute = KernelRouteImport.update({
+  id: '/kernel',
+  path: '/kernel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoidRoute = VoidRouteImport.update({
+  id: '/void',
+  path: '/void',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
+  '/kernel': typeof KernelRoute
+  '/studio': typeof StudioRoute
+  '/void': typeof VoidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
+  '/kernel': typeof KernelRoute
+  '/studio': typeof StudioRoute
+  '/void': typeof VoidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
+  '/kernel': typeof KernelRoute
+  '/studio': typeof StudioRoute
+  '/void': typeof VoidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/folio' | '/kernel' | '/studio' | '/void'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/folio' | '/kernel' | '/studio' | '/void'
+  id: '__root__' | '/' | '/folio' | '/kernel' | '/studio' | '/void'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FolioRoute: typeof FolioRoute
+  KernelRoute: typeof KernelRoute
+  StudioRoute: typeof StudioRoute
+  VoidRoute: typeof VoidRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/folio': {
+      id: '/folio'
+      path: '/folio'
+      fullPath: '/folio'
+      preLoaderRoute: typeof FolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kernel': {
+      id: '/kernel'
+      path: '/kernel'
+      fullPath: '/kernel'
+      preLoaderRoute: typeof KernelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/void': {
+      id: '/void'
+      path: '/void'
+      fullPath: '/void'
+      preLoaderRoute: typeof VoidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FolioRoute: FolioRoute,
+  KernelRoute: KernelRoute,
+  StudioRoute: StudioRoute,
+  VoidRoute: VoidRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
