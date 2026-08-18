@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FolioRouteImport } from './routes/folio'
 import { Route as KernelRouteImport } from './routes/kernel'
 import { Route as VoidRouteImport } from './routes/void'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FolioRoute = FolioRouteImport.update({
+  id: '/folio',
+  path: '/folio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KernelRoute = KernelRouteImport.update({
@@ -31,30 +37,34 @@ const VoidRoute = VoidRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
   '/kernel': typeof KernelRoute
   '/void': typeof VoidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
   '/kernel': typeof KernelRoute
   '/void': typeof VoidRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/folio': typeof FolioRoute
   '/kernel': typeof KernelRoute
   '/void': typeof VoidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kernel' | '/void'
+  fullPaths: '/' | '/folio' | '/kernel' | '/void'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kernel' | '/void'
-  id: '__root__' | '/' | '/kernel' | '/void'
+  to: '/' | '/folio' | '/kernel' | '/void'
+  id: '__root__' | '/' | '/folio' | '/kernel' | '/void'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FolioRoute: typeof FolioRoute
   KernelRoute: typeof KernelRoute
   VoidRoute: typeof VoidRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/folio': {
+      id: '/folio'
+      path: '/folio'
+      fullPath: '/folio'
+      preLoaderRoute: typeof FolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kernel': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FolioRoute: FolioRoute,
   KernelRoute: KernelRoute,
   VoidRoute: VoidRoute,
 }
