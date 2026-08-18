@@ -30,12 +30,12 @@ function buildLattice() {
 
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
-      const a = nodes[i];
-      const b = nodes[j];
+      const a = nodes[i]!;
+      const b = nodes[j]!;
       const d = Math.abs(a.x - b.x) + Math.abs(a.y - b.y) + Math.abs(a.z - b.z);
       const dz = Math.abs(a.z - b.z);
       if (d === 1) {
-        edges.push([i, j, dz === 1 ? COLORS[2] : COLORS[1]]);
+        edges.push([i, j, dz === 1 ? COLORS[2]! : COLORS[1]!]);
       } else if (
         d === 2 &&
         dz === 0 &&
@@ -43,7 +43,7 @@ function buildLattice() {
         Math.abs(a.y - b.y) === 1 &&
         (a.x + a.y + a.z) % 2 === 0
       ) {
-        edges.push([i, j, (a.x + a.y) % 2 === 0 ? COLORS[0] : COLORS[3]]);
+        edges.push([i, j, (a.x + a.y) % 2 === 0 ? COLORS[0]! : COLORS[3]!]);
       }
     }
   }
@@ -100,8 +100,8 @@ export function LatticeDiagram({ className = "" }: { className?: string }) {
       });
 
       for (const [a, b, color] of edges) {
-        const pa = proj[a];
-        const pb = proj[b];
+        const pa = proj[a]!;
+        const pb = proj[b]!;
         ctx.strokeStyle = color;
         ctx.globalAlpha = 0.28 + 0.42 * ((pa.p + pb.p) / 2 - 0.7);
         ctx.lineWidth = 1.1 * ((pa.p + pb.p) / 2);
