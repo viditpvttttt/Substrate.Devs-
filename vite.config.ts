@@ -4,6 +4,10 @@ import tsConfigPaths from "vite-tsconfig-paths";
 import viteReact from "@vitejs/plugin-react";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { nitro } from "nitro/vite";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Standard TanStack Start + Vite setup: Tailwind, TS path aliases, the
 // TanStack Start SSR plugin, a Nitro server build, and the React plugin.
@@ -15,7 +19,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": `${process.cwd()}/src`,
+      "@": path.resolve(__dirname, "./src"),
     },
     dedupe: [
       "react",
