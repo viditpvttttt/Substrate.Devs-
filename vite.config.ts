@@ -49,11 +49,13 @@ export default defineConfig({
       // (our SSR error wrapper). Nitro builds from this.
       server: { entry: "server" },
     }),
-    nitro({
-      preset:
-        process.env.NITRO_PRESET ||
-        (process.env.VERCEL ? "vercel" : undefined),
-    }),
+    nitro(
+      process.env["NITRO_PRESET"]
+        ? { preset: process.env["NITRO_PRESET"] }
+        : process.env["VERCEL"]
+          ? { preset: "vercel" }
+          : {},
+    ),
     viteReact(),
   ],
 });

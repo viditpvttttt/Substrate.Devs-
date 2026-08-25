@@ -77,7 +77,15 @@ function StudioPage() {
 
       <section className="border-y border-border/70 bg-card">
         <div className="mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:py-28 lg:grid-cols-2">
-          <LatticeDiagram className="aspect-square rounded-2xl border border-border/70 bg-card/50" />
+          <div className="space-y-4">
+            <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-6 shadow-sm">
+              <img
+                src="/images/diagram-grid-topology.png"
+                alt="System topology coordinate matrix"
+                className="h-auto w-full object-contain mix-blend-multiply transition-transform hover:scale-[1.02]"
+              />
+            </div>
+          </div>
           <div>
             <p className="rule-label">Architecture</p>
             <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">

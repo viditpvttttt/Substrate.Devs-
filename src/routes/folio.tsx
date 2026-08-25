@@ -138,7 +138,16 @@ function FolioPage() {
               keeps the links it came from.
             </p>
           </div>
-          <BlobCluster className="mx-auto w-full max-w-sm text-foreground lg:order-first" />
+          <div className="mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-6 shadow-sm lg:order-first">
+            <img
+              src="/images/diagram-spectral-blobs.png"
+              alt="Folio surface topology diagram showing multi-agent workspace nodes"
+              className="h-auto w-full object-contain mix-blend-multiply transition-transform hover:scale-[1.02]"
+            />
+            <p className="mt-4 text-center font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
+              Dynamic agent surface topology
+            </p>
+          </div>
         </div>
       </section>
 

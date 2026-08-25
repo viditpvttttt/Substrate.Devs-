@@ -28,7 +28,8 @@ function Index() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 py-32 text-center sm:py-44">
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 py-28 text-center sm:py-36">
+          <SpectralMark variant="substrate" className="rise-in mb-6 h-20 w-20 shadow-md" />
           <p className="rule-label rise-in">The layer underneath</p>
           <h1 className="rise-in mt-8 text-5xl leading-[1.05] text-foreground sm:text-7xl">
             We build the ground
@@ -73,7 +74,7 @@ function Index() {
             status="In training"
             title="One model, every modality"
             body="Text, images, audio and video in a single context — one representation instead of a stack of translators."
-            media={<SpectralMark variant="kernel" className="h-14 w-14 text-clay" />}
+            media={<SpectralMark variant="kernel" className="h-16 w-16" />}
           />
           <ProductCard
             to="/void"
@@ -81,7 +82,7 @@ function Index() {
             status="Pre-production"
             title="Nothing in the way"
             body="The page, the model and your intent on the same surface. No tab sprawl, no chrome you did not ask for."
-            media={<SpectralMark variant="void" className="h-14 w-14 text-foreground" />}
+            media={<SpectralMark variant="void" className="h-16 w-16 text-foreground" />}
           />
           <ProductCard
             to="/folio"
@@ -89,7 +90,7 @@ function Index() {
             status="Private beta"
             title="The quiet operating surface"
             body="Weather, news, files, memory, agents and deep research on one canvas that already knows your morning."
-            media={<SpectralMark variant="folio" className="h-14 w-14 text-foreground" />}
+            media={<SpectralMark variant="folio" className="h-16 w-16" />}
           />
         </div>
       </section>

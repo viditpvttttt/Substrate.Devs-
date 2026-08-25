@@ -91,6 +91,32 @@ function KernelPage() {
         </div>
       </section>
 
+      <section className="border-t border-border/70 bg-card/40">
+        <div className="relative mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:py-28 lg:grid-cols-2">
+          <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-6 shadow-sm">
+            <img
+              src="/images/diagram-grid-topology.png"
+              alt="Kernel latent space coordinate topology diagram"
+              className="h-auto w-full object-contain mix-blend-multiply transition-transform hover:scale-[1.02]"
+            />
+            <p className="mt-4 text-center font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
+              Unified cross-modal manifold coordinates
+            </p>
+          </div>
+          <div>
+            <p className="rule-label">Topology</p>
+            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
+              Continuous manifold across all modalities
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Rather than converting disparate data streams into discrete token boundaries, Kernel maps sensory
+              inputs across continuous geometric contours. The shared topology preserves relationships, temporal coherence,
+              and semantic context across domains.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-border/70 bg-card/60 grain-veil">
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <p className="rule-label">Evaluations</p>
