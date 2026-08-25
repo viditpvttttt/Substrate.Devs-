@@ -76,14 +76,7 @@ export function OrbField({ className = "" }: { className?: string }) {
 
       for (const item of list) {
         const { cx, cy, rad, o } = item;
-        const g = ctx.createRadialGradient(
-          cx - rad * 0.35,
-          cy - rad * 0.4,
-          rad * 0.1,
-          cx,
-          cy,
-          rad,
-        );
+        const g = ctx.createRadialGradient(cx - rad * 0.35, cy - rad * 0.4, rad * 0.1, cx, cy, rad);
         g.addColorStop(0, o.color[0]);
         g.addColorStop(1, o.color[1]);
         ctx.globalAlpha = 0.92;
@@ -94,15 +87,7 @@ export function OrbField({ className = "" }: { className?: string }) {
 
         ctx.globalAlpha = 0.22;
         ctx.beginPath();
-        ctx.ellipse(
-          cx - rad * 0.32,
-          cy - rad * 0.42,
-          rad * 0.34,
-          rad * 0.2,
-          -0.6,
-          0,
-          Math.PI * 2,
-        );
+        ctx.ellipse(cx - rad * 0.32, cy - rad * 0.42, rad * 0.34, rad * 0.2, -0.6, 0, Math.PI * 2);
         ctx.fillStyle = "#ffffff";
         ctx.fill();
       }

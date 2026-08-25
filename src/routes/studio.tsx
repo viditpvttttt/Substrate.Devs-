@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LatticeDiagram } from "@/components/LatticeDiagram";
+import { SignalDoodle } from "@/components/SignalDoodle";
 
 export const Route = createFileRoute("/studio")({
   head: () => ({
@@ -67,9 +68,9 @@ function StudioPage() {
             The layer underneath
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            Substrate is a small research and product studio for the ambient computer. We build
-            the model, the browser and the surface people work on — and we build them on the
-            same ground so they behave like one thing.
+            Substrate is a small research and product studio for the ambient computer. We build the
+            model, the browser and the surface people work on — and we build them on the same ground
+            so they behave like one thing.
           </p>
         </div>
       </section>
@@ -83,9 +84,9 @@ function StudioPage() {
               Layers, each one replaceable
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              A runtime, a model, a memory, a surface. Each layer speaks a narrow interface to
-              the one above it, so any of them can be swapped without the rest noticing. That
-              is the whole discipline: fewer moving parts, measured in milliseconds.
+              A runtime, a model, a memory, a surface. Each layer speaks a narrow interface to the
+              one above it, so any of them can be swapped without the rest noticing. That is the
+              whole discipline: fewer moving parts, measured in milliseconds.
             </p>
           </div>
         </div>
@@ -96,6 +97,7 @@ function StudioPage() {
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
             How we build
           </h2>
+          <SignalDoodle className="mt-6 h-8 w-56 text-muted-foreground" aria-hidden="true" />
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {principles.map((p) => (
               <div key={p.index} className="border-t border-border pt-6">
@@ -113,8 +115,8 @@ function StudioPage() {
           Early, and open to company
         </h2>
         <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-          If you are building at the same layer — models, runtimes, browsers — we would like to
-          hear from you.
+          If you are building at the same layer — models, runtimes, browsers — we would like to hear
+          from you.
         </p>
         <a
           href="mailto:hello@substrate.dev"

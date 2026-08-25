@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LatticeDiagram } from "@/components/LatticeDiagram";
-import kernelLogo from "@/assets/kernel-logo.png.asset.json";
-import folioLogo from "@/assets/folio-logo.png.asset.json";
 import { SpectralMark } from "@/components/SpectralMark";
+import { SignalDoodle } from "@/components/SignalDoodle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,6 +41,10 @@ function Index() {
             <span className="text-foreground">VOID</span>, a minimalist browser, and{" "}
             <span className="text-foreground">Folio</span>, the surface you work on.
           </p>
+          <SignalDoodle
+            className="rise-in mt-6 h-8 w-48 text-muted-foreground sm:w-64"
+            aria-hidden="true"
+          />
           <div className="rise-in mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             <Link
               to="/kernel"
@@ -70,7 +73,7 @@ function Index() {
             status="In training"
             title="One model, every modality"
             body="Text, images, audio and video in a single context — one representation instead of a stack of translators."
-            media={<img src={kernelLogo.url} alt="Kernel mark" className="h-14 w-14" />}
+            media={<SpectralMark variant="kernel" className="h-14 w-14 text-clay" />}
           />
           <ProductCard
             to="/void"
@@ -86,7 +89,7 @@ function Index() {
             status="Private beta"
             title="The quiet operating surface"
             body="Weather, news, files, memory, agents and deep research on one canvas that already knows your morning."
-            media={<img src={folioLogo.url} alt="Folio mark" className="h-14 w-14" />}
+            media={<SpectralMark variant="folio" className="h-14 w-14 text-foreground" />}
           />
         </div>
       </section>
@@ -100,9 +103,8 @@ function Index() {
               Three products, one shared ground
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              The same runtime, the same memory, the same notion of context runs under all of
-              it. Drag the lattice — every node is a shared slot, every edge a route between
-              the pieces.
+              The same runtime, the same memory, the same notion of context runs under all of it.
+              Drag the lattice — every node is a shared slot, every edge a route between the pieces.
             </p>
             <Link
               to="/studio"
@@ -124,8 +126,8 @@ function Index() {
             Early, and open to company
           </h2>
           <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-            If you are building at the same layer — models, runtimes, browsers — we would like
-            to hear from you.
+            If you are building at the same layer — models, runtimes, browsers — we would like to
+            hear from you.
           </p>
           <a
             href="mailto:hello@substrate.dev"
@@ -155,7 +157,10 @@ function ProductCard({
   media: React.ReactNode;
 }) {
   return (
-    <Link to={to} className="group flex flex-col bg-card px-8 py-12 transition-colors hover:bg-accent/40">
+    <Link
+      to={to}
+      className="group flex flex-col bg-card px-8 py-12 transition-colors hover:bg-accent/40"
+    >
       {media}
       <div className="mt-8 flex items-center gap-3">
         <p className="rule-label">{label}</p>

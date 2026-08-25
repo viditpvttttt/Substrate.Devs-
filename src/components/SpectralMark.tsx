@@ -1,14 +1,81 @@
 type Props = {
-  variant: "kernel" | "void";
+  variant: "kernel" | "void" | "folio" | "substrate";
   className?: string;
 };
 
 /**
- * Abstract, systematic marks rendered as SVG so they stay crisp and inherit
- * the palette. Kernel = a lattice of modalities converging. VOID = a single
- * contour tracing an empty frame.
+ * Abstract, systematic marks rendered as SVG so they stay crisp, inherit the
+ * palette, and never depend on a hosted image asset. Kernel = a lattice of
+ * modalities converging. VOID = a single contour tracing an empty frame.
+ * Folio = a soft canvas with an orbiting point of focus. Substrate = stacked
+ * plates, the ground everything else sits on.
  */
 export function SpectralMark({ variant, className }: Props) {
+  if (variant === "substrate") {
+    return (
+      <svg
+        viewBox="0 0 240 240"
+        role="img"
+        aria-label="Substrate mark: three stacked plates"
+        className={className}
+      >
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <path
+            d="M40 158 L120 190 L200 158 L120 126 Z"
+            stroke="var(--spectral-b)"
+            strokeWidth="6"
+            opacity="0.85"
+          />
+          <path
+            d="M40 118 L120 150 L200 118 L120 86 Z"
+            stroke="var(--spectral-g)"
+            strokeWidth="6"
+            opacity="0.85"
+          />
+          <path
+            d="M40 78 L120 110 L200 78 L120 46 Z"
+            stroke="currentColor"
+            strokeWidth="6"
+            opacity="0.95"
+          />
+        </g>
+      </svg>
+    );
+  }
+
+  if (variant === "folio") {
+    return (
+      <svg
+        viewBox="0 0 240 240"
+        role="img"
+        aria-label="Folio mark: a soft canvas with a point of focus"
+        className={className}
+      >
+        <rect
+          x="34"
+          y="34"
+          width="172"
+          height="172"
+          rx="36"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          opacity="0.4"
+        />
+        <path
+          d="M70 150 C 70 110, 100 82, 140 82 C 172 82, 186 104, 178 128"
+          fill="none"
+          stroke="var(--spectral-g)"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          opacity="0.8"
+        />
+        <circle cx="178" cy="128" r="20" fill="var(--spectral-b)" opacity="0.85" />
+        <circle cx="88" cy="164" r="9" fill="var(--spectral-r)" opacity="0.85" />
+      </svg>
+    );
+  }
+
   if (variant === "kernel") {
     const rows = 7;
     const cols = 7;
@@ -27,11 +94,7 @@ export function SpectralMark({ variant, className }: Props) {
               const d = Math.hypot(r - 3, c - 3);
               const rad = Math.max(1.2, 5.5 - d * 1.05);
               const hue =
-                d < 1.2
-                  ? "var(--spectral-r)"
-                  : d < 2.4
-                    ? "var(--spectral-g)"
-                    : "var(--spectral-b)";
+                d < 1.2 ? "var(--spectral-r)" : d < 2.4 ? "var(--spectral-g)" : "var(--spectral-b)";
               return (
                 <circle
                   key={`${r}-${c}`}

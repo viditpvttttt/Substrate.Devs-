@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
 import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { BenchRadar } from "@/components/BenchRadar";
-import kernelLogo from "@/assets/kernel-logo.png.asset.json";
 
 export const Route = createFileRoute("/kernel")({
   head: () => ({
@@ -48,7 +47,7 @@ function KernelPage() {
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
         <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
-          <img src={kernelLogo.url} alt="Kernel mark" className="mx-auto h-20 w-20" />
+          <SpectralMark variant="kernel" className="mx-auto h-20 w-20 text-clay" />
           <p className="rule-label mt-8">Kernel</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
             One model, every <em className="font-light">modality</em>
@@ -80,9 +79,9 @@ function KernelPage() {
               A shared lattice, not a pile of adapters
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Every modality is projected into the same space, so a frame of video, a sentence
-              and a waveform can sit next to each other in one attention pass. Drag the lattice
-              to turn it — each node is a shared slot, each edge a route between modalities.
+              Every modality is projected into the same space, so a frame of video, a sentence and a
+              waveform can sit next to each other in one attention pass. Drag the lattice to turn it
+              — each node is a shared slot, each edge a route between modalities.
             </p>
             <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
               Drag to rotate
@@ -119,10 +118,7 @@ function KernelPage() {
           ))}
         </dl>
         <div className="mt-14">
-          <Link
-            to="/void"
-            className="group inline-flex items-center gap-2 text-sm text-foreground"
-          >
+          <Link to="/void" className="group inline-flex items-center gap-2 text-sm text-foreground">
             Kernel inside VOID
             <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
               →
@@ -139,8 +135,8 @@ function KernelPage() {
             Research access
           </h2>
           <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-            We work with a small number of partners while Kernel trains. If your work lives at
-            the model layer, tell us what you would run.
+            We work with a small number of partners while Kernel trains. If your work lives at the
+            model layer, tell us what you would run.
           </p>
           <a
             href="mailto:hello@substrate.dev?subject=Kernel%20research%20access"

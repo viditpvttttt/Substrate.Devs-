@@ -123,9 +123,7 @@ export function BenchRadar() {
               />
               <span className="text-sm text-foreground">{s.name}</span>
               <span className="ml-auto font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-                {Math.round(
-                  (s.values.reduce((a, b) => a + b, 0) / s.values.length) * 100,
-                )}
+                {Math.round((s.values.reduce((a, b) => a + b, 0) / s.values.length) * 100)}
               </span>
             </button>
           </li>

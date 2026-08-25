@@ -67,8 +67,8 @@ function VoidPage() {
             A browser with <em className="font-light">nothing</em> in the way
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            VOID is early. It is being designed around one idea: the page, the model and your
-            intent on the same surface — no tab sprawl, no chrome you did not ask for.
+            VOID is early. It is being designed around one idea: the page, the model and your intent
+            on the same surface — no tab sprawl, no chrome you did not ask for.
           </p>
         </div>
       </section>
@@ -82,9 +82,9 @@ function VoidPage() {
               Context as objects, not tabs
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Everything you are working through is a soft body with weight and depth: the
-              thing in front of you sits forward, the rest drift behind it and stay warm. Move
-              your pointer across the field to feel how it reorganises around attention.
+              Everything you are working through is a soft body with weight and depth: the thing in
+              front of you sits forward, the rest drift behind it and stay warm. Move your pointer
+              across the field to feel how it reorganises around attention.
             </p>
             <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
               Move your pointer

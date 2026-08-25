@@ -1,24 +1,38 @@
-# Kernel & Void Hub
+# Substrate
 
-Hey, I want to redesign https://substrate-devs.vercel.app/. I want it to look like https://thinkingmachines.ai/  but keep the RGB ambience of the substrate that blurs the RGB effect on the new website. The existing Substrate website revolves around one of the tools, Folio, but I want to keep it revolving around our other 2 projects, other than Folio, which are Kernel which is a multimodal LLM and VOID Browser. Also keep the website neutral, minimal and aesthetic
+The website for Substrate — a research and product studio building **Kernel**
+(a multimodal LLM), **VOID** (a minimalist browser), and **Folio** (a quiet
+operating surface for your day) on one shared runtime.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/42a43318-fcd4-4300-b774-96e3523b56d1).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Built with TanStack Start, React, Tailwind CSS v4, and shadcn/ui.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+You'll need Node.js 20+ and npm.
 
 ```sh
 git clone <this-repository-url>
-cd <repository-name>
-npm i
+cd kernel-void-hub
+npm install
 npm run dev
+```
+
+The dev server runs at `http://localhost:8080`.
+
+## Scripts
+
+- `npm run dev` — start the dev server
+- `npm run build` — production build
+- `npm run preview` — preview the production build locally
+- `npm run lint` — run ESLint
+- `npm run format` — run Prettier
+
+## Project structure
+
+```
+src/
+  components/   Shared UI primitives (shadcn/ui) and site-specific
+                components (SpectralMark, LatticeDiagram, BenchRadar, etc.)
+  routes/       File-based routes (TanStack Router) — one file per page
+  styles.css    Design tokens and global styles (Tailwind v4 + custom theme)
 ```

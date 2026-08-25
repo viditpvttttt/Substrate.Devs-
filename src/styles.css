@@ -214,7 +214,6 @@
   }
 }
 
-
 @utility grain-veil {
   &::after {
     content: "";

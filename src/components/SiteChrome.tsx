@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import substrateLogo from "@/assets/substrate-logo.png.asset.json";
+import { SpectralMark } from "@/components/SpectralMark";
 
 const nav = [
   { to: "/kernel", label: "Kernel" },
@@ -13,7 +13,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2.5">
-          <img src={substrateLogo.url} alt="Substrate mark" className="h-7 w-7" />
+          <SpectralMark variant="substrate" className="h-6 w-6 text-foreground" />
           <span className="rule-label !text-foreground">Substrate</span>
         </Link>
         <nav className="flex items-center gap-6 sm:gap-8">
@@ -38,7 +38,7 @@ export function SiteFooter() {
     <footer className="relative isolate mt-0 overflow-hidden border-t border-border/70">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2.5">
-          <img src={substrateLogo.url} alt="" className="h-6 w-6" aria-hidden="true" />
+          <SpectralMark variant="substrate" className="h-5 w-5 text-foreground" />
           <p className="rule-label">Substrate</p>
         </div>
         <nav className="flex flex-wrap gap-6">

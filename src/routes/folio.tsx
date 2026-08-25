@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import folioLogo from "@/assets/folio-logo.png.asset.json";
+import { SpectralMark } from "@/components/SpectralMark";
+import { BlobCluster } from "@/components/BlobCluster";
 
 export const Route = createFileRoute("/folio")({
   head: () => ({
@@ -81,15 +82,14 @@ function FolioPage() {
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
         <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
-          <img src={folioLogo.url} alt="Folio mark" className="mx-auto h-24 w-24" />
+          <SpectralMark variant="folio" className="mx-auto h-24 w-24 text-foreground" />
           <p className="rule-label mt-8">A Substrate company</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
             Folio is the quiet operating surface for your day.
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            One canvas that already knows the shape of your morning: your weather, your news,
-            your files, your calendar — and an assistant that can act on all of it in one
-            sentence.
+            One canvas that already knows the shape of your morning: your weather, your news, your
+            files, your calendar — and an assistant that can act on all of it in one sentence.
           </p>
           <a
             href="mailto:hello@substrate.dev?subject=Folio%20waitlist"
@@ -119,24 +119,26 @@ function FolioPage() {
 
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-6 py-24 sm:py-28">
-          <p className="rule-label">Inside Folio</p>
-          <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
-            One surface instead of five tabs.
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            Folio starts as a dashboard — the weather you will actually walk through, the four
-            topics you care about, what your calendar is about to ask of you. Ask it something
-            and the same surface becomes an assistant with your memory already loaded. Hand it
-            a repository or a research question and it becomes an agent that works while you
-            watch, step by step, with every file edit and every source it opened laid out in
-            the open.
-          </p>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Nothing is hidden behind a chat transcript. Agents show their plan before they run,
-            memory is a list you can read and delete line by line, and every synthesised answer
-            keeps the links it came from.
-          </p>
+        <div className="relative mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:py-28 lg:grid-cols-2">
+          <div>
+            <p className="rule-label">Inside Folio</p>
+            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
+              One surface instead of five tabs.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+              Folio starts as a dashboard — the weather you will actually walk through, the four
+              topics you care about, what your calendar is about to ask of you. Ask it something and
+              the same surface becomes an assistant with your memory already loaded. Hand it a
+              repository or a research question and it becomes an agent that works while you watch,
+              step by step, with every file edit and every source it opened laid out in the open.
+            </p>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Nothing is hidden behind a chat transcript. Agents show their plan before they run,
+              memory is a list you can read and delete line by line, and every synthesised answer
+              keeps the links it came from.
+            </p>
+          </div>
+          <BlobCluster className="mx-auto w-full max-w-sm text-foreground lg:order-first" />
         </div>
       </section>
 
@@ -148,9 +150,8 @@ function FolioPage() {
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               You decide what Folio remembers and which tools reach your workflow. Your data is
-              never sold or used to build ad profiles — and with Sync, it is end-to-end
-              encrypted. Folio for Work adds the guardrails teams need, like SSO and admin
-              controls.
+              never sold or used to build ad profiles — and with Sync, it is end-to-end encrypted.
+              Folio for Work adds the guardrails teams need, like SSO and admin controls.
             </p>
           </div>
           <ul className="divide-y divide-border border-y border-border">
