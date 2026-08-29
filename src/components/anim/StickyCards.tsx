@@ -38,11 +38,16 @@ function StickyCard({
   });
   const isLast = index === total - 1;
   const scale = useTransform(scrollYProgress, [0, 1], [1, isLast ? 1 : 0.92]);
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, isLast ? 0 : (index % 2 === 0 ? -1 : 1) * 2.5],
+  );
 
   return (
     <div ref={ref} className="h-[86svh]">
       <div className="sticky" style={{ top: `calc(5.5rem + ${index * 1.25}rem)` }}>
-        <motion.div style={{ scale }} className="origin-top will-change-transform">
+        <motion.div style={{ scale, rotate }} className="origin-top will-change-transform">
           {children}
         </motion.div>
       </div>

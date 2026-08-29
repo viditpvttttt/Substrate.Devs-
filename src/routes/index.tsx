@@ -1,17 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ClientOnly } from "@/components/ClientOnly";
-import { HeroScene } from "@/components/three/HeroScene";
 import { Reveal } from "@/components/Reveal";
 import { SpectralMark } from "@/components/SpectralMark";
 import { TiltCard } from "@/components/TiltCard";
+import { CanvasCrowd } from "@/components/anim/CanvasCrowd";
 import { CountUp } from "@/components/anim/CountUp";
+import { EmailCapture } from "@/components/anim/EmailCapture";
+import { HoverPreviewList } from "@/components/anim/HoverPreview";
 import { MagneticButton } from "@/components/anim/MagneticButton";
 import { ParallaxY } from "@/components/anim/ParallaxY";
+import { Preloader } from "@/components/anim/Preloader";
 import { RotatingText } from "@/components/anim/RotatingText";
 import { ScrambleText } from "@/components/anim/ScrambleText";
 import { Spotlight } from "@/components/anim/Spotlight";
 import { StickyCards } from "@/components/anim/StickyCards";
+import { SvgScrollDraw } from "@/components/anim/SvgScrollDraw";
 import { TextGradientFill } from "@/components/anim/TextGradientFill";
 import { WordsReveal } from "@/components/anim/WordsReveal";
 
@@ -83,11 +86,13 @@ const stackedStories = [
 function Index() {
   return (
     <>
+      <Preloader />
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
+        <CanvasCrowd className="absolute inset-0 h-full w-full" />
         <Spotlight />
-        <div className="relative mx-auto grid min-h-[88svh] max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative z-10 text-center lg:text-left">
+        <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-center justify-center px-6 py-20">
+          <div className="relative z-10 max-w-3xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,7 +111,7 @@ function Index() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground lg:mx-0"
+              className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground"
             >
               A research and product studio for the ambient computer — one substrate under{" "}
               <RotatingText
@@ -118,7 +123,7 @@ function Index() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-11 flex flex-wrap items-center justify-center gap-x-7 gap-y-4 lg:justify-start"
+              className="mt-11 flex flex-wrap items-center justify-center gap-x-7 gap-y-4"
             >
               <MagneticButton>
                 <Link
@@ -140,11 +145,6 @@ function Index() {
                 </Link>
               </MagneticButton>
             </motion.div>
-          </div>
-          <div className="relative hidden h-[70svh] lg:block">
-            <ClientOnly>
-              <HeroScene className="absolute inset-0" />
-            </ClientOnly>
           </div>
         </div>
         <div className="absolute inset-x-0 bottom-6 flex justify-center">
@@ -229,6 +229,7 @@ function Index() {
 
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+        <SvgScrollDraw className="absolute inset-y-0 left-1/2 hidden w-40 -translate-x-1/2 opacity-50 lg:block" />
         <div className="relative mx-auto max-w-4xl px-6 py-28 sm:py-36">
           <TextGradientFill
             text="The same runtime, the same memory, the same notion of context runs under all of it. Not three products bolted together — one substrate wearing three faces."
@@ -256,6 +257,56 @@ function Index() {
         </div>
       </section>
 
+      <section className="border-t border-border/70">
+        <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
+          <Reveal>
+            <p className="rule-label">Index</p>
+            <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
+              Everything on the substrate
+            </h2>
+          </Reveal>
+          <div className="mt-12">
+            <HoverPreviewList
+              items={stackedStories.map((story, i) => ({
+                key: story.key,
+                row: (
+                  <Link
+                    to={story.to}
+                    className="group flex items-baseline justify-between gap-6 border-t border-border py-7 transition-colors last:border-b hover:bg-accent/40"
+                  >
+                    <span className="flex items-baseline gap-6">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
+                        0{i + 1}
+                      </span>
+                      <span className="font-display text-3xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">
+                        {story.label}
+                      </span>
+                    </span>
+                    <span className="hidden text-sm text-muted-foreground sm:block">
+                      {story.title}
+                    </span>
+                  </Link>
+                ),
+                preview: (
+                  <div
+                    className="tile-aurora flex h-44 w-64 items-end rounded-2xl p-5 shadow-2xl"
+                    style={
+                      {
+                        "--tile-a": story.colors.a,
+                        "--tile-b": story.colors.b,
+                        "--tile-c": story.colors.c,
+                      } as React.CSSProperties
+                    }
+                  >
+                    <p className="text-sm leading-snug text-white">{story.body}</p>
+                  </div>
+                ),
+              }))}
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="relative isolate overflow-hidden border-t border-border/70">
         <div className="relative mx-auto max-w-2xl px-6 py-28 text-center sm:py-32">
           <ParallaxY from={30} to={-30}>
@@ -267,14 +318,9 @@ function Index() {
                 If you are building at the same layer — models, runtimes, browsers — we would like
                 to hear from you.
               </p>
-              <MagneticButton className="mt-10">
-                <a
-                  href="mailto:hello@substrate.dev"
-                  className="btn-shine inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-shadow hover:shadow-xl"
-                >
-                  Get in touch
-                </a>
-              </MagneticButton>
+              <div className="mt-10">
+                <EmailCapture />
+              </div>
             </Reveal>
           </ParallaxY>
         </div>
