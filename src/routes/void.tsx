@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
 import { OrbField } from "@/components/OrbField";
 import { Reveal } from "@/components/Reveal";
+import { BoxReveal } from "@/components/anim/BoxReveal";
+import { StickyCards } from "@/components/anim/StickyCards";
 
 export const Route = createFileRoute("/void")({
   head: () => ({
@@ -97,16 +99,25 @@ function VoidPage() {
       <section className="relative border-b border-border/70 bg-card/60 grain-veil">
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            What we are designing around
+            <BoxReveal>What we are designing around</BoxReveal>
           </h2>
-          <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
-            {ideas.map((i, idx) => (
-              <Reveal key={i.index} delay={idx * 0.08} className="border-t border-border pt-6">
-                <p className="rule-label">{i.index}</p>
-                <h3 className="mt-3 text-2xl text-foreground">{i.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{i.body}</p>
-              </Reveal>
-            ))}
+          <div className="mt-10">
+            <StickyCards
+              items={ideas.map((i) => ({
+                key: i.index,
+                content: (
+                  <div className="glass-panel mx-auto flex min-h-[18rem] max-w-2xl flex-col justify-between rounded-3xl p-10 shadow-xl">
+                    <p className="rule-label">{i.index} / 04</p>
+                    <div>
+                      <h3 className="text-3xl text-foreground">{i.title}</h3>
+                      <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+                        {i.body}
+                      </p>
+                    </div>
+                  </div>
+                ),
+              }))}
+            />
           </div>
         </div>
       </section>

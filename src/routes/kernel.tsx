@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
 import { BenchRadar } from "@/components/BenchRadar";
 import { Reveal } from "@/components/Reveal";
+import { BoxReveal } from "@/components/anim/BoxReveal";
 import { ScrambleText } from "@/components/anim/ScrambleText";
 
 export const Route = createFileRoute("/kernel")({
@@ -135,7 +136,7 @@ function KernelPage() {
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <p className="rule-label">Evaluations</p>
           <h2 className="mt-4 max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            Balance over benchmark spikes
+            <BoxReveal>Balance over benchmark spikes</BoxReveal>
           </h2>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
             Kernel is tuned for the shape of real work: strong across every axis rather than

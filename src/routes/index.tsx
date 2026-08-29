@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Reveal } from "@/components/Reveal";
 import { SpectralMark } from "@/components/SpectralMark";
 import { TiltCard } from "@/components/TiltCard";
+import { BoxReveal } from "@/components/anim/BoxReveal";
 import { CanvasCrowd } from "@/components/anim/CanvasCrowd";
 import { CountUp } from "@/components/anim/CountUp";
 import { EmailCapture } from "@/components/anim/EmailCapture";
@@ -175,7 +176,7 @@ function Index() {
         <Reveal>
           <p className="rule-label">Three products</p>
           <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-            One substrate, three surfaces
+            <BoxReveal>One substrate, three surfaces</BoxReveal>
           </h2>
         </Reveal>
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -243,7 +244,7 @@ function Index() {
           <Reveal>
             <p className="rule-label">One substrate</p>
             <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              Three products, one shared ground
+              <BoxReveal>Three products, one shared ground</BoxReveal>
             </h2>
           </Reveal>
         </div>
@@ -262,7 +263,7 @@ function Index() {
           <Reveal>
             <p className="rule-label">Index</p>
             <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              Everything on the substrate
+              <BoxReveal>Everything on the substrate</BoxReveal>
             </h2>
           </Reveal>
           <div className="mt-12">

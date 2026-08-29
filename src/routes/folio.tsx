@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
-import { BlobCluster } from "@/components/BlobCluster";
 import { Reveal } from "@/components/Reveal";
+import { BoxReveal } from "@/components/anim/BoxReveal";
+import { HoverExpand } from "@/components/anim/HoverExpand";
 
 export const Route = createFileRoute("/folio")({
   head: () => ({
@@ -24,6 +25,15 @@ export const Route = createFileRoute("/folio")({
   }),
   component: FolioPage,
 });
+
+const capColors = [
+  { a: "#b8cdd9", b: "#5f8c6a", c: "#2f5e40" },
+  { a: "#c88bd9", b: "#7b6bd6", c: "#5f8c6a" },
+  { a: "#d9b48b", b: "#c96f4a", c: "#7b3f2e" },
+  { a: "#7fa8c9", b: "#3d5a73", c: "#2f4a5e" },
+  { a: "#d98bb0", b: "#a34a6f", c: "#5e2f42" },
+  { a: "#9db8d9", b: "#5c6bd6", c: "#3c3f8c" },
+];
 
 const capabilities = [
   {
@@ -104,21 +114,19 @@ function FolioPage() {
       <section className="border-y border-border/70 bg-card">
         <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            Six things, done unusually well.
+            <BoxReveal>Six things, done unusually well.</BoxReveal>
           </h2>
-          <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((c, idx) => (
-              <Reveal
-                key={c.index}
-                delay={(idx % 3) * 0.08}
-                className="border-t border-border pt-6"
-              >
-                <p className="rule-label">{c.index}</p>
-                <h3 className="mt-3 text-2xl text-foreground">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal className="mt-14">
+            <HoverExpand
+              items={capabilities.map((c, idx) => ({
+                key: c.index,
+                index: c.index,
+                title: c.title,
+                body: c.body,
+                colors: capColors[idx],
+              }))}
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -170,7 +178,10 @@ function FolioPage() {
           </div>
           <ul className="divide-y divide-border border-y border-border">
             {privacy.map(([k, v]) => (
-              <li key={k} className="flex items-center justify-between py-3">
+              <li
+                key={k}
+                className="tick-hover flex items-center justify-between px-3 py-3 transition-colors"
+              >
                 <span className="text-sm text-foreground">{k}</span>
                 <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
                   {v}

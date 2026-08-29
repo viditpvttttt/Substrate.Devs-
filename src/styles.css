@@ -357,6 +357,28 @@
   }
 }
 
+/* Discrete color "ticks" that flash across a row on hover. */
+@utility tick-hover {
+  &:hover {
+    animation: tick-colors 0.45s steps(1, end) forwards;
+  }
+}
+
+@keyframes tick-colors {
+  0% {
+    background-color: color-mix(in oklab, var(--spectral-r) 20%, transparent);
+  }
+  33% {
+    background-color: color-mix(in oklab, var(--spectral-g) 20%, transparent);
+  }
+  66% {
+    background-color: color-mix(in oklab, var(--spectral-b) 20%, transparent);
+  }
+  100% {
+    background-color: color-mix(in oklab, var(--sand) 40%, transparent);
+  }
+}
+
 @utility glass-panel {
   border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
   background: color-mix(in oklab, var(--color-card) 55%, transparent);
