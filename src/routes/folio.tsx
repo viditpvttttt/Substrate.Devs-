@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
 import { BlobCluster } from "@/components/BlobCluster";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/folio")({
   head: () => ({
@@ -81,7 +82,7 @@ function FolioPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+        <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <SpectralMark variant="folio" className="mx-auto h-24 w-24 text-foreground" />
           <p className="rule-label mt-8">A Substrate company</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
@@ -97,7 +98,7 @@ function FolioPage() {
           >
             Join the waitlist
           </a>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-y border-border/70 bg-card">
@@ -106,12 +107,16 @@ function FolioPage() {
             Six things, done unusually well.
           </h2>
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((c) => (
-              <div key={c.index} className="border-t border-border pt-6">
+            {capabilities.map((c, idx) => (
+              <Reveal
+                key={c.index}
+                delay={(idx % 3) * 0.08}
+                className="border-t border-border pt-6"
+              >
                 <p className="rule-label">{c.index}</p>
                 <h3 className="mt-3 text-2xl text-foreground">{c.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

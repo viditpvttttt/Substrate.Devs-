@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
 import { OrbField } from "@/components/OrbField";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/void")({
   head: () => ({
@@ -52,7 +53,7 @@ function VoidPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+        <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <SpectralMark
             variant="void"
             className="mx-auto h-40 w-40 text-foreground sm:h-48 sm:w-48"
@@ -70,7 +71,7 @@ function VoidPage() {
             VOID is early. It is being designed around one idea: the page, the model and your intent
             on the same surface — no tab sprawl, no chrome you did not ask for.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-y border-border/70 bg-card">
@@ -99,12 +100,12 @@ function VoidPage() {
             What we are designing around
           </h2>
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
-            {ideas.map((i) => (
-              <div key={i.index} className="border-t border-border pt-6">
+            {ideas.map((i, idx) => (
+              <Reveal key={i.index} delay={idx * 0.08} className="border-t border-border pt-6">
                 <p className="rule-label">{i.index}</p>
                 <h3 className="mt-3 text-2xl text-foreground">{i.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{i.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { SignalDoodle } from "@/components/SignalDoodle";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/studio")({
   head: () => ({
@@ -62,7 +63,7 @@ function StudioPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+        <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <p className="rule-label">Studio</p>
           <h1 className="mt-6 text-5xl leading-[1.05] text-foreground sm:text-6xl">
             The layer underneath
@@ -72,7 +73,7 @@ function StudioPage() {
             model, the browser and the surface people work on — and we build them on the same ground
             so they behave like one thing.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-y border-border/70 bg-card">
@@ -107,12 +108,16 @@ function StudioPage() {
           </h2>
           <SignalDoodle className="mt-6 h-8 w-56 text-muted-foreground" aria-hidden="true" />
           <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {principles.map((p) => (
-              <div key={p.index} className="border-t border-border pt-6">
+            {principles.map((p, idx) => (
+              <Reveal
+                key={p.index}
+                delay={(idx % 3) * 0.08}
+                className="border-t border-border pt-6"
+              >
                 <p className="rule-label">{p.index}</p>
                 <h3 className="mt-3 text-2xl text-foreground">{p.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
