@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { SignalDoodle } from "@/components/SignalDoodle";
 import { Reveal } from "@/components/Reveal";
 

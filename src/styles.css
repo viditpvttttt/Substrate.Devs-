@@ -289,6 +289,74 @@
   }
 }
 
+/* Reversed marquee for a two-row counter-scrolling band. */
+@utility marquee-track-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite reverse;
+}
+
+/* Slowly rotating spectral conic border, drawn in a masked ring. */
+@utility gradient-border {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--gb-angle, 0deg),
+      var(--spectral-b),
+      var(--spectral-r),
+      var(--spectral-g),
+      var(--spectral-b)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    animation: gb-spin 7s linear infinite;
+    pointer-events: none;
+  }
+}
+
+@property --gb-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes gb-spin {
+  to {
+    --gb-angle: 360deg;
+  }
+}
+
+/* Light sweep that crosses a pill button on hover. */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -40% auto;
+    left: -60%;
+    width: 40%;
+    transform: skewX(-18deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover::after {
+    left: 130%;
+  }
+}
+
 @utility glass-panel {
   border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
   background: color-mix(in oklab, var(--color-card) 55%, transparent);

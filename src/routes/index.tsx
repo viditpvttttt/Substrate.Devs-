@@ -2,10 +2,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ClientOnly } from "@/components/ClientOnly";
 import { HeroScene } from "@/components/three/HeroScene";
-import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { Reveal } from "@/components/Reveal";
 import { SpectralMark } from "@/components/SpectralMark";
 import { TiltCard } from "@/components/TiltCard";
+import { CountUp } from "@/components/anim/CountUp";
+import { MagneticButton } from "@/components/anim/MagneticButton";
+import { ParallaxY } from "@/components/anim/ParallaxY";
+import { RotatingText } from "@/components/anim/RotatingText";
+import { ScrambleText } from "@/components/anim/ScrambleText";
+import { Spotlight } from "@/components/anim/Spotlight";
+import { StickyCards } from "@/components/anim/StickyCards";
+import { TextGradientFill } from "@/components/anim/TextGradientFill";
+import { WordsReveal } from "@/components/anim/WordsReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,16 +35,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const heroStagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-};
-
-const heroItem = {
-  hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
 const marqueeTerms = [
   "Multimodal",
   "Local-first",
@@ -48,64 +46,107 @@ const marqueeTerms = [
   "One representation",
 ];
 
+const stats = [
+  { value: 4, suffix: "", label: "Modalities, one context" },
+  { value: 1, suffix: "", label: "Runtime under everything" },
+  { value: 3, suffix: "", label: "Surfaces on the substrate" },
+  { value: 0, suffix: "", label: "Translators in between" },
+];
+
+const stackedStories = [
+  {
+    key: "kernel",
+    label: "Kernel",
+    title: "The model underneath",
+    body: "Text, images, audio and video projected into one representation — a single attention pass instead of a stack of adapters.",
+    colors: { a: "#c88bd9", b: "#7b6bd6", c: "#e0574a" },
+    to: "/kernel" as const,
+  },
+  {
+    key: "void",
+    label: "VOID Browser",
+    title: "The window onto it",
+    body: "A browser with nothing in the way: the page, the model and your intent share one quiet surface.",
+    colors: { a: "#7fa8c9", b: "#3d5a73", c: "#d97c3b" },
+    to: "/void" as const,
+  },
+  {
+    key: "folio",
+    label: "Folio",
+    title: "The surface you live on",
+    body: "Weather, files, memory and agents arranged on one canvas — an operating surface that recedes when it has nothing to say.",
+    colors: { a: "#b8cdd9", b: "#5f8c6a", c: "#2f5e40" },
+    to: "/folio" as const,
+  },
+];
+
 function Index() {
   return (
     <>
-      <section className="relative isolate flex min-h-[92svh] items-center overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <ClientOnly>
-          <HeroScene className="pointer-events-none absolute inset-0 -z-10 opacity-90 sm:pointer-events-auto" />
-        </ClientOnly>
-        <motion.div
-          variants={heroStagger}
-          initial="hidden"
-          animate="show"
-          className="relative mx-auto flex max-w-4xl flex-col items-center px-6 py-24 text-center"
-        >
-          <motion.div variants={heroItem}>
-            <SpectralMark variant="substrate" className="mb-6 h-16 w-16 shadow-md" />
-          </motion.div>
-          <motion.p variants={heroItem} className="rule-label">
-            The layer underneath
-          </motion.p>
-          <motion.h1
-            variants={heroItem}
-            className="mt-7 text-6xl leading-[1.02] text-foreground sm:text-8xl"
-          >
-            We build the ground
-            <br />
-            software grows on.
-          </motion.h1>
-          <motion.p
-            variants={heroItem}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground"
-          >
-            A research and product studio for the ambient computer. Three things underway:{" "}
-            <span className="text-foreground">Kernel</span>, a multimodal LLM,{" "}
-            <span className="text-foreground">VOID</span>, a minimalist browser, and{" "}
-            <span className="text-foreground">Folio</span>, the surface you work on.
-          </motion.p>
-          <motion.div
-            variants={heroItem}
-            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
-          >
-            <Link
-              to="/kernel"
-              className="rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-xl"
+        <Spotlight />
+        <div className="relative mx-auto grid min-h-[88svh] max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative z-10 text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-8 inline-flex items-center gap-3"
             >
-              Meet Kernel
-            </Link>
-            <Link
-              to="/void"
-              className="group inline-flex items-center gap-2 text-sm text-foreground"
+              <SpectralMark variant="substrate" className="h-9 w-9" />
+              <span className="rule-label">The layer underneath</span>
+            </motion.div>
+            <h1 className="text-5xl leading-[1.04] text-foreground sm:text-6xl lg:text-7xl">
+              <WordsReveal text="We build the ground" delay={0.15} />
+              <br />
+              <WordsReveal text="software grows on." delay={0.45} />
+            </h1>
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground lg:mx-0"
             >
-              VOID Browser
-              <span className="text-muted-foreground transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
-          </motion.div>
-        </motion.div>
+              A research and product studio for the ambient computer — one substrate under{" "}
+              <RotatingText
+                words={["Kernel, the model", "VOID, the browser", "Folio, the surface"]}
+                className="text-foreground"
+              />
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-11 flex flex-wrap items-center justify-center gap-x-7 gap-y-4 lg:justify-start"
+            >
+              <MagneticButton>
+                <Link
+                  to="/kernel"
+                  className="btn-shine inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-shadow hover:shadow-xl"
+                >
+                  Meet Kernel
+                </Link>
+              </MagneticButton>
+              <MagneticButton strength={0.25}>
+                <Link
+                  to="/void"
+                  className="group inline-flex items-center gap-2 text-sm text-foreground"
+                >
+                  VOID Browser
+                  <span className="text-muted-foreground transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </MagneticButton>
+            </motion.div>
+          </div>
+          <div className="relative hidden h-[70svh] lg:block">
+            <ClientOnly>
+              <HeroScene className="absolute inset-0" />
+            </ClientOnly>
+          </div>
+        </div>
         <div className="absolute inset-x-0 bottom-6 flex justify-center">
           <motion.div
             animate={{ y: [0, 8, 0] }}
@@ -117,20 +158,15 @@ function Index() {
         </div>
       </section>
 
-      <section className="overflow-hidden border-y border-border/70 bg-card/60 py-5">
-        <div className="marquee-track" aria-hidden="true">
+      <section className="overflow-hidden border-y border-border/70 bg-card/60 py-4">
+        <div className="marquee-track [animation-play-state:running] hover:[animation-play-state:paused]">
           {[0, 1].map((copy) => (
-            <div key={copy} className="flex shrink-0 items-center">
-              {marqueeTerms.map((term) => (
-                <span
-                  key={`${copy}-${term}`}
-                  className="mx-8 inline-flex items-center gap-8 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-muted-foreground"
-                >
-                  {term}
-                  <span className="text-clay">·</span>
-                </span>
-              ))}
-            </div>
+            <MarqueeRow key={copy} copy={copy} />
+          ))}
+        </div>
+        <div className="marquee-track-reverse mt-3 hover:[animation-play-state:paused]">
+          {[0, 1].map((copy) => (
+            <MarqueeRow key={copy} copy={copy} />
           ))}
         </div>
       </section>
@@ -176,57 +212,123 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden border-t border-border/70">
+      <section className="border-y border-border/70 bg-card/50">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px bg-border/60 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="bg-card/80 px-6 py-12 text-center">
+              <p className="font-display text-6xl font-light text-foreground">
+                <CountUp value={s.value} suffix={s.suffix} />
+              </p>
+              <p className="mt-3 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
+                <ScrambleText text={s.label} />
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="relative isolate overflow-hidden">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:py-32 lg:grid-cols-2">
+        <div className="relative mx-auto max-w-4xl px-6 py-28 sm:py-36">
+          <TextGradientFill
+            text="The same runtime, the same memory, the same notion of context runs under all of it. Not three products bolted together — one substrate wearing three faces."
+            className="text-center font-display text-3xl font-light leading-snug text-foreground sm:text-5xl"
+          />
+        </div>
+      </section>
+
+      <section className="relative border-t border-border/70">
+        <div className="mx-auto max-w-5xl px-6 pt-24 sm:pt-28">
           <Reveal>
             <p className="rule-label">One substrate</p>
-            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
+            <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
               Three products, one shared ground
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              The same runtime, the same memory, the same notion of context runs under all of it.
-              Drag the lattice — every node is a shared slot, every edge a route between the pieces.
-            </p>
-            <Link
-              to="/studio"
-              className="group mt-8 inline-flex items-center gap-2 text-sm text-foreground"
-            >
-              How we build
-              <span className="text-muted-foreground transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
           </Reveal>
-          <Reveal delay={0.15}>
-            <LatticeDiagram className="glass-panel aspect-square rounded-2xl" />
-            <p className="mt-3 text-center font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-              Drag to rotate
-            </p>
-          </Reveal>
+        </div>
+        <div className="mx-auto max-w-5xl px-6 pb-10">
+          <StickyCards
+            items={stackedStories.map((story, i) => ({
+              key: story.key,
+              content: <StoryCard story={story} index={i} />,
+            }))}
+          />
         </div>
       </section>
 
       <section className="relative isolate overflow-hidden border-t border-border/70">
         <div className="relative mx-auto max-w-2xl px-6 py-28 text-center sm:py-32">
-          <Reveal>
-            <h2 className="text-4xl leading-tight text-foreground sm:text-5xl">
-              Early, and open to company
-            </h2>
-            <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-              If you are building at the same layer — models, runtimes, browsers — we would like to
-              hear from you.
-            </p>
-            <a
-              href="mailto:hello@substrate.dev"
-              className="mt-10 inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-xl"
-            >
-              Get in touch
-            </a>
-          </Reveal>
+          <ParallaxY from={30} to={-30}>
+            <Reveal>
+              <h2 className="text-4xl leading-tight text-foreground sm:text-5xl">
+                Early, and open to company
+              </h2>
+              <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
+                If you are building at the same layer — models, runtimes, browsers — we would like
+                to hear from you.
+              </p>
+              <MagneticButton className="mt-10">
+                <a
+                  href="mailto:hello@substrate.dev"
+                  className="btn-shine inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-shadow hover:shadow-xl"
+                >
+                  Get in touch
+                </a>
+              </MagneticButton>
+            </Reveal>
+          </ParallaxY>
         </div>
       </section>
     </>
+  );
+}
+
+function MarqueeRow({ copy }: { copy: number }) {
+  return (
+    <div className="flex shrink-0 items-center" aria-hidden={copy === 1}>
+      {marqueeTerms.map((term) => (
+        <span
+          key={`${copy}-${term}`}
+          className="mx-8 inline-flex items-center gap-8 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-muted-foreground"
+        >
+          {term}
+          <span className="text-clay">·</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function StoryCard({ story, index }: { story: (typeof stackedStories)[number]; index: number }) {
+  return (
+    <Link
+      to={story.to}
+      className="tile-aurora group flex min-h-[24rem] flex-col justify-between rounded-3xl p-10 shadow-xl sm:min-h-[26rem]"
+      style={
+        {
+          "--tile-a": story.colors.a,
+          "--tile-b": story.colors.b,
+          "--tile-c": story.colors.c,
+        } as React.CSSProperties
+      }
+    >
+      <div className="flex items-center justify-between">
+        <p className="rule-label !text-white/90">{story.label}</p>
+        <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/70">
+          0{index + 1} / 03
+        </p>
+      </div>
+      <div className="max-w-xl">
+        <h3 className="text-4xl leading-snug text-white drop-shadow-sm sm:text-5xl">
+          {story.title}
+        </h3>
+        <p className="mt-4 text-base leading-relaxed text-white/85">{story.body}</p>
+        <span className="mt-7 inline-flex items-center gap-2 text-sm text-white">
+          Read more
+          <span className="transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </div>
+    </Link>
   );
 }
 

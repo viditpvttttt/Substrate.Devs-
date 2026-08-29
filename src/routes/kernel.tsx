@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
-import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { BenchRadar } from "@/components/BenchRadar";
 import { Reveal } from "@/components/Reveal";
+import { ScrambleText } from "@/components/anim/ScrambleText";
 
 export const Route = createFileRoute("/kernel")({
   head: () => ({
@@ -81,14 +81,27 @@ function KernelPage() {
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               Every modality is projected into the same space, so a frame of video, a sentence and a
-              waveform can sit next to each other in one attention pass. Drag the lattice to turn it
-              — each node is a shared slot, each edge a route between modalities.
-            </p>
-            <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-              Drag to rotate
+              waveform can sit next to each other in one attention pass — one representation shared
+              across everything the model perceives.
             </p>
           </div>
-          <LatticeDiagram className="aspect-square rounded-2xl border border-border/70 bg-card/50" />
+          <Reveal delay={0.1}>
+            <div className="gradient-border glass-panel grid aspect-square grid-cols-2 gap-px overflow-hidden rounded-2xl p-px">
+              {modalities.map((m) => (
+                <div
+                  key={m.k}
+                  className="flex flex-col items-center justify-center gap-3 bg-card/70 transition-colors hover:bg-accent/60"
+                >
+                  <span className="font-display text-3xl font-light text-foreground">
+                    <ScrambleText text={m.k} />
+                  </span>
+                  <span className="font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground">
+                    → one space
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 

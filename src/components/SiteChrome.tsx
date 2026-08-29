@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
+import { FlipText } from "@/components/anim/FlipLink";
 
 const nav = [
   { to: "/kernel", label: "Kernel" },
@@ -28,7 +29,7 @@ export function SiteHeader() {
               className="group relative text-sm text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "group relative text-sm text-foreground" }}
             >
-              {item.label}
+              <FlipText text={item.label} />
               <span
                 className="absolute -bottom-1 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover:w-full"
                 aria-hidden="true"
