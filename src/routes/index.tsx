@@ -55,11 +55,9 @@ function Index() {
               <span className="hero-emphasis">VOID</span>, a minimalist browser, and{" "}
               <span className="hero-emphasis">Folio</span>, the surface you work on.
             </p>
-            <SignalDoodle
-              className="hero-signal rise-in mt-6 h-8 w-48 sm:w-64"
-              aria-hidden="true"
-              style={{ animationDelay: "340ms" }}
-            />
+            <div className="rise-in mt-6" style={{ animationDelay: "340ms" }}>
+              <SignalDoodle className="hero-signal h-8 w-48 sm:w-64" aria-hidden="true" />
+            </div>
             <div
               className="rise-in mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
               style={{ animationDelay: "430ms" }}
