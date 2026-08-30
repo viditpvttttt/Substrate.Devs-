@@ -26,43 +26,63 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <section className="relative isolate overflow-hidden">
-        <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center px-6 py-28 text-center sm:py-36">
-          <SpectralMark variant="substrate" className="rise-in mb-6 h-20 w-20 shadow-md" />
-          <p className="rule-label rise-in">The layer underneath</p>
-          <h1 className="rise-in mt-8 text-5xl leading-[1.05] text-foreground sm:text-7xl">
-            We build the ground
-            <br />
-            software grows on.
-          </h1>
-          <p className="rise-in mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            A research and product studio for the ambient computer. Three things underway:{" "}
-            <span className="text-foreground">Kernel</span>, a multimodal LLM,{" "}
-            <span className="text-foreground">VOID</span>, a minimalist browser, and{" "}
-            <span className="text-foreground">Folio</span>, the surface you work on.
-          </p>
-          <SignalDoodle
-            className="rise-in mt-6 h-8 w-48 text-muted-foreground sm:w-64"
-            aria-hidden="true"
-          />
-          <div className="rise-in mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-            <Link
-              to="/kernel"
-              className="rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+      <section className="hero-section relative isolate overflow-hidden">
+        <div className="hero-cloudscape" aria-hidden="true">
+          <img src="/images/hero-clouds.png" alt="" />
+        </div>
+        <div className="hero-vignette" aria-hidden="true" />
+        <div className="hero-grid" aria-hidden="true" />
+        <div className="relative z-10 mx-auto flex min-h-[min(760px,calc(100svh-4rem))] max-w-5xl flex-col items-center justify-center px-6 py-28 text-center sm:py-36">
+          <div className="hero-copy">
+            <div className="hero-kicker rise-in" style={{ animationDelay: "80ms" }}>
+              <SpectralMark variant="substrate" className="hero-mark h-16 w-16 shadow-md sm:h-20 sm:w-20" />
+              <p className="rule-label hero-label">The layer underneath</p>
+            </div>
+            <h1
+              className="hero-title rise-in mt-8 text-5xl leading-[1.02] sm:text-7xl"
+              style={{ animationDelay: "170ms" }}
             >
-              Meet Kernel
-            </Link>
-            <Link
-              to="/void"
-              className="group inline-flex items-center gap-2 text-sm text-foreground"
+              We build the ground
+              <br />
+              software grows on.
+            </h1>
+            <p
+              className="hero-description rise-in mt-8 max-w-xl text-lg leading-relaxed"
+              style={{ animationDelay: "260ms" }}
             >
-              VOID Browser
-              <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
-                →
-              </span>
-            </Link>
+              A research and product studio for the ambient computer. Three things underway:{" "}
+              <span className="hero-emphasis">Kernel</span>, a multimodal LLM,{" "}
+              <span className="hero-emphasis">VOID</span>, a minimalist browser, and{" "}
+              <span className="hero-emphasis">Folio</span>, the surface you work on.
+            </p>
+            <SignalDoodle
+              className="hero-signal rise-in mt-6 h-8 w-48 sm:w-64"
+              aria-hidden="true"
+              style={{ animationDelay: "340ms" }}
+            />
+            <div
+              className="rise-in mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
+              style={{ animationDelay: "430ms" }}
+            >
+              <Link
+                to="/kernel"
+                className="hero-primary rounded-full px-7 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
+              >
+                Meet Kernel
+              </Link>
+              <Link
+                to="/void"
+                className="hero-secondary group inline-flex items-center gap-2 text-sm"
+              >
+                VOID Browser
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
           </div>
+        </div>
+        <div className="hero-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <span className="hero-scroll-line" />
         </div>
       </section>
 
