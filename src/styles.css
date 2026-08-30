@@ -453,3 +453,61 @@
     transform: none;
   }
 }
+
+
+/* Pointer spotlight and gentle lift add a little more dimensional UI motion. */
+.hero-spotlight {
+  position: absolute;
+  inset: -12%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.72;
+  background: radial-gradient(
+    360px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    rgba(255, 223, 187, 0.17),
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  transition: opacity 0.45s ease;
+  animation: spotlight-breathe 8s ease-in-out infinite alternate;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.7s ease;
+}
+
+.hero-copy:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 100px rgba(10, 19, 23, 0.2);
+}
+
+.hero-primary,
+.hero-secondary {
+  will-change: transform;
+}
+
+@keyframes spotlight-breathe {
+  0% {
+    opacity: 0.48;
+  }
+  100% {
+    opacity: 0.82;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-spotlight {
+    animation: none;
+    transition: none;
+  }
+
+  .hero-copy {
+    transition: none;
+  }
+
+  .hero-copy:hover {
+    transform: none;
+  }
+}
