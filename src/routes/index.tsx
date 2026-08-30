@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { SpectralMark } from "@/components/SpectralMark";
 import { SignalDoodle } from "@/components/SignalDoodle";
+import { HeroSoundscape } from "@/components/HeroSoundscape";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,12 +27,22 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <section className="hero-section relative isolate overflow-hidden">
+      <section
+        className="hero-section relative isolate overflow-hidden"
+        data-hero-interactive="true"
+        onPointerMove={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          event.currentTarget.style.setProperty("--pointer-x", event.clientX - rect.left + "px");
+          event.currentTarget.style.setProperty("--pointer-y", event.clientY - rect.top + "px");
+        }}
+      >
+        <HeroSoundscape />
         <div className="hero-cloudscape" aria-hidden="true">
           <img src="/images/hero-clouds.png" alt="" />
         </div>
         <div className="hero-vignette" aria-hidden="true" />
         <div className="hero-grid" aria-hidden="true" />
+        <div className="hero-spotlight" aria-hidden="true" />
         <div className="relative z-10 mx-auto flex min-h-[min(760px,calc(100svh-4rem))] max-w-5xl flex-col items-center justify-center px-6 py-28 text-center sm:py-36">
           <div className="hero-copy">
             <div className="hero-kicker rise-in" style={{ animationDelay: "80ms" }}>
@@ -65,12 +76,14 @@ function Index() {
               <Link
                 to="/kernel"
                 className="hero-primary rounded-full px-7 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
+                data-sound="hover"
               >
                 Meet Kernel
               </Link>
               <Link
                 to="/void"
                 className="hero-secondary group inline-flex items-center gap-2 text-sm"
+                data-sound="hover"
               >
                 VOID Browser
                 <span className="transition-transform group-hover:translate-x-1">→</span>
