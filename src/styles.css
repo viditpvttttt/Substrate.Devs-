@@ -263,3 +263,193 @@
 @utility rise-in {
   animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+
+/* Painted cloud hero — editorial depth and Skiper-inspired, low-noise motion. */
+.hero-section {
+  min-height: min(760px, calc(100svh - 4rem));
+  background: #2c414a;
+  color: #fff4e4;
+}
+
+.hero-cloudscape,
+.hero-vignette,
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-cloudscape {
+  overflow: hidden;
+}
+
+.hero-cloudscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 44%;
+  transform: scale(1.06);
+  filter: saturate(0.92) contrast(0.98);
+  animation: cloud-drift 24s ease-in-out infinite alternate;
+}
+
+.hero-vignette {
+  background:
+    linear-gradient(180deg, rgba(17, 28, 34, 0.36) 0%, rgba(17, 28, 34, 0.08) 44%, rgba(17, 28, 34, 0.58) 100%),
+    radial-gradient(ellipse at center, rgba(18, 29, 34, 0.02) 18%, rgba(18, 29, 34, 0.34) 100%);
+}
+
+.hero-grid {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 242, 222, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 242, 222, 0.18) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(to bottom, transparent 3%, black 28%, black 72%, transparent 98%);
+}
+
+.hero-copy {
+  width: min(100%, 760px);
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
+  border: 1px solid rgba(255, 239, 216, 0.24);
+  background: rgba(27, 34, 37, 0.17);
+  box-shadow: 0 24px 90px rgba(10, 19, 23, 0.14);
+  backdrop-filter: blur(7px);
+}
+
+.hero-kicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-mark {
+  color: #fff0d9;
+  filter: drop-shadow(0 7px 18px rgba(16, 24, 27, 0.22));
+}
+
+.hero-label {
+  color: rgba(255, 238, 211, 0.76);
+}
+
+.hero-title {
+  color: #fff6e8;
+  text-shadow: 0 3px 28px rgba(24, 27, 27, 0.22);
+}
+
+.hero-description {
+  color: rgba(255, 241, 220, 0.8);
+  text-shadow: 0 2px 14px rgba(24, 27, 27, 0.2);
+}
+
+.hero-emphasis {
+  color: #fff3dc;
+}
+
+.hero-signal {
+  color: #f8dbc0;
+  opacity: 0.82;
+}
+
+.hero-primary {
+  color: #26373e;
+  background: #fff0dc;
+  box-shadow: 0 8px 22px rgba(17, 27, 30, 0.2);
+}
+
+.hero-primary:hover {
+  box-shadow: 0 11px 26px rgba(17, 27, 30, 0.27);
+}
+
+.hero-secondary {
+  color: #fff1dc;
+  text-shadow: 0 2px 12px rgba(24, 27, 27, 0.2);
+}
+
+.hero-secondary span {
+  color: #f6d2b2;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 235, 209, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  display: block;
+  width: 1px;
+  height: 2.25rem;
+  background: linear-gradient(to bottom, rgba(255, 235, 209, 0.75), transparent);
+  transform-origin: top;
+  animation: scroll-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes cloud-drift {
+  0% {
+    transform: translate3d(-1.5%, -0.75%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(1.5%, 0.75%, 0) scale(1.12);
+  }
+}
+
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scaleY(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    min-height: calc(100svh - 4rem);
+  }
+
+  .hero-cloudscape img {
+    object-position: 55% center;
+  }
+
+  .hero-copy {
+    padding: 2.5rem 1.1rem 3.75rem;
+  }
+
+  .hero-grid {
+    background-size: 80px 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cloudscape img,
+  .hero-scroll-line {
+    animation: none;
+  }
+
+  .hero-cloudscape img {
+    transform: scale(1.06);
+  }
+
+  .hero-section .rise-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
