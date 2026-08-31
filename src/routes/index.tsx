@@ -89,7 +89,7 @@ function Index() {
     <>
       <Preloader />
       <section className="relative isolate overflow-hidden">
-        <div className="spectral-field" aria-hidden="true" />
+        <div className="hero-cloudscape" aria-hidden="true" />
         <CanvasCrowd className="absolute inset-0 h-full w-full" />
         <Spotlight />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-center justify-center px-6 py-20">

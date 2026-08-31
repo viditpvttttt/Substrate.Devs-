@@ -419,3 +419,60 @@
 @utility rise-in {
   animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+
+/* Full-bleed cloud study for the homepage hero. The layers stay CSS-only so
+   the art remains responsive and adds no image payload. */
+@utility hero-cloudscape {
+  position: absolute;
+  inset: -8%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #7298a8 0%, #6f99a9 34%, #c98464 100%),
+    #779baa;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -12%;
+    background:
+      radial-gradient(ellipse 34% 42% at 12% 18%, rgb(255 224 169 / 92%) 0 12%, rgb(237 166 119 / 76%) 29%, transparent 64%),
+      radial-gradient(ellipse 42% 52% at 72% 15%, rgb(255 229 181 / 96%) 0 13%, rgb(240 174 124 / 84%) 32%, transparent 65%),
+      radial-gradient(ellipse 36% 47% at 94% 38%, rgb(81 105 126 / 78%) 0 18%, rgb(218 139 104 / 48%) 43%, transparent 71%),
+      radial-gradient(ellipse 44% 35% at 48% 45%, rgb(247 188 134 / 86%) 0 14%, rgb(202 121 92 / 63%) 42%, transparent 72%),
+      radial-gradient(ellipse 42% 45% at 21% 75%, rgb(255 225 177 / 88%) 0 13%, rgb(226 148 106 / 75%) 34%, transparent 66%),
+      radial-gradient(ellipse 38% 40% at 70% 77%, rgb(70 96 117 / 70%) 0 14%, rgb(224 148 105 / 52%) 44%, transparent 72%);
+    filter: blur(16px) saturate(110%);
+    transform: scale(1.08);
+    animation: cloud-drift 28s ease-in-out infinite alternate;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.44;
+    background:
+      repeating-linear-gradient(0deg, rgb(255 247 220 / 10%) 0 1px, transparent 1px 4px),
+      radial-gradient(rgb(48 37 29 / 24%) 0.55px, transparent 0.7px);
+    background-size: auto, 4px 4px;
+    mix-blend-mode: soft-light;
+  }
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: scale(1.08) translate3d(-1.5%, -1%, 0);
+  }
+  to {
+    transform: scale(1.13) translate3d(2%, 1.5%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cloudscape::before {
+    animation: none;
+  }
+}
