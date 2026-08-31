@@ -4,7 +4,6 @@ import { Reveal } from "@/components/Reveal";
 import { SpectralMark } from "@/components/SpectralMark";
 import { TiltCard } from "@/components/TiltCard";
 import { BoxReveal } from "@/components/anim/BoxReveal";
-import { CanvasCrowd } from "@/components/anim/CanvasCrowd";
 import { CountUp } from "@/components/anim/CountUp";
 import { EmailCapture } from "@/components/anim/EmailCapture";
 import { HoverPreviewList } from "@/components/anim/HoverPreview";
@@ -90,7 +89,6 @@ function Index() {
       <Preloader />
       <section className="relative isolate overflow-hidden">
         <div className="hero-cloudscape" aria-hidden="true" />
-        <CanvasCrowd className="absolute inset-0 h-full w-full" />
         <Spotlight />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-center justify-center px-6 py-20">
           <div className="relative z-10 max-w-3xl text-center">
