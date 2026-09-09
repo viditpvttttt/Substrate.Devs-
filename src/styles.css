@@ -50,62 +50,62 @@
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.145 0.008 90);
-  --foreground: oklch(0.94 0.008 90);
+  --background: oklch(0.12 0.006 60);
+  --foreground: oklch(0.96 0.008 85);
 
-  --card: oklch(0.18 0.009 90);
-  --card-foreground: oklch(0.94 0.008 90);
-  --popover: oklch(0.2 0.01 90);
-  --popover-foreground: oklch(0.94 0.008 90);
+  --card: oklch(0.155 0.007 60);
+  --card-foreground: oklch(0.96 0.008 85);
+  --popover: oklch(0.175 0.008 60);
+  --popover-foreground: oklch(0.96 0.008 85);
 
-  --primary: oklch(0.76 0.16 62);
-  --primary-foreground: oklch(0.16 0.01 80);
+  --primary: oklch(0.68 0.22 42);
+  --primary-foreground: oklch(0.99 0.002 90);
 
-  --secondary: oklch(0.22 0.01 90);
-  --secondary-foreground: oklch(0.9 0.008 90);
+  --secondary: oklch(0.19 0.008 60);
+  --secondary-foreground: oklch(0.92 0.008 85);
 
-  --muted: oklch(0.22 0.01 90);
-  --muted-foreground: oklch(0.63 0.012 85);
+  --muted: oklch(0.19 0.008 60);
+  --muted-foreground: oklch(0.66 0.012 80);
 
-  --accent: oklch(0.26 0.02 75);
-  --accent-foreground: oklch(0.96 0.008 90);
+  --accent: oklch(0.23 0.01 60);
+  --accent-foreground: oklch(0.98 0.006 85);
 
-  --destructive: oklch(0.55 0.19 27);
+  --destructive: oklch(0.58 0.2 27);
   --destructive-foreground: oklch(0.985 0.006 85);
 
-  --border: oklch(1 0 0 / 11%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.76 0.16 62);
+  --border: oklch(1 0 0 / 8.5%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.68 0.22 42);
 
-  --sand: oklch(0.76 0.16 62);
-  --clay: oklch(0.6 0.02 80);
+  --sand: oklch(0.72 0.18 52);
+  --clay: oklch(0.65 0.025 75);
 
-  /* chromatic ambience — heavily blurred, never solid */
-  --spectral-r: oklch(0.76 0.16 62);
-  --spectral-g: oklch(0.68 0.08 82);
-  --spectral-b: oklch(0.58 0.04 250);
+  /* chromatic ambience — warm Cursor-style ember & graphite reflections */
+  --spectral-r: oklch(0.68 0.22 42);
+  --spectral-g: oklch(0.62 0.12 65);
+  --spectral-b: oklch(0.55 0.08 240);
 }
 
 .dark {
-  --background: oklch(0.145 0.008 90);
-  --foreground: oklch(0.94 0.008 90);
-  --card: oklch(0.18 0.009 90);
-  --card-foreground: oklch(0.94 0.008 90);
-  --popover: oklch(0.2 0.01 90);
-  --popover-foreground: oklch(0.94 0.008 90);
-  --primary: oklch(0.76 0.16 62);
-  --primary-foreground: oklch(0.16 0.01 80);
-  --secondary: oklch(0.22 0.01 90);
-  --secondary-foreground: oklch(0.9 0.008 90);
-  --muted: oklch(0.22 0.01 90);
-  --muted-foreground: oklch(0.63 0.012 85);
-  --accent: oklch(0.26 0.02 75);
-  --accent-foreground: oklch(0.96 0.008 90);
+  --background: oklch(0.12 0.006 60);
+  --foreground: oklch(0.96 0.008 85);
+  --card: oklch(0.155 0.007 60);
+  --card-foreground: oklch(0.96 0.008 85);
+  --popover: oklch(0.175 0.008 60);
+  --popover-foreground: oklch(0.96 0.008 85);
+  --primary: oklch(0.68 0.22 42);
+  --primary-foreground: oklch(0.99 0.002 90);
+  --secondary: oklch(0.19 0.008 60);
+  --secondary-foreground: oklch(0.92 0.008 85);
+  --muted: oklch(0.19 0.008 60);
+  --muted-foreground: oklch(0.66 0.012 80);
+  --accent: oklch(0.23 0.01 60);
+  --accent-foreground: oklch(0.98 0.006 85);
   --destructive: oklch(0.62 0.18 25);
   --destructive-foreground: oklch(0.97 0.006 84);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.76 0.16 62);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.68 0.22 42);
 }
 
 @layer base {
@@ -433,3 +433,45 @@
     radial-gradient(circle at 50% 18%, oklch(0.24 0.025 75 / 45%), transparent 42%),
     linear-gradient(180deg, oklch(0.17 0.01 90), var(--background));
 }
+
+/* 3D Perspective & Spatial transforms */
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility perspective-1200 {
+  perspective: 1200px;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Cursor-inspired glowing card & ember styling */
+@utility cursor-glow {
+  box-shadow: 0 0 35px -5px rgba(242, 91, 32, 0.15), 0 0 80px -20px rgba(242, 91, 32, 0.08);
+}
+
+@utility cursor-card-ambient {
+  background: linear-gradient(180deg, oklch(0.18 0.009 60 / 95%), oklch(0.14 0.007 60 / 95%));
+  border: 1px solid oklch(1 0 0 / 8.5%);
+  backdrop-filter: blur(16px);
+}
+
+@utility cursor-amber-link {
+  color: #ff5e18;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateX(2px);
+  }
+}
+

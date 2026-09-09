@@ -21,17 +21,17 @@ import { WordsReveal } from "@/components/anim/WordsReveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Substrate — Kernel, VOID & Folio" },
+      { title: "Substrate — Kernel, VOID, Folio & Arcadia" },
       {
         name: "description",
         content:
-          "Substrate is a research and product studio building Kernel, a multimodal LLM, VOID, a minimalist browser, and Folio, a quiet operating surface for your day.",
+          "Substrate is a research and product studio building Kernel, a multimodal LLM, VOID, a minimalist browser, Folio, a quiet operating surface, and Arcadia, an autonomous agent assistant.",
       },
-      { property: "og:title", content: "Substrate — Kernel, VOID & Folio" },
+      { property: "og:title", content: "Substrate — Kernel, VOID, Folio & Arcadia" },
       {
         property: "og:description",
         content:
-          "A research and product studio for the ambient computer: a multimodal model, a browser, and the surface you work on.",
+          "A research and product studio for the ambient computer: a multimodal model, a browser, an operating canvas, and autonomous agents on one substrate.",
       },
     ],
   }),
@@ -40,23 +40,33 @@ export const Route = createFileRoute("/")({
 
 const marqueeTerms = [
   "Multimodal",
+  "Autonomous Agents",
   "Local-first",
   "One runtime",
   "Shared memory",
   "Long context",
   "Ambient computing",
   "No translators",
+  "Fleet orchestration",
   "One representation",
 ];
 
 const stats = [
   { value: 4, suffix: "", label: "Modalities, one context" },
   { value: 1, suffix: "", label: "Runtime under everything" },
-  { value: 3, suffix: "", label: "Surfaces on the substrate" },
+  { value: 4, suffix: "", label: "Surfaces on the substrate" },
   { value: 0, suffix: "", label: "Translators in between" },
 ];
 
 const stackedStories = [
+  {
+    key: "arcadia",
+    label: "Arcadia Agent",
+    title: "The autonomous agent built in",
+    body: "Launch fleets of parallel agents across terminal, browser and Slack — automated triggers, local AST semantic lattices, and self-verifying workflows.",
+    colors: { a: "#f25b20", b: "#9e3d12", c: "#2e1408" },
+    to: "/arcadia" as const,
+  },
   {
     key: "kernel",
     label: "Kernel",
@@ -80,6 +90,45 @@ const stackedStories = [
     body: "Weather, files, memory and agents arranged on one canvas — an operating surface that recedes when it has nothing to say.",
     colors: { a: "#c8b27c", b: "#665638", c: "#29251c" },
     to: "/folio" as const,
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Adoption went from single digits to over 80%. It spread like wildfire, all the best builders were using Arcadia and Kernel.",
+    author: "Diana Hu",
+    role: "General Partner, Y Combinator",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces",
+  },
+  {
+    quote: "Our engineers are now assisted by autonomous agents and our developer productivity has gone up incredibly.",
+    author: "Jensen Huang",
+    role: "President & CEO, NVIDIA",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces",
+  },
+  {
+    quote: "The best LLM applications have an autonomy slider: you control how much independence to give the agent. In Substrate, you let it rip.",
+    author: "Andrej Karpathy",
+    role: "CEO, Eureka Labs",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces",
+  },
+  {
+    quote: "Quickly grew to thousands of enthusiastic builders. It's fast, autocompletes when and where you need it, and handles agent fleets properly.",
+    author: "Patrick Collison",
+    role: "Co Founder & CEO, Stripe",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces",
+  },
+  {
+    quote: "The most useful AI tool that I currently run. Sensible keyboard shortcuts, bring-your-own-model... everything is well put together.",
+    author: "shadcn",
+    role: "Creator of shadcn/ui",
+    avatar: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop&crop=faces",
+  },
+  {
+    quote: "It's definitely becoming more fun to be a programmer. In interactive agentic surfaces like Arcadia, models shine brightest.",
+    author: "Greg Brockman",
+    role: "President, OpenAI",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces",
   },
 ];
 
@@ -114,7 +163,12 @@ function Index() {
             >
               A research and product studio for the ambient computer — one substrate under{" "}
               <RotatingText
-                words={["Kernel, the model", "VOID, the browser", "Folio, the surface"]}
+                words={[
+                  "Arcadia, the agent",
+                  "Kernel, the model",
+                  "VOID, the browser",
+                  "Folio, the surface",
+                ]}
                 className="text-foreground"
               />
             </motion.p>
@@ -126,18 +180,18 @@ function Index() {
             >
               <MagneticButton>
                 <Link
-                  to="/kernel"
+                  to="/arcadia"
                   className="btn-shine inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-shadow hover:shadow-xl"
                 >
-                  Meet Kernel
+                  Meet Arcadia Agent
                 </Link>
               </MagneticButton>
               <MagneticButton strength={0.25}>
                 <Link
-                  to="/void"
+                  to="/kernel"
                   className="group inline-flex items-center gap-2 text-sm text-foreground"
                 >
-                  VOID Browser
+                  Kernel Model
                   <span className="text-muted-foreground transition-transform group-hover:translate-x-1">
                     →
                   </span>
@@ -172,13 +226,23 @@ function Index() {
 
       <section className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
         <Reveal>
-          <p className="rule-label">Three products</p>
+          <p className="rule-label text-primary">Four core surfaces</p>
           <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-            <BoxReveal>One substrate, three surfaces</BoxReveal>
+            <BoxReveal>One substrate, four surfaces</BoxReveal>
           </h2>
         </Reveal>
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal delay={0}>
+            <ProductTile
+              to="/arcadia"
+              label="Arcadia"
+              status="New Agent"
+              title="Autonomous agent assistant"
+              body="Fleets of parallel agents across terminal, Slack and IDE."
+              colors={{ a: "#f25b20", b: "#9e3d12", c: "#2e1408" }}
+            />
+          </Reveal>
+          <Reveal delay={0.08}>
             <ProductTile
               to="/kernel"
               label="Kernel"
@@ -188,7 +252,7 @@ function Index() {
               colors={{ a: "#d99a4a", b: "#8f5f2d", c: "#30251b" }}
             />
           </Reveal>
-          <Reveal delay={0.12}>
+          <Reveal delay={0.16}>
             <ProductTile
               to="/void"
               label="VOID Browser"
@@ -242,7 +306,7 @@ function Index() {
           <Reveal>
             <p className="rule-label">One substrate</p>
             <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              <BoxReveal>Three products, one shared ground</BoxReveal>
+              <BoxReveal>Four surfaces, one shared ground</BoxReveal>
             </h2>
           </Reveal>
         </div>
@@ -253,6 +317,41 @@ function Index() {
               content: <StoryCard story={story} index={i} />,
             }))}
           />
+        </div>
+      </section>
+
+      {/* Testimonials / Stay on the Frontier Section (Matching Reference Image 2) */}
+      <section className="border-t border-border/70 bg-[#121110] py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <Reveal>
+            <p className="rule-label text-primary">Stay on the frontier</p>
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+              Trusted by the world's most ambitious engineers
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((t, idx) => (
+              <Reveal key={t.author} delay={idx * 0.06}>
+                <div className="flex h-full flex-col justify-between rounded-2xl border border-border/80 bg-[#171513] p-7 shadow-lg transition-colors hover:border-border">
+                  <p className="text-sm leading-relaxed text-foreground/90">
+                    "{t.quote}"
+                  </p>
+                  <div className="mt-6 flex items-center gap-3.5 border-t border-border/50 pt-4">
+                    <img
+                      src={t.avatar}
+                      alt={t.author}
+                      className="h-10 w-10 rounded-full object-cover border border-border/70"
+                    />
+                    <div>
+                      <p className="text-xs font-semibold text-foreground">{t.author}</p>
+                      <p className="text-[0.6875rem] text-muted-foreground">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -360,7 +459,7 @@ function StoryCard({ story, index }: { story: (typeof stackedStories)[number]; i
       <div className="flex items-center justify-between">
         <p className="rule-label !text-white/90">{story.label}</p>
         <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/70">
-          0{index + 1} / 03
+          0{index + 1} / 04
         </p>
       </div>
       <div className="max-w-xl">
@@ -385,7 +484,7 @@ function ProductTile({
   body,
   colors,
 }: {
-  to: "/kernel" | "/void" | "/folio";
+  to: "/kernel" | "/void" | "/folio" | "/arcadia";
   label: string;
   status: string;
   title: string;

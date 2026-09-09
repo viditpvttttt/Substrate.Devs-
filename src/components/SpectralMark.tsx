@@ -1,13 +1,43 @@
 type Props = {
-  variant: "kernel" | "void" | "folio" | "substrate";
+  variant: "kernel" | "void" | "folio" | "substrate" | "arcadia";
   className?: string;
   alt?: string;
 };
 
 /**
- * Official marks & logos for Substrate, Kernel, Folio, and VOID.
+ * Official marks & logos for Substrate, Kernel, Folio, VOID, and Arcadia.
  */
 export function SpectralMark({ variant, className = "", alt }: Props) {
+  if (variant === "arcadia") {
+    return (
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label={alt || "Arcadia mark: autonomous agent intelligence loop"}
+        className={className}
+      >
+        <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="2" strokeOpacity="0.25" strokeDasharray="3 3" />
+        <circle cx="50" cy="50" r="32" stroke="var(--primary, #ff5e18)" strokeWidth="2.5" strokeOpacity="0.85" />
+        <path
+          d="M32 50 C 32 38, 40 30, 50 30 C 62 30, 70 40, 70 50 C 70 62, 60 70, 50 70 C 38 70, 32 60, 32 50 Z"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <path
+          d="M50 20 L50 32 M50 68 L50 80 M20 50 L32 50 M68 50 L80 50"
+          stroke="var(--primary, #ff5e18)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <circle cx="50" cy="50" r="6" fill="var(--primary, #ff5e18)" />
+        <circle cx="50" cy="50" r="10" stroke="var(--primary, #ff5e18)" strokeWidth="1" strokeOpacity="0.5" />
+      </svg>
+    );
+  }
+
   if (variant === "substrate") {
     return (
       <img
