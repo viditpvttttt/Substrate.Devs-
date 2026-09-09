@@ -250,14 +250,103 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden">
+      <section className="relative isolate overflow-hidden border-t border-border/70 bg-card/30 grain-veil">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <SvgScrollDraw className="absolute inset-y-0 left-1/2 hidden w-40 -translate-x-1/2 opacity-50 lg:block" />
-        <div className="relative mx-auto max-w-4xl px-6 py-28 sm:py-36">
-          <TextGradientFill
-            text="The same runtime, the same memory, the same notion of context runs under all of it. Not separate products bolted together — one substrate wearing four faces."
-            className="text-center font-display text-3xl font-light leading-snug text-foreground sm:text-5xl"
-          />
+        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
+          <div className="grid items-center gap-14 lg:grid-cols-2">
+            <div>
+              <div className="flex items-center gap-3">
+                <SpectralMark variant="arcadia" className="h-6 w-6 text-sand" />
+                <p className="rule-label">The Autonomous Agent</p>
+              </div>
+              <h2 className="mt-5 text-4xl leading-[1.08] font-light text-foreground sm:text-5xl">
+                <BoxReveal>Arcadia: an agent that lives inside your work</BoxReveal>
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                Like OpenClaw and Meta's Muse, Arcadia is not a chat box with adapters. It is an
+                autonomous agent that lives directly on the substrate runtime — reading files,
+                executing terminal commands, navigating browser surfaces, and orchestrating parallel
+                fleets with shared memory.
+              </p>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="tick-hover border-t border-border p-3 pt-4 transition-colors">
+                  <p className="rule-label">01 / Fleets</p>
+                  <h3 className="mt-2 text-xl font-light text-foreground">Parallel Subagents</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    Spawns concurrent threads to investigate bugs, write isolated branches, and run test suites.
+                  </p>
+                </div>
+                <div className="tick-hover border-t border-border p-3 pt-4 transition-colors">
+                  <p className="rule-label">02 / OpenClaw</p>
+                  <h3 className="mt-2 text-xl font-light text-foreground">Live Surface Actor</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    Operates browser views and AST semantic lattices with direct in-place modifications.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-10">
+                <Link
+                  to="/arcadia"
+                  className="btn-shine inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
+                >
+                  Explore Arcadia Agent
+                  <span>→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Interactive 3D Ambient Card matching Substrate Aesthetics */}
+            <TiltCard>
+              <div
+                className="tile-aurora flex min-h-[26rem] flex-col justify-between rounded-3xl p-8 shadow-2xl"
+                style={
+                  {
+                    "--tile-a": "#d97a38",
+                    "--tile-b": "#8f471e",
+                    "--tile-c": "#301d15",
+                  } as React.CSSProperties
+                }
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <SpectralMark variant="arcadia" className="h-5 w-5 text-white" />
+                    <span className="font-mono text-xs uppercase tracking-widest text-white/90">
+                      Arcadia Engine
+                    </span>
+                  </div>
+                  <span className="rounded-full border border-white/30 px-2.5 py-0.5 font-mono text-[0.5625rem] uppercase tracking-wider text-white/90">
+                    Live Runtime
+                  </span>
+                </div>
+
+                <div className="my-6 rounded-2xl border border-white/20 bg-black/40 p-5 backdrop-blur-md font-mono text-xs text-white/90">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[0.625rem] text-white/70">
+                    <span>AUTONOMOUS EXECUTION DAG</span>
+                    <span className="text-emerald-300">● RUNNING</span>
+                  </div>
+                  <div className="mt-3 space-y-2 text-[0.7rem]">
+                    <p className="text-white/80">{"> arcadia --mode autonomous"}</p>
+                    <p className="text-emerald-300">✓ AST lattice parsed (34 files)</p>
+                    <p className="text-sand">⚙ 4 parallel subagents dispatched</p>
+                    <p className="text-white/80">↳ Subagent 01: Refactoring auth PKCE loop</p>
+                    <p className="text-white/80">↳ Subagent 02: Running WebKit headless verification</p>
+                    <p className="text-emerald-300">✓ All 18/18 integration specs verified</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-light leading-snug text-white">
+                    One runtime under your files, browser and terminal.
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-white/80">
+                    Shared context across Kernel, VOID and Folio — zero translators in between.
+                  </p>
+                </div>
+              </div>
+            </TiltCard>
+          </div>
         </div>
       </section>
 
