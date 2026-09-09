@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArcadiaRouteImport } from './routes/arcadia'
 import { Route as FolioRouteImport } from './routes/folio'
 import { Route as KernelRouteImport } from './routes/kernel'
 import { Route as StudioRouteImport } from './routes/studio'
@@ -18,6 +19,11 @@ import { Route as VoidRouteImport } from './routes/void'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArcadiaRoute = ArcadiaRouteImport.update({
+  id: '/arcadia',
+  path: '/arcadia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FolioRoute = FolioRouteImport.update({
@@ -43,6 +49,7 @@ const VoidRoute = VoidRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
   '/kernel': typeof KernelRoute
   '/studio': typeof StudioRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
   '/kernel': typeof KernelRoute
   '/studio': typeof StudioRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
   '/kernel': typeof KernelRoute
   '/studio': typeof StudioRoute
@@ -65,14 +74,15 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/folio' | '/kernel' | '/studio' | '/void'
+  fullPaths: '/' | '/arcadia' | '/folio' | '/kernel' | '/studio' | '/void'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/folio' | '/kernel' | '/studio' | '/void'
-  id: '__root__' | '/' | '/folio' | '/kernel' | '/studio' | '/void'
+  to: '/' | '/arcadia' | '/folio' | '/kernel' | '/studio' | '/void'
+  id: '__root__' | '/' | '/arcadia' | '/folio' | '/kernel' | '/studio' | '/void'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArcadiaRoute: typeof ArcadiaRoute
   FolioRoute: typeof FolioRoute
   KernelRoute: typeof KernelRoute
   StudioRoute: typeof StudioRoute
@@ -86,6 +96,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arcadia': {
+      id: '/arcadia'
+      path: '/arcadia'
+      fullPath: '/arcadia'
+      preLoaderRoute: typeof ArcadiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/folio': {
@@ -121,6 +138,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArcadiaRoute: ArcadiaRoute,
   FolioRoute: FolioRoute,
   KernelRoute: KernelRoute,
   StudioRoute: StudioRoute,
