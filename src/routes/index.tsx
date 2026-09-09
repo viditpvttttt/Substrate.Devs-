@@ -17,6 +17,7 @@ import { StickyCards } from "@/components/anim/StickyCards";
 import { SvgScrollDraw } from "@/components/anim/SvgScrollDraw";
 import { TextGradientFill } from "@/components/anim/TextGradientFill";
 import { WordsReveal } from "@/components/anim/WordsReveal";
+import { GridlineMatrix } from "@/components/GridlineMatrix";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -346,6 +347,10 @@ function Index() {
                 </div>
               </div>
             </TiltCard>
+            {/* Gridline Matrix Section */}
+            <section className="my-16">
+              <GridlineMatrix />
+            </section>
           </div>
         </div>
       </section>

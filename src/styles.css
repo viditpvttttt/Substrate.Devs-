@@ -446,3 +446,61 @@
 @utility backface-hidden {
   backface-visibility: hidden;
 }
+
+/* 21st.dev / Skiper.ui Gridline & Laser Beam Animations */
+@utility grid-matrix-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-border) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-border) 45%, transparent) 1px, transparent 1px);
+}
+
+@utility grid-matrix-fine {
+  background-size: 20px 20px;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-border) 25%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-border) 25%, transparent) 1px, transparent 1px);
+}
+
+@keyframes beam-h {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+@keyframes beam-v {
+  0% {
+    top: -20%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
+}
+
+@utility beam-travel-h {
+  animation: beam-h 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@utility beam-travel-v {
+  animation: beam-v 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
