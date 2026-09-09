@@ -27,12 +27,12 @@ export const Route = createFileRoute("/folio")({
 });
 
 const capColors = [
-  { a: "#b8cdd9", b: "#5f8c6a", c: "#2f5e40" },
-  { a: "#c88bd9", b: "#7b6bd6", c: "#5f8c6a" },
-  { a: "#d9b48b", b: "#c96f4a", c: "#7b3f2e" },
-  { a: "#7fa8c9", b: "#3d5a73", c: "#2f4a5e" },
-  { a: "#d98bb0", b: "#a34a6f", c: "#5e2f42" },
-  { a: "#9db8d9", b: "#5c6bd6", c: "#3c3f8c" },
+  { a: "#c8b27c", b: "#665638", c: "#29251c" },
+  { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
+  { a: "#b99b63", b: "#765a32", c: "#302517" },
+  { a: "#9b9b92", b: "#4b4b46", c: "#252522" },
+  { a: "#bc8b58", b: "#754b2c", c: "#302019" },
+  { a: "#a8a38d", b: "#665f42", c: "#2b291f" },
 ];
 
 const capabilities = [

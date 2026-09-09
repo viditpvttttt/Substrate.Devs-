@@ -62,7 +62,7 @@ const stackedStories = [
     label: "Kernel",
     title: "The model underneath",
     body: "Text, images, audio and video projected into one representation — a single attention pass instead of a stack of adapters.",
-    colors: { a: "#c88bd9", b: "#7b6bd6", c: "#e0574a" },
+    colors: { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
     to: "/kernel" as const,
   },
   {
@@ -70,7 +70,7 @@ const stackedStories = [
     label: "VOID Browser",
     title: "The window onto it",
     body: "A browser with nothing in the way: the page, the model and your intent share one quiet surface.",
-    colors: { a: "#7fa8c9", b: "#3d5a73", c: "#d97c3b" },
+    colors: { a: "#9b9b92", b: "#4b4b46", c: "#252522" },
     to: "/void" as const,
   },
   {
@@ -78,7 +78,7 @@ const stackedStories = [
     label: "Folio",
     title: "The surface you live on",
     body: "Weather, files, memory and agents arranged on one canvas — an operating surface that recedes when it has nothing to say.",
-    colors: { a: "#b8cdd9", b: "#5f8c6a", c: "#2f5e40" },
+    colors: { a: "#c8b27c", b: "#665638", c: "#29251c" },
     to: "/folio" as const,
   },
 ];
@@ -185,7 +185,7 @@ function Index() {
               status="In training"
               title="One model, every modality"
               body="Text, images, audio and video in a single context."
-              colors={{ a: "#c88bd9", b: "#7b6bd6", c: "#e0574a" }}
+              colors={{ a: "#d99a4a", b: "#8f5f2d", c: "#30251b" }}
             />
           </Reveal>
           <Reveal delay={0.12}>
@@ -195,7 +195,7 @@ function Index() {
               status="Pre-production"
               title="Nothing in the way"
               body="The page, the model and your intent on the same surface."
-              colors={{ a: "#7fa8c9", b: "#3d5a73", c: "#d97c3b" }}
+              colors={{ a: "#9b9b92", b: "#4b4b46", c: "#252522" }}
             />
           </Reveal>
           <Reveal delay={0.24}>
@@ -205,7 +205,7 @@ function Index() {
               status="Private beta"
               title="The quiet operating surface"
               body="Weather, files, memory and agents on one canvas."
-              colors={{ a: "#b8cdd9", b: "#5f8c6a", c: "#2f5e40" }}
+              colors={{ a: "#c8b27c", b: "#665638", c: "#29251c" }}
             />
           </Reveal>
         </div>
