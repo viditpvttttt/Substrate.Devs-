@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
-import { LatticeDiagram } from "@/components/LatticeDiagram";
 import { BenchRadar } from "@/components/BenchRadar";
+import { Reveal } from "@/components/Reveal";
+import { BoxReveal } from "@/components/anim/BoxReveal";
+import { ScrambleText } from "@/components/anim/ScrambleText";
 
 export const Route = createFileRoute("/kernel")({
   head: () => ({
@@ -46,7 +48,7 @@ function KernelPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+        <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <SpectralMark variant="kernel" className="mx-auto h-20 w-20 text-clay" />
           <p className="rule-label mt-8">Kernel</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
@@ -56,16 +58,16 @@ function KernelPage() {
             Kernel is a multimodal LLM built to work across text, images, audio and video in a
             single context — one representation instead of a stack of translators.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-y border-border/70 bg-card">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px bg-border/70 sm:grid-cols-4">
-          {modalities.map((m) => (
-            <div key={m.k} className="bg-card px-6 py-10">
+          {modalities.map((m, i) => (
+            <Reveal key={m.k} delay={i * 0.08} className="bg-card px-6 py-10">
               <p className="rule-label">{m.k}</p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{m.v}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -80,14 +82,27 @@ function KernelPage() {
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               Every modality is projected into the same space, so a frame of video, a sentence and a
-              waveform can sit next to each other in one attention pass. Drag the lattice to turn it
-              — each node is a shared slot, each edge a route between modalities.
-            </p>
-            <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-              Drag to rotate
+              waveform can sit next to each other in one attention pass — one representation shared
+              across everything the model perceives.
             </p>
           </div>
-          <LatticeDiagram className="aspect-square rounded-2xl border border-border/70 bg-card/50" />
+          <Reveal delay={0.1}>
+            <div className="gradient-border glass-panel grid aspect-square grid-cols-2 gap-px overflow-hidden rounded-2xl p-px">
+              {modalities.map((m) => (
+                <div
+                  key={m.k}
+                  className="flex flex-col items-center justify-center gap-3 bg-card/70 transition-colors hover:bg-accent/60"
+                >
+                  <span className="font-display text-3xl font-light text-foreground">
+                    <ScrambleText text={m.k} />
+                  </span>
+                  <span className="font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground">
+                    → one space
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -109,9 +124,9 @@ function KernelPage() {
               Continuous manifold across all modalities
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Rather than converting disparate data streams into discrete token boundaries, Kernel maps sensory
-              inputs across continuous geometric contours. The shared topology preserves relationships, temporal coherence,
-              and semantic context across domains.
+              Rather than converting disparate data streams into discrete token boundaries, Kernel
+              maps sensory inputs across continuous geometric contours. The shared topology
+              preserves relationships, temporal coherence, and semantic context across domains.
             </p>
           </div>
         </div>
@@ -121,7 +136,7 @@ function KernelPage() {
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <p className="rule-label">Evaluations</p>
           <h2 className="mt-4 max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            Balance over benchmark spikes
+            <BoxReveal>Balance over benchmark spikes</BoxReveal>
           </h2>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
             Kernel is tuned for the shape of real work: strong across every axis rather than

@@ -10,11 +10,11 @@ type Orb = {
 };
 
 const ORBS: Orb[] = [
-  { x: -1.1, y: -0.3, z: 0.2, r: 1.15, color: ["#f5a2c8", "#b06ae0"], phase: 0 },
-  { x: 0.9, y: -0.9, z: -0.5, r: 0.72, color: ["#8fb8ff", "#3f63d6"], phase: 1.2 },
-  { x: 1.15, y: 0.75, z: 0.4, r: 0.6, color: ["#ffb08a", "#ef5b45"], phase: 2.4 },
-  { x: -0.35, y: 0.95, z: 0.7, r: 0.45, color: ["#a9f0cf", "#2f9e6e"], phase: 3.6 },
-  { x: 0.15, y: 0.1, z: 1.1, r: 0.3, color: ["#ffe6a8", "#e2a53a"], phase: 4.8 },
+  { x: -1.1, y: -0.3, z: 0.2, r: 1.15, color: ["#d99a4a", "#8f5f2d"], phase: 0 },
+  { x: 0.9, y: -0.9, z: -0.5, r: 0.72, color: ["#9b9b92", "#4b4b46"], phase: 1.2 },
+  { x: 1.15, y: 0.75, z: 0.4, r: 0.6, color: ["#c8b27c", "#765a32"], phase: 2.4 },
+  { x: -0.35, y: 0.95, z: 0.7, r: 0.45, color: ["#b8b5aa", "#68665e"], phase: 3.6 },
+  { x: 0.15, y: 0.1, z: 1.1, r: 0.3, color: ["#f0c477", "#b87329"], phase: 4.8 },
 ];
 
 export function OrbField({ className = "" }: { className?: string }) {

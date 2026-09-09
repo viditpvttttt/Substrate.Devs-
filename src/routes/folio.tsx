@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
-import { BlobCluster } from "@/components/BlobCluster";
+import { Reveal } from "@/components/Reveal";
+import { BoxReveal } from "@/components/anim/BoxReveal";
+import { HoverExpand } from "@/components/anim/HoverExpand";
 
 export const Route = createFileRoute("/folio")({
   head: () => ({
@@ -23,6 +25,15 @@ export const Route = createFileRoute("/folio")({
   }),
   component: FolioPage,
 });
+
+const capColors = [
+  { a: "#c8b27c", b: "#665638", c: "#29251c" },
+  { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
+  { a: "#b99b63", b: "#765a32", c: "#302517" },
+  { a: "#9b9b92", b: "#4b4b46", c: "#252522" },
+  { a: "#bc8b58", b: "#754b2c", c: "#302019" },
+  { a: "#a8a38d", b: "#665f42", c: "#2b291f" },
+];
 
 const capabilities = [
   {
@@ -81,7 +92,7 @@ function FolioPage() {
     <>
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+        <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <SpectralMark variant="folio" className="mx-auto h-24 w-24 text-foreground" />
           <p className="rule-label mt-8">A Substrate company</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
@@ -97,23 +108,25 @@ function FolioPage() {
           >
             Join the waitlist
           </a>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-y border-border/70 bg-card">
         <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            Six things, done unusually well.
+            <BoxReveal>Six things, done unusually well.</BoxReveal>
           </h2>
-          <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {capabilities.map((c) => (
-              <div key={c.index} className="border-t border-border pt-6">
-                <p className="rule-label">{c.index}</p>
-                <h3 className="mt-3 text-2xl text-foreground">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              </div>
-            ))}
-          </div>
+          <Reveal className="mt-14">
+            <HoverExpand
+              items={capabilities.map((c, idx) => ({
+                key: c.index,
+                index: c.index,
+                title: c.title,
+                body: c.body,
+                colors: capColors[idx],
+              }))}
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -165,7 +178,10 @@ function FolioPage() {
           </div>
           <ul className="divide-y divide-border border-y border-border">
             {privacy.map(([k, v]) => (
-              <li key={k} className="flex items-center justify-between py-3">
+              <li
+                key={k}
+                className="tick-hover flex items-center justify-between px-3 py-3 transition-colors"
+              >
                 <span className="text-sm text-foreground">{k}</span>
                 <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
                   {v}
