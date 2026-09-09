@@ -84,6 +84,14 @@ const stackedStories = [
     to: "/void" as const,
   },
   {
+    key: "gridline",
+    label: "Gridline",
+    title: "AI‑powered code editor",
+    body: "It will work as Cursor, Antigravity and OpenCode.",
+    colors: { a: "#5a9bd5", b: "#2e6a9a", c: "#1a354e" },
+    to: "/gridline" as const,
+  },
+  {
     key: "folio",
     label: "Folio",
     title: "The surface you live on",
