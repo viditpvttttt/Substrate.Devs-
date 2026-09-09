@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "A research and product studio for the ambient computer: a multimodal model, a browser, an operating canvas, and autonomous agents on one substrate.",
+          "A research and product studio for the ambient computer: a multimodal model, a browser, an operating surface, and autonomous agent intelligence on one substrate.",
       },
     ],
   }),
@@ -47,7 +47,6 @@ const marqueeTerms = [
   "Long context",
   "Ambient computing",
   "No translators",
-  "Fleet orchestration",
   "One representation",
 ];
 
@@ -64,7 +63,7 @@ const stackedStories = [
     label: "Arcadia Agent",
     title: "The autonomous agent built in",
     body: "Launch fleets of parallel agents across terminal, browser and Slack — automated triggers, local AST semantic lattices, and self-verifying workflows.",
-    colors: { a: "#f25b20", b: "#9e3d12", c: "#2e1408" },
+    colors: { a: "#d97a38", b: "#8f471e", c: "#301d15" },
     to: "/arcadia" as const,
   },
   {
@@ -90,45 +89,6 @@ const stackedStories = [
     body: "Weather, files, memory and agents arranged on one canvas — an operating surface that recedes when it has nothing to say.",
     colors: { a: "#c8b27c", b: "#665638", c: "#29251c" },
     to: "/folio" as const,
-  },
-];
-
-const testimonials = [
-  {
-    quote: "Adoption went from single digits to over 80%. It spread like wildfire, all the best builders were using Arcadia and Kernel.",
-    author: "Diana Hu",
-    role: "General Partner, Y Combinator",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces",
-  },
-  {
-    quote: "Our engineers are now assisted by autonomous agents and our developer productivity has gone up incredibly.",
-    author: "Jensen Huang",
-    role: "President & CEO, NVIDIA",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces",
-  },
-  {
-    quote: "The best LLM applications have an autonomy slider: you control how much independence to give the agent. In Substrate, you let it rip.",
-    author: "Andrej Karpathy",
-    role: "CEO, Eureka Labs",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces",
-  },
-  {
-    quote: "Quickly grew to thousands of enthusiastic builders. It's fast, autocompletes when and where you need it, and handles agent fleets properly.",
-    author: "Patrick Collison",
-    role: "Co Founder & CEO, Stripe",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces",
-  },
-  {
-    quote: "The most useful AI tool that I currently run. Sensible keyboard shortcuts, bring-your-own-model... everything is well put together.",
-    author: "shadcn",
-    role: "Creator of shadcn/ui",
-    avatar: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&h=100&fit=crop&crop=faces",
-  },
-  {
-    quote: "It's definitely becoming more fun to be a programmer. In interactive agentic surfaces like Arcadia, models shine brightest.",
-    author: "Greg Brockman",
-    role: "President, OpenAI",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces",
   },
 ];
 
@@ -183,7 +143,7 @@ function Index() {
                   to="/arcadia"
                   className="btn-shine inline-block rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-shadow hover:shadow-xl"
                 >
-                  Meet Arcadia Agent
+                  Meet Arcadia
                 </Link>
               </MagneticButton>
               <MagneticButton strength={0.25}>
@@ -226,7 +186,7 @@ function Index() {
 
       <section className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
         <Reveal>
-          <p className="rule-label text-primary">Four core surfaces</p>
+          <p className="rule-label">Four surfaces</p>
           <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
             <BoxReveal>One substrate, four surfaces</BoxReveal>
           </h2>
@@ -239,7 +199,7 @@ function Index() {
               status="New Agent"
               title="Autonomous agent assistant"
               body="Fleets of parallel agents across terminal, Slack and IDE."
-              colors={{ a: "#f25b20", b: "#9e3d12", c: "#2e1408" }}
+              colors={{ a: "#d97a38", b: "#8f471e", c: "#301d15" }}
             />
           </Reveal>
           <Reveal delay={0.08}>
@@ -295,7 +255,7 @@ function Index() {
         <SvgScrollDraw className="absolute inset-y-0 left-1/2 hidden w-40 -translate-x-1/2 opacity-50 lg:block" />
         <div className="relative mx-auto max-w-4xl px-6 py-28 sm:py-36">
           <TextGradientFill
-            text="The same runtime, the same memory, the same notion of context runs under all of it. Not three products bolted together — one substrate wearing three faces."
+            text="The same runtime, the same memory, the same notion of context runs under all of it. Not separate products bolted together — one substrate wearing four faces."
             className="text-center font-display text-3xl font-light leading-snug text-foreground sm:text-5xl"
           />
         </div>
@@ -306,7 +266,7 @@ function Index() {
           <Reveal>
             <p className="rule-label">One substrate</p>
             <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              <BoxReveal>Four surfaces, one shared ground</BoxReveal>
+              <BoxReveal>Four products, one shared ground</BoxReveal>
             </h2>
           </Reveal>
         </div>
@@ -317,41 +277,6 @@ function Index() {
               content: <StoryCard story={story} index={i} />,
             }))}
           />
-        </div>
-      </section>
-
-      {/* Testimonials / Stay on the Frontier Section (Matching Reference Image 2) */}
-      <section className="border-t border-border/70 bg-[#121110] py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <Reveal>
-            <p className="rule-label text-primary">Stay on the frontier</p>
-            <h2 className="mt-4 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
-              Trusted by the world's most ambitious engineers
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t, idx) => (
-              <Reveal key={t.author} delay={idx * 0.06}>
-                <div className="flex h-full flex-col justify-between rounded-2xl border border-border/80 bg-[#171513] p-7 shadow-lg transition-colors hover:border-border">
-                  <p className="text-sm leading-relaxed text-foreground/90">
-                    "{t.quote}"
-                  </p>
-                  <div className="mt-6 flex items-center gap-3.5 border-t border-border/50 pt-4">
-                    <img
-                      src={t.avatar}
-                      alt={t.author}
-                      className="h-10 w-10 rounded-full object-cover border border-border/70"
-                    />
-                    <div>
-                      <p className="text-xs font-semibold text-foreground">{t.author}</p>
-                      <p className="text-[0.6875rem] text-muted-foreground">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

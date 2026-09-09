@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Cursor-inspired design system — near-black graphite surfaces, warm white
- * type, restrained borders, and a focused amber action color.
+ * Substrate design system — warm sand neutrals, editorial serif display,
+ * with a soft chromatic (RGB) ambience.
  */
 
 @theme inline {
@@ -42,70 +42,70 @@
   --color-spectral-r: var(--spectral-r);
   --color-spectral-g: var(--spectral-g);
   --color-spectral-b: var(--spectral-b);
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.12 0.006 60);
-  --foreground: oklch(0.96 0.008 85);
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.24 0.012 60);
 
-  --card: oklch(0.155 0.007 60);
-  --card-foreground: oklch(0.96 0.008 85);
-  --popover: oklch(0.175 0.008 60);
-  --popover-foreground: oklch(0.96 0.008 85);
+  --card: oklch(0.968 0.009 84);
+  --card-foreground: oklch(0.24 0.012 60);
+  --popover: oklch(0.985 0.006 85);
+  --popover-foreground: oklch(0.24 0.012 60);
 
-  --primary: oklch(0.68 0.22 42);
-  --primary-foreground: oklch(0.99 0.002 90);
+  --primary: oklch(0.26 0.014 62);
+  --primary-foreground: oklch(0.985 0.006 85);
 
-  --secondary: oklch(0.19 0.008 60);
-  --secondary-foreground: oklch(0.92 0.008 85);
+  --secondary: oklch(0.955 0.012 84);
+  --secondary-foreground: oklch(0.3 0.014 62);
 
-  --muted: oklch(0.19 0.008 60);
-  --muted-foreground: oklch(0.66 0.012 80);
+  --muted: oklch(0.955 0.012 84);
+  --muted-foreground: oklch(0.52 0.02 68);
 
-  --accent: oklch(0.23 0.01 60);
-  --accent-foreground: oklch(0.98 0.006 85);
+  --accent: oklch(0.93 0.022 82);
+  --accent-foreground: oklch(0.28 0.014 62);
 
-  --destructive: oklch(0.58 0.2 27);
+  --destructive: oklch(0.55 0.19 27);
   --destructive-foreground: oklch(0.985 0.006 85);
 
-  --border: oklch(1 0 0 / 8.5%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.68 0.22 42);
+  --border: oklch(0.9 0.014 82);
+  --input: oklch(0.9 0.014 82);
+  --ring: oklch(0.6 0.04 72);
 
-  --sand: oklch(0.72 0.18 52);
-  --clay: oklch(0.65 0.025 75);
+  --sand: oklch(0.82 0.045 84);
+  --clay: oklch(0.55 0.045 68);
 
-  /* chromatic ambience — warm Cursor-style ember & graphite reflections */
-  --spectral-r: oklch(0.68 0.22 42);
-  --spectral-g: oklch(0.62 0.12 65);
-  --spectral-b: oklch(0.55 0.08 240);
+  /* chromatic ambience — heavily blurred, never solid */
+  --spectral-r: oklch(0.72 0.19 22);
+  --spectral-g: oklch(0.76 0.15 155);
+  --spectral-b: oklch(0.68 0.17 255);
 }
 
 .dark {
-  --background: oklch(0.12 0.006 60);
-  --foreground: oklch(0.96 0.008 85);
-  --card: oklch(0.155 0.007 60);
-  --card-foreground: oklch(0.96 0.008 85);
-  --popover: oklch(0.175 0.008 60);
-  --popover-foreground: oklch(0.96 0.008 85);
-  --primary: oklch(0.68 0.22 42);
-  --primary-foreground: oklch(0.99 0.002 90);
-  --secondary: oklch(0.19 0.008 60);
-  --secondary-foreground: oklch(0.92 0.008 85);
-  --muted: oklch(0.19 0.008 60);
-  --muted-foreground: oklch(0.66 0.012 80);
-  --accent: oklch(0.23 0.01 60);
-  --accent-foreground: oklch(0.98 0.006 85);
+  --background: oklch(0.19 0.008 70);
+  --foreground: oklch(0.95 0.008 84);
+  --card: oklch(0.23 0.01 70);
+  --card-foreground: oklch(0.95 0.008 84);
+  --popover: oklch(0.23 0.01 70);
+  --popover-foreground: oklch(0.95 0.008 84);
+  --primary: oklch(0.94 0.01 84);
+  --primary-foreground: oklch(0.22 0.01 70);
+  --secondary: oklch(0.27 0.012 70);
+  --secondary-foreground: oklch(0.95 0.008 84);
+  --muted: oklch(0.27 0.012 70);
+  --muted-foreground: oklch(0.7 0.018 78);
+  --accent: oklch(0.3 0.016 74);
+  --accent-foreground: oklch(0.95 0.008 84);
   --destructive: oklch(0.62 0.18 25);
   --destructive-foreground: oklch(0.97 0.006 84);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 13%);
-  --ring: oklch(0.68 0.22 42);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.6 0.03 74);
 }
 
 @layer base {
@@ -128,12 +128,12 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.035em;
+    font-weight: 300;
+    letter-spacing: -0.015em;
   }
 }
 
-/* Soft, blurred Cursor-style amber/steel ambience. */
+/* Soft, blurred chromatic field — the Substrate "RGB ambience". */
 @utility spectral-field {
   position: absolute;
   inset: -20%;
@@ -420,8 +420,6 @@
   animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-
-
 /* The hero art is intentionally unfiltered so the supplied cloud painting
    remains crisp across the full viewport. */
 @utility hero-cloudscape {
@@ -429,9 +427,7 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 18%, oklch(0.24 0.025 75 / 45%), transparent 42%),
-    linear-gradient(180deg, oklch(0.17 0.01 90), var(--background));
+  background: #6f96a7 url("/hero-clouds.svg") center / cover no-repeat;
 }
 
 /* 3D Perspective & Spatial transforms */
@@ -450,28 +446,3 @@
 @utility backface-hidden {
   backface-visibility: hidden;
 }
-
-/* Cursor-inspired glowing card & ember styling */
-@utility cursor-glow {
-  box-shadow: 0 0 35px -5px rgba(242, 91, 32, 0.15), 0 0 80px -20px rgba(242, 91, 32, 0.08);
-}
-
-@utility cursor-card-ambient {
-  background: linear-gradient(180deg, oklch(0.18 0.009 60 / 95%), oklch(0.14 0.007 60 / 95%));
-  border: 1px solid oklch(1 0 0 / 8.5%);
-  backdrop-filter: blur(16px);
-}
-
-@utility cursor-amber-link {
-  color: #ff5e18;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-
-  &:hover {
-    opacity: 0.85;
-    transform: translateX(2px);
-  }
-}
-
