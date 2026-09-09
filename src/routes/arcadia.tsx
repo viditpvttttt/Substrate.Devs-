@@ -30,19 +30,18 @@ export const Route = createFileRoute("/arcadia")({
   component: ArcadiaPage,
 });
 
-const MODELS = [
-  { id: "gpt5", name: "GPT-5.6 Sol", note: "Suggested", badge: "Default" },
-  { id: "grok", name: "Grok 4.6", note: "Reasoning", badge: "Fast" },
-  { id: "fable", name: "Fable 5.1", note: "Max", badge: "Precision" },
-  { id: "opus", name: "Claude Opus 5", note: "Deep Thought", badge: "Complex" },
-  { id: "gemini", name: "Gemini 3.1 Pro", note: "Long Context", badge: "2M Token" },
-  { id: "kernel", name: "Kernel 2.0 MultiModal", note: "Native Substrate", badge: "Local-First" },
+const AGENT_MODES = [
+  { id: "autonomous", name: "Full Autonomy", note: "Planner + Executor", badge: "Default" },
+  { id: "codebase", name: "Codebase Actor", note: "AST In-Place Edit", badge: "Engine" },
+  { id: "browser", name: "Browser & GUI Operator", note: "OpenClaw Engine", badge: "Live Web" },
+  { id: "canvas", name: "Spatial Context Canvas", note: "Meta Muse Style", badge: "Ambient" },
+  { id: "terminal", name: "Terminal & Shell Runner", note: "Local-First", badge: "Substrate" },
 ];
 
 const FLEET_TASKS = [
   {
     id: "task-1",
-    title: "Fix sign-in redirect on iOS",
+    title: "Fix sign-in redirect on iOS WebKit",
     repo: "cursor/mobile",
     status: "working",
     progress: 78,
@@ -51,7 +50,7 @@ const FLEET_TASKS = [
   },
   {
     id: "task-2",
-    title: "Add rate limits to public routes",
+    title: "Add sliding rate limits to public routes",
     repo: "cursor/api",
     status: "verified",
     progress: 100,
@@ -60,7 +59,7 @@ const FLEET_TASKS = [
   },
   {
     id: "task-3",
-    title: "Cache repository search results",
+    title: "Cache repository AST search results",
     repo: "cursor/web",
     status: "working",
     progress: 45,
@@ -69,7 +68,7 @@ const FLEET_TASKS = [
   },
   {
     id: "task-4",
-    title: "Investigate flaky CI shard 4",
+    title: "Investigate flaky CI browser shard",
     repo: "cursor/infra",
     status: "planning",
     progress: 20,
@@ -80,22 +79,22 @@ const FLEET_TASKS = [
 
 const PRESETS = [
   {
-    label: "Refactor API Auth",
-    prompt: "Migrate auth token refresh mechanism to PKCE and write unit tests",
+    label: "Refactor Auth Loop",
+    prompt: "Migrate auth token refresh to PKCE with automated test verification",
+  },
+  {
+    label: "Browser Automation",
+    prompt: "OpenClaw mode: Navigate to staging dashboard, fill form, and verify WebGL canvas rendering",
   },
   {
     label: "Fix Flaky Tests",
     prompt: "Investigate flaky integration tests in test_websocket_sync.py and fix race conditions",
   },
-  {
-    label: "Build Full Feature",
-    prompt: "Create an interactive 3D particle widget with three.js and integrate into dashboard",
-  },
 ];
 
 export function ArcadiaPage() {
-  const [selectedModel, setSelectedModel] = useState(MODELS[0]);
-  const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
+  const [selectedMode, setSelectedMode] = useState(AGENT_MODES[0]);
+  const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
   const [activeCliTab, setActiveCliTab] = useState<"ps" | "sh">("ps");
   const [copiedCli, setCopiedCli] = useState(false);
 
@@ -151,10 +150,10 @@ export function ArcadiaPage() {
             >
               <SpectralMark variant="arcadia" className="h-5 w-5 text-primary" />
               <span className="font-mono text-xs uppercase tracking-widest text-primary font-medium">
-                Arcadia Agent Platform
+                Arcadia Autonomous Agent
               </span>
               <span className="rounded-full bg-primary/20 px-2 py-0.5 text-[0.625rem] font-mono text-primary">
-                v2.4
+                OpenClaw & Muse Architecture
               </span>
             </motion.div>
 
@@ -176,8 +175,9 @@ export function ArcadiaPage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
             >
-              Like OpenClaw and Meta's Muse, Arcadia orchestrates parallel fleets of autonomous agents
-              to plan, code, review PRs, and maintain software across all your systems.
+              Inspired by OpenClaw and Meta's Muse: an autonomous agent assistant that operates directly
+              on your filesystem, runs terminal commands, navigates browser surfaces, and orchestrates
+              fleets of subagents in parallel.
             </motion.p>
 
             <motion.div
@@ -223,20 +223,20 @@ export function ArcadiaPage() {
                   </span>
                 </div>
 
-                {/* Model Selector Dropdown (Cursor Reference Style) */}
+                {/* Agent Capability Mode Selector */}
                 <div className="relative">
                   <button
-                    onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
+                    onClick={() => setModeDropdownOpen(!modeDropdownOpen)}
                     className="flex items-center gap-2 rounded-lg border border-border/80 bg-card/80 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary/50"
                   >
-                    <span className="text-primary font-mono">∞ Agent</span>
+                    <span className="text-primary font-mono">⚡ Mode</span>
                     <span className="text-border">|</span>
-                    <span>{selectedModel.name}</span>
+                    <span>{selectedMode.name}</span>
                     <span className="text-[0.65rem] text-muted-foreground">▾</span>
                   </button>
 
                   <AnimatePresence>
-                    {modelDropdownOpen && (
+                    {modeDropdownOpen && (
                       <motion.div
                         initial={{ opacity: 0, y: 6, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -244,18 +244,18 @@ export function ArcadiaPage() {
                         className="absolute right-0 z-50 mt-2 w-64 rounded-xl border border-border bg-[#181614] p-2 shadow-2xl backdrop-blur-xl"
                       >
                         <p className="px-2 py-1 font-mono text-[0.65rem] uppercase tracking-wider text-muted-foreground">
-                          Select Intelligence Core
+                          Agent Execution Mode
                         </p>
                         <div className="space-y-1">
-                          {MODELS.map((m) => (
+                          {AGENT_MODES.map((m) => (
                             <button
                               key={m.id}
                               onClick={() => {
-                                setSelectedModel(m);
-                                setModelDropdownOpen(false);
+                                setSelectedMode(m);
+                                setModeDropdownOpen(false);
                               }}
                               className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs transition-colors ${
-                                selectedModel.id === m.id
+                                selectedMode.id === m.id
                                   ? "bg-primary/15 text-primary font-medium"
                                   : "text-foreground hover:bg-card"
                               }`}
@@ -359,7 +359,7 @@ export function ArcadiaPage() {
                   <div className="flex items-start gap-2">
                     <span className="text-primary font-bold">{">"}</span>
                     <span className="text-foreground">
-                      arcadia --model {selectedModel.id} --task "{simPrompt}"
+                      arcadia --mode {selectedMode.id} --task "{simPrompt}"
                     </span>
                   </div>
 
@@ -370,7 +370,7 @@ export function ArcadiaPage() {
                       className="flex items-start gap-2 text-muted-foreground"
                     >
                       <span className="text-emerald-400">✓</span>
-                      <span>[Perception] Analyzed 34 files in AST workspace lattice (12ms)</span>
+                      <span>[Perception Matrix] Analyzed 34 files in AST workspace lattice (12ms)</span>
                     </motion.div>
                   )}
 
@@ -382,7 +382,7 @@ export function ArcadiaPage() {
                     >
                       <span className="text-primary">⚙</span>
                       <span>
-                        [Planning] Generated 3-stage execution DAG: (1) ExponentialBackoff.ts (2)
+                        [Planning Loop] Generated 3-stage execution DAG: (1) ExponentialBackoff.ts (2)
                         TelemetryPipeline.ts (3) Integration Tests
                       </span>
                     </motion.div>
@@ -417,7 +417,7 @@ export function ArcadiaPage() {
                       className="flex items-start gap-2 text-emerald-400"
                     >
                       <span>✓</span>
-                      <span>[Test Suite] 18/18 integration specs passing (0 failures, 142ms)</span>
+                      <span>[Self-Verification] 18/18 integration specs passing (0 failures, 142ms)</span>
                     </motion.div>
                   )}
 
@@ -448,7 +448,7 @@ export function ArcadiaPage() {
               <div>
                 <p className="rule-label text-primary">Autonomous Parallelism</p>
                 <h2 className="mt-3 text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
-                  Launch fleets of cloud agents.
+                  Launch fleets of autonomous agents.
                 </h2>
                 <p className="mt-3 max-w-xl text-base text-muted-foreground">
                   Run dozens of agents in parallel on ambitious tasks for hours or days. They share
@@ -464,42 +464,41 @@ export function ArcadiaPage() {
             </div>
           </Reveal>
 
-          {/* 3-Column Feature Cards matching Reference Image 3 */}
+          {/* 3-Column Feature Cards */}
           <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {/* Card 1: Multi-Model Intelligence */}
+            {/* Card 1: OpenClaw & Meta Muse Agent Core */}
             <TiltCard className="h-full">
               <div className="flex h-full flex-col justify-between rounded-2xl border border-border/80 bg-[#161412] p-7 shadow-lg transition-colors hover:border-border">
                 <div>
                   <h3 className="text-xl font-medium text-foreground">
-                    Use the best model for every task
+                    Codebase, terminal & browser actor
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                    Choose between cutting-edge models from OpenAI, Anthropic, Gemini, SpaceXAI, and
-                    Kernel.
+                    Like OpenClaw and Meta's Muse, Arcadia acts directly on your filesystem, navigates
+                    browsers, and executes shell scripts.
                   </p>
                   <a
                     href="#workbench"
                     className="mt-4 inline-flex items-center gap-1.5 text-xs text-primary hover:underline font-medium"
                   >
-                    Explore models →
+                    Explore agent modes →
                   </a>
                 </div>
 
                 <div className="mt-8 rounded-xl border border-border/60 bg-[#0d0c0a] p-4 text-xs font-mono">
                   <div className="text-muted-foreground text-[0.65rem] mb-2">
-                    Ask Arcadia to plan or build anything
+                    Autonomous Execution Pipeline
                   </div>
                   <div className="flex items-center justify-between rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-foreground">
-                    <span className="text-primary">∞ Agent</span>
-                    <span className="text-muted-foreground">GPT-5.6 Sol ▾</span>
+                    <span className="text-primary">⚡ Arcadia Loop</span>
+                    <span className="text-emerald-400 text-[0.65rem]">Active</span>
                   </div>
                   <div className="mt-2 space-y-1 text-[0.65rem] text-muted-foreground pl-2 border-l border-border/50">
-                    <p className="text-primary font-medium">Auto (Suggested)</p>
-                    <p>Grok 4.6</p>
-                    <p className="text-foreground">GPT-5.6 Sol ✓</p>
-                    <p>Fable 5.1 Max</p>
-                    <p>Opus 5</p>
-                    <p>Gemini 3.1 Pro</p>
+                    <p className="text-foreground">1. AST Workspace Perception</p>
+                    <p className="text-foreground">2. Autonomous Step Planning</p>
+                    <p className="text-foreground">3. Multi-Tool In-Place Execution</p>
+                    <p className="text-foreground">4. Headless Browser Verification</p>
+                    <p className="text-primary font-medium">5. Self-Reflective Merge</p>
                   </div>
                 </div>
               </div>
@@ -742,7 +741,7 @@ export function ArcadiaPage() {
                     → Plan, search, build anything
                   </div>
                   <p className="text-[0.65rem] text-primary pt-1">
-                    GPT-5.6 Sol Extra High Fast
+                    Arcadia Loop · Kernel Native Core
                   </p>
                   <p className="text-[0.65rem] text-muted-foreground">
                     / commands · @ files · ! shell
@@ -823,8 +822,8 @@ export function ArcadiaPage() {
                     className="mt-2 w-full rounded-lg border border-border bg-[#0d0c0a] p-3 font-mono text-xs text-foreground focus:border-primary focus:outline-none"
                   />
                   <div className="mt-1 flex items-center justify-between font-mono text-[0.65rem] text-muted-foreground">
-                    <span>Model: Grok 4.6 ▾</span>
-                    <span>Tools: Read, Write, Test, PR</span>
+                    <span>Engine: Arcadia Autonomous Loop ▾</span>
+                    <span>Tools: Read, Write, Test, PR, Browser</span>
                   </div>
                 </div>
               </div>
