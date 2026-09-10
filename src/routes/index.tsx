@@ -54,7 +54,7 @@ const marqueeTerms = [
 const stats = [
   { value: 4, suffix: "", label: "Modalities, one context" },
   { value: 1, suffix: "", label: "Runtime under everything" },
-  { value: 4, suffix: "", label: "Surfaces on the substrate" },
+  { value: 5, suffix: "", label: "Surfaces on the substrate" },
   { value: 0, suffix: "", label: "Translators in between" },
 ];
 
@@ -87,7 +87,7 @@ const stackedStories = [
     key: "gridline",
     label: "Gridline",
     title: "AI‑powered code editor",
-    body: "It will work as Cursor, Antigravity and OpenCode.",
+    body: "Speculative completions on the AST lattice, multi-file agent editing and terminal-native verification — the flow of Cursor, Antigravity and OpenCode on one runtime.",
     colors: { a: "#5a9bd5", b: "#2e6a9a", c: "#1a354e" },
     to: "/gridline" as const,
   },
@@ -195,12 +195,12 @@ function Index() {
 
       <section className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
         <Reveal>
-          <p className="rule-label">Four surfaces</p>
+          <p className="rule-label">Five surfaces</p>
           <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-            <BoxReveal>One substrate, four surfaces</BoxReveal>
+            <BoxReveal>One substrate, five surfaces</BoxReveal>
           </h2>
         </Reveal>
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
           <Reveal delay={0}>
             <ProductTile
               to="/arcadia"
@@ -213,6 +213,16 @@ function Index() {
           </Reveal>
           <Reveal delay={0.08}>
             <ProductTile
+              to="/gridline"
+              label="Gridline"
+              status="AI editor"
+              title="Coding with agents in the loop"
+              body="Speculative completions and multi-file agent edits."
+              colors={{ a: "#5a9bd5", b: "#2e6a9a", c: "#1a354e" }}
+            />
+          </Reveal>
+          <Reveal delay={0.16}>
+            <ProductTile
               to="/kernel"
               label="Kernel"
               status="In training"
@@ -221,7 +231,7 @@ function Index() {
               colors={{ a: "#d99a4a", b: "#8f5f2d", c: "#30251b" }}
             />
           </Reveal>
-          <Reveal delay={0.16}>
+          <Reveal delay={0.24}>
             <ProductTile
               to="/void"
               label="VOID Browser"
@@ -231,7 +241,7 @@ function Index() {
               colors={{ a: "#9b9b92", b: "#4b4b46", c: "#252522" }}
             />
           </Reveal>
-          <Reveal delay={0.24}>
+          <Reveal delay={0.32}>
             <ProductTile
               to="/folio"
               label="Folio"
@@ -355,11 +365,14 @@ function Index() {
                 </div>
               </div>
             </TiltCard>
-            {/* Gridline Matrix Section */}
-            <section className="my-16">
-              <GridlineMatrix />
-            </section>
           </div>
+        </div>
+      </section>
+
+      {/* Gridline Matrix Section */}
+      <section className="relative border-t border-border/70 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <GridlineMatrix />
         </div>
       </section>
 
@@ -368,7 +381,7 @@ function Index() {
           <Reveal>
             <p className="rule-label">One substrate</p>
             <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              <BoxReveal>Four products, one shared ground</BoxReveal>
+              <BoxReveal>Five products, one shared ground</BoxReveal>
             </h2>
           </Reveal>
         </div>
@@ -486,7 +499,7 @@ function StoryCard({ story, index }: { story: (typeof stackedStories)[number]; i
       <div className="flex items-center justify-between">
         <p className="rule-label !text-white/90">{story.label}</p>
         <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/70">
-          0{index + 1} / 04
+          0{index + 1} / 05
         </p>
       </div>
       <div className="max-w-xl">
@@ -511,7 +524,7 @@ function ProductTile({
   body,
   colors,
 }: {
-  to: "/kernel" | "/void" | "/folio" | "/arcadia";
+  to: "/kernel" | "/void" | "/folio" | "/arcadia" | "/gridline";
   label: string;
   status: string;
   title: string;

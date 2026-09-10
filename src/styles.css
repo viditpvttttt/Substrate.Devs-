@@ -504,3 +504,107 @@
   animation: beam-v 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/* --- New animation primitives (Skiper / 21st.dev / Unlumen inspired) --- */
+
+/* Traveling light segment hugging a card border. */
+@utility border-beam-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    transparent 300deg,
+    color-mix(in oklab, var(--beam-color, var(--spectral-b)) 85%, white) 335deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam-angle-spin 6s linear infinite;
+}
+
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes beam-angle-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+/* Meteor streaks — spans absolutely placed, animated by inline delay/duration. */
+@utility meteor {
+  position: absolute;
+  top: -10%;
+  width: 1px;
+  height: 5.5rem;
+  transform: rotate(215deg) translateX(0);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--meteor-color, var(--spectral-b)) 65%, white)
+  );
+  opacity: 0;
+  animation-name: meteor-fall;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes meteor-fall {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-42rem);
+    opacity: 0;
+  }
+}
+
+/* Infinite card marquee — the track holds two identical copies. */
+@utility marquee-cards {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@utility marquee-cards-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--mc-duration, 40s) linear infinite;
+}
+
+/* Shiny text — a light sweep rolling through the glyphs. */
+@utility text-shine {
+  background: linear-gradient(
+    110deg,
+    var(--color-foreground) 42%,
+    color-mix(in oklab, var(--spectral-b) 70%, white) 50%,
+    var(--color-foreground) 58%
+  );
+  background-size: 250% auto;
+  background-position: 200% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine-x 5s linear infinite;
+}
+
+@keyframes shine-x {
+  to {
+    background-position: -200% center;
+  }
+}
+
