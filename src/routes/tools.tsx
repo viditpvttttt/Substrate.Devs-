@@ -18,7 +18,7 @@ const TOOLS = [
     name: "Arcadia",
     kind: "Autonomous agent",
     status: "Live runtime",
-    body: "Fleets of parallel agents across terminal, browser and Slack — automated triggers, AST semantic lattices and self-verifying workflows.",
+    body: "Fleets of parallel agents across terminal, browser and editor — automated triggers, a shared syntax lattice and self-verifying workflows.",
     colors: { a: "#d97a38", b: "#8f471e", c: "#301d15" },
   },
   {

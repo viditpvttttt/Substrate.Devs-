@@ -1,32 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BrainCircuit, Bot, Compass, Globe, Terminal, Cpu } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { TiltCard } from "@/components/TiltCard";
-import { BoxReveal } from "@/components/anim/BoxReveal";
-import { WordsReveal } from "@/components/anim/WordsReveal";
-import { CountUp } from "@/components/anim/CountUp";
-import { ScrambleText } from "@/components/anim/ScrambleText";
-import { Meteors } from "@/components/anim/Meteors";
-import { AnimatedList } from "@/components/anim/AnimatedList";
-import { ShinyText } from "@/components/anim/ShinyText";
-import { TypewriterText } from "@/components/anim/TypewriterText";
-import { EmailCapture } from "@/components/anim/EmailCapture";
 import { SpectralMark } from "@/components/SpectralMark";
+import { Reveal } from "@/components/Reveal";
+import { BoxReveal } from "@/components/anim/BoxReveal";
+import { ScrambleText } from "@/components/anim/ScrambleText";
+import { SignalDoodle } from "@/components/SignalDoodle";
 
 export const Route = createFileRoute("/leadership")({
   head: () => ({
     meta: [
-      { title: "Leadership — how Substrate is led" },
+      { title: "Leadership — the people behind Substrate" },
       {
         name: "description",
         content:
-          "How a small research and product studio runs: six operating principles, one shared runtime, and the bench behind Kernel, VOID, Folio, Arcadia and Gridline.",
+          "The small team that runs Substrate: who leads the model, the browser, the editor, the surface and the agent work — and what each of them is responsible for.",
       },
-      { property: "og:title", content: "Leadership — how Substrate is led" },
+      { property: "og:title", content: "Leadership — the people behind Substrate" },
       {
         property: "og:description",
-        content:
-          "Small bench, long arc: the principles and people under the substrate that Kernel, VOID, Folio, Arcadia and Gridline share.",
+        content: "A deliberately small bench: the people under Kernel, VOID, Folio, Arcadia and Gridline.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,245 +26,150 @@ export const Route = createFileRoute("/leadership")({
   component: LeadershipPage,
 });
 
-const PRINCIPLES = [
+const LEADERS = [
   {
-    index: "01",
-    title: "Research leads, product follows",
-    body: "Every surface starts as a question we can run an experiment against. Nothing ships because a roadmap said so — it ships because the result did.",
+    initials: "IS",
+    name: "Ivo Sandström",
+    role: "Founder & Chief Executive",
+    care: "The substrate itself",
+    line: "Started Substrate after a decade in runtime and systems work, with the conviction that the layer under software deserves a studio of its own. Still reads the weekly research memo before anything else lands in the inbox.",
+    colors: { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
   },
   {
-    index: "02",
-    title: "Small bench, long arc",
-    body: "We stay deliberately small and hire for range. Five surfaces exist because the same people can hold the model, the browser and the editor in one head.",
+    initials: "MO",
+    name: "Mara Oyelaran",
+    role: "Chief Scientist",
+    care: "Kernel",
+    line: "Leads the model. Mara holds the line on one representation across every modality — text, images, audio and video in a single attention pass — and signs off on every training run before it starts.",
+    colors: { a: "#bc8b58", b: "#754b2c", c: "#302019" },
   },
   {
-    index: "03",
-    title: "Writing is the interface",
-    body: "Decisions live in documents, not meetings. If a choice cannot be explained in one page of writing, it is not yet a decision.",
+    initials: "TV",
+    name: "Toma Verany",
+    role: "Head of Research",
+    care: "Evaluation & safety",
+    line: "Owns the question of how we know anything works. Every number the studio prints passes through the harness Toma maintains — reproduced twice, or it is not a number.",
+    colors: { a: "#a8a38d", b: "#665f42", c: "#2b291f" },
   },
   {
-    index: "04",
-    title: "Taste is a discipline",
-    body: "Design is not decoration at the end. Every millisecond, margin and message is part of the same argument about what the computer should feel like.",
+    initials: "EL",
+    name: "Edda Lindqvist",
+    role: "Head of Product",
+    care: "Folio",
+    line: "Carries the surface people live on. Edda came out of small-studio design work and holds the position that software should recede when it has nothing worth saying.",
+    colors: { a: "#c8b27c", b: "#665638", c: "#29251c" },
   },
   {
-    index: "05",
-    title: "Quiet over loud",
-    body: "We lead by receding. No engagement metrics, no growth dark patterns — the measure of our software is how rarely it interrupts you.",
+    initials: "NA",
+    name: "Noor Aldana",
+    role: "Head of Engineering",
+    care: "VOID & Gridline",
+    line: "Runs the two rooms where the substrate meets a person directly — the browser and the editor. Noor wrote the first version of the quiet-chrome rendering loop and still reviews it line by line.",
+    colors: { a: "#9b9b92", b: "#4b4b46", c: "#252522" },
   },
   {
-    index: "06",
-    title: "The substrate outlives the surfaces",
-    body: "Products come and go; the runtime, the memory model and the standard stay. We optimize for the layer that compounds.",
+    initials: "JW",
+    name: "Jan Wekesa",
+    role: "Head of Agents",
+    care: "Arcadia",
+    line: "Builds the agent that lives inside the work. Jan keeps autonomy boring in the good sense: every plan written down, every action verifiable, every trigger auditable after the fact.",
+    colors: { a: "#d97a38", b: "#8f471e", c: "#301d15" },
   },
-];
-
-const AREAS = [
-  {
-    icon: BrainCircuit,
-    label: "Research",
-    name: "Kernel & the model bench",
-    body: "Training runs, evaluation harnesses and the multimodal representation everything else reads from.",
-  },
-  {
-    icon: Bot,
-    label: "Agent Lab",
-    name: "Arcadia fleets",
-    body: "Orchestration, autonomous triggers and the safety review that keeps agents verifiable.",
-  },
-  {
-    icon: Compass,
-    label: "Product",
-    name: "Folio surfaces",
-    body: "The quiet operating surface — where the runtime meets a person's actual day.",
-  },
-  {
-    icon: Globe,
-    label: "Browser",
-    name: "VOID windows",
-    body: "The window onto the substrate: rendering, privacy model and the page-as-surface.",
-  },
-  {
-    icon: Terminal,
-    label: "Developer Tools",
-    name: "Gridline editor",
-    body: "The AI code editor — speculative completions, agent editing and the AST lattice.",
-  },
-  {
-    icon: Cpu,
-    label: "Runtime",
-    name: "The substrate itself",
-    body: "One shared runtime, one memory, one notion of context under all five surfaces.",
-  },
-];
-
-const CADENCE = [
-  {
-    when: "Weekly",
-    what: "Research review over the Kernel runs — every number reproduced before it is spoken.",
-  },
-  {
-    when: "Monthly",
-    what: "Public memo: what shipped, what failed, what we changed our mind about.",
-  },
-  {
-    when: "Quarterly",
-    what: "Substrate cut — one runtime released under all five surfaces at once.",
-  },
-  {
-    when: "Always",
-    what: "Decisions in writing, in the open. Reviewers rotate; the document is the authority.",
-  },
-];
-
-const STATS = [
-  { value: 5, suffix: "", label: "Surfaces, one team" },
-  { value: 6, suffix: "", label: "Operating principles" },
-  { value: 1, suffix: "", label: "Shared runtime" },
-  { value: 0, suffix: "", label: "Engagement metrics" },
 ];
 
 function LeadershipPage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero — same quiet pattern as Kernel, VOID and Folio */}
       <section className="relative isolate overflow-hidden">
-        <div className="hero-cloudscape" aria-hidden="true" />
-        <Meteors count={16} />
-        <div className="relative mx-auto flex min-h-[62svh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center">
-          <div className="mb-8 inline-flex items-center gap-3">
-            <SpectralMark variant="substrate" className="h-8 w-8 text-foreground" />
-            <span className="rule-label">The people under the products</span>
-          </div>
-          <h1 className="text-5xl leading-[1.05] text-foreground sm:text-6xl lg:text-7xl">
-            <WordsReveal text="Leadership is the" delay={0.15} />
-            <br />
-            <WordsReveal text="layer underneath." delay={0.45} />
+        <div className="spectral-field" aria-hidden="true" />
+        <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+          <SpectralMark variant="substrate" className="mx-auto h-20 w-20 text-clay" />
+          <p className="rule-label mt-8">Leadership</p>
+          <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
+            The people under the <em className="font-light">products</em>
           </h1>
-          <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            <TypewriterText
-              text="Substrate is run by the people who build it — a small bench, six principles, and one runtime every product answers to."
-              className="font-mono text-sm sm:text-base"
-              startDelay={900}
-            />
+          <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
+            Substrate is run by the people who build it. The bench is deliberately small — the same
+            hands hold the model, the browser, the surface and the agent, so nothing gets lost
+            between rooms.
           </p>
-        </div>
-      </section>
-
-      {/* Principles */}
-      <section className="border-t border-border/70 bg-card/40 grain-veil py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <Reveal>
-            <p className="rule-label">How we lead</p>
-            <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              <BoxReveal>Six principles we run by</BoxReveal>
-            </h2>
-          </Reveal>
-          <AnimatedList className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
-            {PRINCIPLES.map((p) => (
-              <div
-                key={p.index}
-                className="h-full rounded-2xl border border-border/70 bg-card/70 p-7 backdrop-blur-sm transition-shadow hover:shadow-lg"
-              >
-                <p className="rule-label">{p.index}</p>
-                <h3 className="mt-4 text-xl font-light leading-snug text-foreground">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-              </div>
-            ))}
-          </AnimatedList>
-        </div>
-      </section>
-
-      {/* The bench */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <Reveal>
-          <p className="rule-label">The bench</p>
-          <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-            <BoxReveal>One team, five surfaces</BoxReveal>
-          </h2>
         </Reveal>
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-          There are no walls between research, product and engineering — the person who trains the
-          model reviews the editor&apos;s completions, and the person who designs the browser sits
-          in the runtime reviews. Leadership is knowing the whole stack.
-        </p>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {AREAS.map((a, i) => (
-            <Reveal key={a.label} delay={i * 0.06}>
-              <TiltCard className="h-full">
-                <div className="tick-hover flex h-full flex-col rounded-2xl border border-border/70 bg-card/60 p-7">
-                  <div className="flex items-center justify-between">
-                    <a.icon className="h-6 w-6 text-[var(--spectral-b)]" />
-                    <span className="rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground">
-                      {a.label}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-light text-foreground">{a.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
-                </div>
-              </TiltCard>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
-      {/* Operating cadence */}
-      <section className="border-t border-border/70 bg-card/30 py-20">
-        <div className="mx-auto max-w-3xl px-6">
-          <Reveal>
-            <p className="rule-label">Operating cadence</p>
-            <h2 className="mt-4 max-w-xl text-4xl leading-tight text-foreground sm:text-5xl">
-              <BoxReveal>The rhythm of the studio</BoxReveal>
-            </h2>
+      {/* The leaders — an editorial register, one row per person */}
+      <section className="border-t border-border/70 bg-card/40 grain-veil">
+        <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
+          <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
+            <BoxReveal>Who leads what</BoxReveal>
+          </h2>
+          <Reveal delay={0.15} className="mt-6">
+            <SignalDoodle className="h-8 w-56 text-muted-foreground" aria-hidden="true" />
           </Reveal>
-          <AnimatedList className="mt-12 space-y-4" stagger={0.12}>
-            {CADENCE.map((c) => (
-              <div
-                key={c.when}
-                className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card/60 p-6 sm:flex-row sm:items-baseline sm:gap-8"
-              >
-                <span className="w-24 shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-                  {c.when}
-                </span>
-                <p className="leading-relaxed text-foreground/90">{c.what}</p>
-              </div>
+          <ol className="mt-14">
+            {LEADERS.map((leader, i) => (
+              <Reveal key={leader.name} delay={0.05 * i}>
+                <li className="tick-hover group border-t border-border transition-colors last:border-b">
+                  <div className="grid gap-8 py-10 sm:grid-cols-[auto_1fr] sm:gap-12">
+                    <div
+                      className="tile-aurora flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl shadow-sm transition-transform duration-500 group-hover:scale-[1.03] sm:h-32 sm:w-32"
+                      style={
+                        {
+                          "--tile-a": leader.colors.a,
+                          "--tile-b": leader.colors.b,
+                          "--tile-c": leader.colors.c,
+                        } as React.CSSProperties
+                      }
+                      aria-hidden="true"
+                    >
+                      <span className="font-display text-4xl font-light text-white drop-shadow-sm">
+                        <ScrambleText text={leader.initials} />
+                      </span>
+                    </div>
+                    <div>
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                        <h3 className="text-2xl font-light text-foreground sm:text-3xl">
+                          {leader.name}
+                        </h3>
+                        <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
+                          <ScrambleText text={leader.role} />
+                        </p>
+                      </div>
+                      <p className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-[var(--spectral-b)]">
+                        {leader.care}
+                      </p>
+                      <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                        {leader.line}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </Reveal>
             ))}
-          </AnimatedList>
+          </ol>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-t border-border/70">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px bg-border/60 lg:grid-cols-4">
-          {STATS.map((s) => (
-            <div key={s.label} className="bg-card/80 px-6 py-12 text-center">
-              <p className="font-display text-6xl font-light text-foreground">
-                <CountUp value={s.value} suffix={s.suffix} />
-              </p>
-              <p className="mt-3 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-                <ScrambleText text={s.label} />
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Quote + CTA */}
-      <section className="relative isolate overflow-hidden border-t border-border/70">
+      {/* Closing note */}
+      <section className="relative isolate overflow-hidden">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
         <div className="relative mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
           <Reveal>
             <p className="font-display text-3xl leading-snug text-foreground sm:text-4xl">
-              <ShinyText text="“We build less, better — the substrate is the strategy.”" />
+              Small bench, <em className="font-light">long arc</em>.
             </p>
-            <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.22em] text-muted-foreground">
-              Studio leadership
+            <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+              We hire for range, slowly. If you would like to reach any of us directly, write to the
+              studio — it is read by a person.
             </p>
-            <div className="mt-12">
-              <EmailCapture subject="Hello Substrate — leadership" />
-            </div>
-            <p className="mt-8 text-sm text-muted-foreground">
-              Curious how the principles turn into products?{" "}
+            <a
+              href="mailto:hello@substrate.dev?subject=Hello%20Substrate%20—%20leadership"
+              className="btn-shine mt-9 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Write to the studio
+            </a>
+            <p className="mt-10 text-sm text-muted-foreground">
+              Curious how the bench works day to day?{" "}
               <Link
                 to="/studio"
                 className="group inline-flex items-center gap-1.5 text-foreground underline-offset-4 hover:underline"

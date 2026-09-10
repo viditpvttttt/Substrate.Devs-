@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SpectralMark } from "@/components/SpectralMark";
 import { SignalDoodle } from "@/components/SignalDoodle";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
@@ -64,9 +65,10 @@ function StudioPage() {
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
         <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
-          <p className="rule-label">Studio</p>
-          <h1 className="mt-6 text-5xl leading-[1.05] text-foreground sm:text-6xl">
-            The layer underneath
+          <SpectralMark variant="substrate" className="mx-auto h-20 w-20 text-clay" />
+          <p className="rule-label mt-8">Studio</p>
+          <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
+            The layer <em className="font-light">underneath</em>
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
             Substrate is a small research and product studio for the ambient computer. We build the
