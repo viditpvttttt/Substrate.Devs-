@@ -14,6 +14,7 @@ import { Route as ArcadiaRouteImport } from './routes/arcadia'
 import { Route as FolioRouteImport } from './routes/folio'
 import { Route as GridlineRouteImport } from './routes/gridline'
 import { Route as KernelRouteImport } from './routes/kernel'
+import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as VoidRouteImport } from './routes/void'
@@ -43,6 +44,11 @@ const KernelRoute = KernelRouteImport.update({
   path: '/kernel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LeadershipRoute = LeadershipRouteImport.update({
+  id: '/leadership',
+  path: '/leadership',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
+  '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/void': typeof VoidRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
+  '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/void': typeof VoidRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
+  '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
   '/void': typeof VoidRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/folio'
     | '/gridline'
     | '/kernel'
+    | '/leadership'
     | '/studio'
     | '/tools'
     | '/void'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/folio'
     | '/gridline'
     | '/kernel'
+    | '/leadership'
     | '/studio'
     | '/tools'
     | '/void'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/folio'
     | '/gridline'
     | '/kernel'
+    | '/leadership'
     | '/studio'
     | '/tools'
     | '/void'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   FolioRoute: typeof FolioRoute
   GridlineRoute: typeof GridlineRoute
   KernelRoute: typeof KernelRoute
+  LeadershipRoute: typeof LeadershipRoute
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
   VoidRoute: typeof VoidRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KernelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/leadership': {
+      id: '/leadership'
+      path: '/leadership'
+      fullPath: '/leadership'
+      preLoaderRoute: typeof LeadershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/studio': {
       id: '/studio'
       path: '/studio'
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   FolioRoute: FolioRoute,
   GridlineRoute: GridlineRoute,
   KernelRoute: KernelRoute,
+  LeadershipRoute: LeadershipRoute,
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
   VoidRoute: VoidRoute,
