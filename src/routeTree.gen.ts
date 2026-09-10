@@ -12,8 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArcadiaRouteImport } from './routes/arcadia'
 import { Route as FolioRouteImport } from './routes/folio'
+import { Route as GridlineRouteImport } from './routes/gridline'
 import { Route as KernelRouteImport } from './routes/kernel'
 import { Route as StudioRouteImport } from './routes/studio'
+import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as VoidRouteImport } from './routes/void'
 
 const IndexRoute = IndexRouteImport.update({
@@ -31,6 +33,11 @@ const FolioRoute = FolioRouteImport.update({
   path: '/folio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GridlineRoute = GridlineRouteImport.update({
+  id: '/gridline',
+  path: '/gridline',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KernelRoute = KernelRouteImport.update({
   id: '/kernel',
   path: '/kernel',
@@ -39,6 +46,11 @@ const KernelRoute = KernelRouteImport.update({
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VoidRoute = VoidRouteImport.update({
@@ -51,16 +63,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
+  '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
   '/studio': typeof StudioRoute
+  '/tools': typeof ToolsRoute
   '/void': typeof VoidRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
+  '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
   '/studio': typeof StudioRoute
+  '/tools': typeof ToolsRoute
   '/void': typeof VoidRoute
 }
 export interface FileRoutesById {
@@ -68,24 +84,53 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
+  '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
   '/studio': typeof StudioRoute
+  '/tools': typeof ToolsRoute
   '/void': typeof VoidRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/arcadia' | '/folio' | '/kernel' | '/studio' | '/void'
+  fullPaths:
+    | '/'
+    | '/arcadia'
+    | '/folio'
+    | '/gridline'
+    | '/kernel'
+    | '/studio'
+    | '/tools'
+    | '/void'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/arcadia' | '/folio' | '/kernel' | '/studio' | '/void'
-  id: '__root__' | '/' | '/arcadia' | '/folio' | '/kernel' | '/studio' | '/void'
+  to:
+    | '/'
+    | '/arcadia'
+    | '/folio'
+    | '/gridline'
+    | '/kernel'
+    | '/studio'
+    | '/tools'
+    | '/void'
+  id:
+    | '__root__'
+    | '/'
+    | '/arcadia'
+    | '/folio'
+    | '/gridline'
+    | '/kernel'
+    | '/studio'
+    | '/tools'
+    | '/void'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArcadiaRoute: typeof ArcadiaRoute
   FolioRoute: typeof FolioRoute
+  GridlineRoute: typeof GridlineRoute
   KernelRoute: typeof KernelRoute
   StudioRoute: typeof StudioRoute
+  ToolsRoute: typeof ToolsRoute
   VoidRoute: typeof VoidRoute
 }
 
@@ -112,6 +157,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FolioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gridline': {
+      id: '/gridline'
+      path: '/gridline'
+      fullPath: '/gridline'
+      preLoaderRoute: typeof GridlineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kernel': {
       id: '/kernel'
       path: '/kernel'
@@ -124,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/studio'
       fullPath: '/studio'
       preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/void': {
@@ -140,8 +199,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArcadiaRoute: ArcadiaRoute,
   FolioRoute: FolioRoute,
+  GridlineRoute: GridlineRoute,
   KernelRoute: KernelRoute,
   StudioRoute: StudioRoute,
+  ToolsRoute: ToolsRoute,
   VoidRoute: VoidRoute,
 }
 export const routeTree = rootRouteImport

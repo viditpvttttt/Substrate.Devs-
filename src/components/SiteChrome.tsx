@@ -8,6 +8,8 @@ const nav = [
   { to: "/folio", label: "Folio" },
   { to: "/arcadia", label: "Arcadia" },
   { to: "/studio", label: "Studio" },
+  { to: "/gridline", label: "Gridline" },
+  { to: "/leadership", label: "Leadership" },
 ] as const;
 
 export function SiteHeader() {
