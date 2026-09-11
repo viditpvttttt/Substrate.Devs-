@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
 import { FlipText } from "@/components/anim/FlipLink";
+import { Skiper26 } from "@/components/ui/skiper-ui/skiper26";
 
 const nav = [
   { to: "/kernel", label: "Kernel" },
@@ -39,6 +40,7 @@ export function SiteHeader() {
               />
             </Link>
           ))}
+          <Skiper26 />
         </nav>
       </div>
     </header>

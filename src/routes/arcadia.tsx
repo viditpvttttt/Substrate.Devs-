@@ -8,6 +8,9 @@ import { CountUp } from "@/components/anim/CountUp";
 import { HoverExpand } from "@/components/anim/HoverExpand";
 import { StickyCards } from "@/components/anim/StickyCards";
 import type { HoverExpandItem } from "@/components/anim/HoverExpand";
+import { VanishForm } from "@/components/ui/skiper-ui/skiper56";
+import { Skiper24 } from "@/components/ui/skiper-ui/skiper24";
+import { Skiper86 } from "@/components/ui/skiper-ui/skiper86";
 
 export const Route = createFileRoute("/arcadia")({
   head: () => ({
@@ -171,7 +174,7 @@ function ArcadiaPage() {
         </div>
       </section>
 
-      {/* Feature panels — HoverExpand (like Folio) */}
+      {/* Feature panels — HoverExpand */}
       <section className="border-y border-border/70 bg-card">
         <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
@@ -183,7 +186,7 @@ function ArcadiaPage() {
         </div>
       </section>
 
-      {/* Autonomous loop — StickyCards (like VOID) */}
+      {/* Autonomous loop — StickyCards */}
       <section className="relative border-b border-border/70 bg-card/60 grain-veil">
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
@@ -229,6 +232,9 @@ function ArcadiaPage() {
         </div>
       </section>
 
+      {/* Skiper24 — TikTikColorList with sound effects */}
+      <Skiper24 />
+
       {/* The shape of it */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
         <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">The shape of it</h2>
@@ -250,7 +256,7 @@ function ArcadiaPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA with Skiper56 VanishForm + Skiper86 AppleBorderGradient */}
       <section className="relative isolate overflow-hidden border-t border-border/70">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
         <div className="relative mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
@@ -261,12 +267,37 @@ function ArcadiaPage() {
           <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
             Get early access to autonomous fleet orchestration and always-on automation.
           </p>
-          <a
-            href="mailto:hello@substrate.dev?subject=Arcadia%20Access%20Request"
-            className="mt-9 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            Request access
-          </a>
+
+          {/* Skiper56 — VanishForm input */}
+          <div className="mx-auto mt-8 max-w-md">
+            <VanishForm
+              placeholder="Ask Arcadia to plan, edit, or execute anything..."
+              onSubmit={() => {}}
+            />
+          </div>
+
+          {/* Skiper86 — AppleBorderGradient CTA */}
+          <div className="mx-auto mt-8 max-w-xs">
+            <Skiper86 className="rounded-full" enableSound>
+              <div className="flex items-center justify-center p-3">
+                <a
+                  href="mailto:hello@substrate.dev?subject=Arcadia%20Access%20Request"
+                  className="text-sm font-medium text-primary-foreground"
+                >
+                  Request access
+                </a>
+              </div>
+            </Skiper86>
+          </div>
+
+          <div className="mt-8">
+            <Link
+              to="/kernel"
+              className="rounded-full border border-border bg-card/60 px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Meet Kernel
+            </Link>
+          </div>
         </div>
       </section>
     </>
