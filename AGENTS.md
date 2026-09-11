@@ -11,16 +11,9 @@
 
 ## Base44 dev environment
 
-This is a **frontend-only** TanStack Start + Vite + React app (SSR via Nitro).
-There is no backend, database, or external-service dependency — no secrets are
-required to boot.
-
-- **Run:** `docker compose -f docker-compose.base44.yml up -d`
-- **Preview:** host port 3000 → container port 8080 (the Vite dev server).
-- **How it works:** `node:22-slim` with the repo bind-mounted at `/app`;
-  `npm install` + `vite dev` run at container start. Edits hot-reload live.
-- **Vite host allowlist:** the `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` env var
-  is passed bare so Vite accepts the preview's external hostname.
-- **Verify:** `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/`
-  should return `200` and serve SSR HTML referencing `/src/styles.css`
-  (unhashed source = live dev server, not a prebuilt bundle).
+- **Stack:** TanStack Start (SSR via Nitro) + Vite 8 + React 19 + Tailwind v4 + shadcn/ui. Frontend-only — no database, no backend API, no external services, no secrets required.
+- **Run:** `docker compose -f docker-compose.base44.yml up -d`. The `web` service uses a plain `node:22` image with the repo bind-mounted at `/app`, runs `npm install && npm run dev`, and maps host port 3000 → container 8080 (Vite's dev port).
+- **Live reload:** Vite dev server with HMR. Edits to source files appear in the preview automatically; call `reload_preview` only after compose/env changes.
+- **Host allowlist:** Vite accepts the preview's external hostname via the platform-provided `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS` env var (passed bare in compose). The vite config already binds `host: "::"`.
+- **Verify:** `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/` should return 200; the served HTML references `/src/styles.css` (live source, not a prebuilt bundle).
+- **Quirk:** Vite logs a deprecation notice about `vite-tsconfig-paths` (native `resolve.tsconfigPaths` is now supported) — cosmetic only, does not affect boot.

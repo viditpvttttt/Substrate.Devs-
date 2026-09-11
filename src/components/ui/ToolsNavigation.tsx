@@ -7,14 +7,14 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-// List of tool routes – mirrors the main site navigation
+// Tool routes — mirrors the main site navigation order (Gridline after Arcadia).
 const tools = [
   { to: "/kernel", label: "Kernel" },
   { to: "/void", label: "VOID" },
   { to: "/folio", label: "Folio" },
   { to: "/arcadia", label: "Arcadia" },
-  { to: "/studio", label: "Studio" },
   { to: "/gridline", label: "Gridline" },
+  { to: "/studio", label: "Studio" },
 ] as const;
 
 /**

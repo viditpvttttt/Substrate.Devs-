@@ -1,28 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SpectralMark } from "@/components/SpectralMark";
-import { OrbField } from "@/components/OrbField";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { ScrambleText } from "@/components/anim/ScrambleText";
-import { CountUp } from "@/components/anim/CountUp";
 import { HoverExpand } from "@/components/anim/HoverExpand";
-import { StickyCards } from "@/components/anim/StickyCards";
-import type { HoverExpandItem } from "@/components/anim/HoverExpand";
+import { SvgScrollDraw } from "@/components/anim/SvgScrollDraw";
 
 export const Route = createFileRoute("/arcadia")({
   head: () => ({
     meta: [
-      { title: "Arcadia — Autonomous Agent Assistant on Substrate" },
+      { title: "Arcadia — an agent that does the work" },
       {
         name: "description",
         content:
-          "Arcadia is Substrate's autonomous agent assistant: fleet orchestration, local-first intelligence, automated triggers, and IDE-native pair engineering.",
+          "Arcadia is Substrate's autonomous agent: it plans, edits files, runs the terminal, reads live pages and reports in the open — on the same runtime as Kernel.",
       },
-      { property: "og:title", content: "Arcadia — Autonomous Agent Assistant" },
+      { property: "og:title", content: "Arcadia — an agent that does the work" },
       {
         property: "og:description",
         content:
-          "Launch fleets of autonomous agents that work in parallel across your terminal, browser, Slack, and codebase.",
+          "One agent that plans in writing, acts in place, and shows its work — from the terminal to the browser.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -31,239 +28,204 @@ export const Route = createFileRoute("/arcadia")({
   component: ArcadiaPage,
 });
 
-const modes = [
-  { k: "Autonomous", v: "Planner and executor in one loop — full agency, no hand-holding" },
-  { k: "Codebase", v: "AST-level in-place edits across your repository" },
-  { k: "Browser", v: "OpenClaw engine — navigates and interacts with live web surfaces" },
-  { k: "Terminal", v: "Shell runner with local-first execution and sandboxed tooling" },
+const holdings = [
+  { k: "Terminal", v: "Runs commands, watches output, fixes the failure in the same loop" },
+  { k: "Files", v: "Reads and edits the whole workspace in place, across repositories" },
+  { k: "Live pages", v: "Reads what is on screen — a dashboard, a form, a slow endpoint — when asked" },
+  { k: "Triggers", v: "Wakes on a schedule or a signal, not on a chat box you have to babysit" },
 ];
 
-const features: HoverExpandItem[] = [
-  {
-    key: "fleets",
-    index: "01",
-    title: "Fleet orchestration",
-    body: "Run dozens of agents in parallel on ambitious tasks for hours or days. They share memory, write isolated branches, and report progress continuously.",
-    colors: { a: "oklch(0.55 0.18 255)", b: "oklch(0.48 0.16 250)", c: "oklch(0.42 0.14 245)" },
-  },
-  {
-    key: "automation",
-    index: "02",
-    title: "Automation triggers",
-    body: "Always-on agents that run on schedules or webhooks to build, maintain, and fix your software before bugs reach production.",
-    colors: { a: "oklch(0.55 0.16 155)", b: "oklch(0.48 0.14 160)", c: "oklch(0.42 0.12 150)" },
-  },
-  {
-    key: "verification",
-    index: "03",
-    title: "Self-verification",
-    body: "Every change is tested before merge. Arcadia runs the suite, reads the failures, and only opens a PR when the build is clean.",
-    colors: { a: "oklch(0.55 0.20 22)", b: "oklch(0.48 0.18 25)", c: "oklch(0.42 0.16 30)" },
-  },
+const capabilityColors = [
+  { a: "#d97a38", b: "#8f471e", c: "#301d15" },
+  { a: "#bc8b58", b: "#754b2c", c: "#302019" },
+  { a: "#a8a38d", b: "#665f42", c: "#2b291f" },
+  { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
 ];
 
-const loopSteps = [
+const capabilities = [
   {
     index: "01",
-    title: "Perceive",
-    body: "Arcadia reads the workspace AST — 34 files, their dependencies, their types — and builds a perception of the codebase in milliseconds.",
+    title: "It plans in writing",
+    body: "Before anything moves, the agent lays out the plan — the files it will touch, the commands it will run, the proof it will accept. You read it before it happens.",
   },
   {
     index: "02",
-    title: "Plan",
-    body: "It generates a multi-stage execution DAG: which files to touch, which tests to run, which tools to call, and in what order.",
+    title: "It acts in place",
+    body: "Edits land in the real files, in the real workspace, with diffs you can walk line by line. Nothing is simulated behind a chat transcript.",
   },
   {
     index: "03",
-    title: "Execute",
-    body: "In-place file edits, terminal commands, and browser interactions — all through one tool harness with hot-swappable runtimes.",
+    title: "It works in parallel",
+    body: "One question can split into several threads — an investigation, a refactor, a test run — that share the same memory and rejoin in one report.",
   },
   {
     index: "04",
-    title: "Verify",
-    body: "The suite runs. Failures are read and fixed. Only when every test passes does Arcadia open a pull request, self-reviewed.",
+    title: "It reports in the open",
+    body: "Every run ends with a written account: what it did, what it found, what it changed its mind about. Auditable after the fact, not just while it runs.",
   },
 ];
 
-const stats = [
-  { value: 250, suffix: "k+", label: "Autonomous PRs merged" },
-  { value: 99, suffix: ".4%", label: "First-pass test accuracy" },
-  { value: 16, suffix: "x", label: "Parallel subagent scaling" },
-  { value: 0, suffix: "ms", label: "Telemetry data retention" },
+const run = [
+  {
+    step: "01",
+    title: "Brief",
+    body: "A sentence or a standing trigger. The agent restates the task in its own words so a misunderstanding surfaces before a keystroke does.",
+  },
+  {
+    step: "02",
+    title: "Plan",
+    body: "The workspace is mapped first — symbols, dependencies, tests — and the plan is written down and kept where you can read it.",
+  },
+  {
+    step: "03",
+    title: "Act",
+    body: "Edits, commands and page reads happen in place, in parallel where it is safe, serialized where it is not.",
+  },
+  {
+    step: "04",
+    title: "Verify",
+    body: "The proof is whatever the work can run: tests, builds, a page that loads. The agent does not get to claim what it cannot show.",
+  },
 ];
 
-const facts = [
-  { k: "Shape", v: "Autonomous agent assistant with fleet orchestration" },
-  { k: "Modes", v: "Autonomous, Codebase, Browser, Terminal" },
-  { k: "Triggers", v: "Cron, webhook, CI event, manual" },
-  { k: "Isolation", v: "Ephemeral sandboxes with zero data retention" },
-  { k: "Integration", v: "Terminal, Slack, GitHub, IDE-native" },
-  { k: "Status", v: "Early access — waitlist open" },
+const specs = [
+  { k: "Shape", v: "One agent runtime, many parallel workers" },
+  { k: "Interfaces", v: "Terminal, editor integration, standing triggers" },
+  { k: "Memory", v: "Shared with Kernel and Gridline — one notion of context" },
+  { k: "Autonomy", v: "Plans in writing, actions verifiable, runs auditable" },
+  { k: "Status", v: "Research preview with a small number of teams" },
 ];
 
 function ArcadiaPage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero — same quiet pattern as Kernel, VOID and Folio */}
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
         <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <SpectralMark variant="arcadia" className="mx-auto h-20 w-20 text-clay" />
-          <div className="mt-8 flex items-center justify-center gap-3">
-            <p className="rule-label">Arcadia</p>
-            <span className="rounded-full border border-border px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-              Early access
-            </span>
-          </div>
+          <p className="rule-label mt-8">Arcadia</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
-            The autonomous agent <em className="font-light">built into your codebase</em>
+            An agent that does the <em className="font-light">work</em>
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            Arcadia operates directly on your filesystem, runs terminal commands, navigates browser
-            surfaces, and orchestrates fleets of subagents in parallel — all on the Substrate
-            runtime.
+            Arcadia is the autonomous layer of the substrate: it plans in writing, edits files in
+            place, runs the terminal and reads live pages — and shows its work the whole way
+            through.
           </p>
-          <a
-            href="mailto:hello@substrate.dev?subject=Arcadia%20Access%20Request"
-            className="mt-10 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            Request access
-          </a>
         </Reveal>
       </section>
 
-      {/* Agent modes grid */}
+      {/* What it holds — the four-cell strip, as on Kernel */}
       <section className="border-y border-border/70 bg-card">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px bg-border/70 sm:grid-cols-4">
-          {modes.map((m, i) => (
-            <Reveal key={m.k} delay={i * 0.08} className="bg-card px-6 py-10">
+          {holdings.map((h, i) => (
+            <Reveal key={h.k} delay={i * 0.08} className="bg-card px-6 py-10">
               <p className="rule-label">
-                <ScrambleText text={m.k} />
+                <ScrambleText text={h.k} />
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{m.v}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{h.v}</p>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* Two-column: Autonomous execution + OrbField visual */}
-      <section className="relative isolate overflow-hidden">
-        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-5xl items-center gap-14 px-6 py-24 sm:py-32 lg:grid-cols-2">
-          <div>
-            <p className="rule-label">Autonomous execution</p>
-            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
-              <BoxReveal>One loop, every tool</BoxReveal>
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Arcadia perceives the codebase, plans a multi-step execution, and acts through one
-              tool harness — file edits, terminal commands, and browser interactions in a single
-              pass. No context switching between apps, no copy-paste between tools.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Run a single agent for a quick fix, or launch a fleet that works in parallel for
-              hours. They share memory, write isolated branches, and report continuously.
-            </p>
-          </div>
-          <Reveal delay={0.1}>
-            <OrbField className="aspect-[4/3]" />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Feature panels — HoverExpand (like Folio) */}
-      <section className="border-y border-border/70 bg-card">
-        <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
-          <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            <BoxReveal>What Arcadia does</BoxReveal>
-          </h2>
-          <Reveal className="mt-14">
-            <HoverExpand items={features} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Autonomous loop — StickyCards (like VOID) */}
-      <section className="relative border-b border-border/70 bg-card/60 grain-veil">
+      {/* Capabilities — the expandable register, as on Folio */}
+      <section className="border-b border-border/70 bg-card/60 grain-veil">
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
-            <BoxReveal>The autonomous loop</BoxReveal>
+            <BoxReveal>Four promises, kept boringly</BoxReveal>
           </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Four stages, repeated until the task is done and the build is clean.
-          </p>
-          <div className="mt-10">
-            <StickyCards
-              items={loopSteps.map((step) => ({
-                key: step.index,
-                content: (
-                  <div className="glass-panel mx-auto flex min-h-[18rem] max-w-2xl flex-col justify-between rounded-3xl p-10 shadow-xl">
-                    <p className="rule-label">{step.index} / 04</p>
-                    <div>
-                      <h3 className="text-3xl text-foreground">{step.title}</h3>
-                      <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
-                        {step.body}
-                      </p>
-                    </div>
-                  </div>
-                ),
+          <Reveal className="mt-14">
+            <HoverExpand
+              items={capabilities.map((c, idx) => ({
+                key: c.index,
+                index: c.index,
+                title: c.title,
+                body: c.body,
+                colors: capabilityColors[idx],
               }))}
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-b border-border/70 bg-card/50">
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px bg-border/60 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08} className="bg-card/80 px-6 py-12 text-center">
-              <p className="font-display text-5xl font-light text-foreground">
-                <CountUp value={s.value} suffix={s.suffix} duration={2} />
-              </p>
-              <p className="mt-3 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-                <ScrambleText text={s.label} />
-              </p>
-            </Reveal>
-          ))}
+      {/* How a run unfolds — numbered editorial with a scroll-drawn line */}
+      <section className="relative isolate overflow-hidden">
+        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-5xl gap-14 px-6 py-24 sm:py-28 lg:grid-cols-[auto_1fr]">
+          <div className="relative hidden w-16 lg:block">
+            <SvgScrollDraw className="h-full w-full" />
+          </div>
+          <div>
+            <p className="rule-label">A run</p>
+            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
+              How a run unfolds
+            </h2>
+            <ol className="mt-12">
+              {run.map((r, i) => (
+                <Reveal key={r.step} delay={i * 0.07}>
+                  <li className="tick-hover border-t border-border py-7 transition-colors last:border-b">
+                    <div className="flex items-baseline gap-6">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
+                        {r.step}
+                      </span>
+                      <div>
+                        <h3 className="text-2xl font-light text-foreground">{r.title}</h3>
+                        <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
+                          {r.body}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
       {/* The shape of it */}
-      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
-        <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">The shape of it</h2>
-        <dl className="mt-12 grid gap-x-16 gap-y-8 sm:grid-cols-2">
-          {facts.map((f) => (
-            <div key={f.k} className="border-t border-border pt-5">
-              <dt className="rule-label">{f.k}</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.v}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="mt-14">
-          <Link to="/kernel" className="group inline-flex items-center gap-2 text-sm text-foreground">
-            Powered by Kernel
-            <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
+      <section className="border-y border-border/70 bg-card/40">
+        <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
+          <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">The shape of it</h2>
+          <dl className="mt-12 grid gap-x-16 gap-y-8 sm:grid-cols-2">
+            {specs.map((s, i) => (
+              <Reveal key={s.k} delay={i * 0.05}>
+                <div className="border-t border-border pt-5">
+                  <dt className="rule-label">{s.k}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.v}</dd>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
+          <div className="mt-14">
+            <Link
+              to="/gridline"
+              className="group inline-flex items-center gap-2 text-sm text-foreground"
+            >
+              Arcadia inside Gridline
+              <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="relative isolate overflow-hidden border-t border-border/70">
+      <section className="relative isolate overflow-hidden">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
         <div className="relative mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
           <SpectralMark variant="arcadia" className="mx-auto h-28 w-28 text-clay" />
-          <h2 className="mt-8 text-3xl leading-tight text-foreground sm:text-4xl">
-            Start building with Arcadia
-          </h2>
+          <h2 className="mt-8 text-3xl leading-tight text-foreground sm:text-4xl">Work with it</h2>
           <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-            Get early access to autonomous fleet orchestration and always-on automation.
+            Arcadia is in research preview with a small number of teams. If your work would benefit
+            from an agent that reports in the open, tell us what you would run.
           </p>
           <a
-            href="mailto:hello@substrate.dev?subject=Arcadia%20Access%20Request"
-            className="mt-9 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            href="mailto:hello@substrate.dev?subject=Arcadia%20research%20preview"
+            className="btn-shine mt-9 inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             Request access
           </a>

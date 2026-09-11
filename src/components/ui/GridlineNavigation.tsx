@@ -1,22 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { FlipText } from "@/components/anim/FlipLink";
 
-// Reuse the existing navigation items and add Gridline
+// Mirrors the site header navigation order — Gridline follows Arcadia.
 const nav = [
   { to: "/kernel", label: "Kernel" },
   { to: "/void", label: "VOID" },
   { to: "/folio", label: "Folio" },
   { to: "/arcadia", label: "Arcadia" },
-  { to: "/studio", label: "Studio" },
-  // New Gridline entry
   { to: "/gridline", label: "Gridline" },
+  { to: "/studio", label: "Studio" },
+  { to: "/leadership", label: "Leadership" },
 ] as const;
 
 /**
- * A standalone navigation component that mirrors the site header navigation
- * but includes a link to the newly created Gridline page.
- *
- * This component can be imported and used anywhere in the app, for example in a
+ * A standalone navigation component that mirrors the site header navigation.
+ * It can be imported and used anywhere in the app, for example in a
  * sidebar, a drawer, or a dedicated header for a specific layout.
  */
 export function GridlineNavigation() {

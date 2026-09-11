@@ -12,6 +12,13 @@ import { MagneticButton } from "@/components/anim/MagneticButton";
 import { CountUp } from "@/components/anim/CountUp";
 import { HoverExpand } from "@/components/anim/HoverExpand";
 import type { HoverExpandItem } from "@/components/anim/HoverExpand";
+import { Meteors } from "@/components/anim/Meteors";
+import { DotPattern } from "@/components/anim/DotPattern";
+import { BorderBeam } from "@/components/anim/BorderBeam";
+import { ShinyText } from "@/components/anim/ShinyText";
+import { TypewriterText } from "@/components/anim/TypewriterText";
+import { MarqueeCards } from "@/components/anim/MarqueeCards";
+import { AnimatedList } from "@/components/anim/AnimatedList";
 
 export const Route = createFileRoute("/leadership")({
   head: () => ({
@@ -41,6 +48,19 @@ const stats = [
   { value: 100, suffix: "%", label: "Self-hosted", sub: "No one else's infrastructure" },
 ];
 
+const marqueeItems = [
+  "Kernel",
+  "VOID",
+  "Folio",
+  "Arcadia",
+  "Research",
+  "Product",
+  "Engineering",
+  "Self-hosted",
+  "Local-first",
+  "One runtime",
+];
+
 const values: HoverExpandItem[] = [
   {
     key: "complete",
@@ -68,9 +88,11 @@ const values: HoverExpandItem[] = [
 function LeadershipPage() {
   return (
     <>
-      {/* Hero — scramble label, word-by-word headline, rotating product names, spotlight glow */}
+      {/* Hero */}
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
+        <Meteors count={12} color="var(--spectral-b)" />
+        <DotPattern columns={24} rows={8} glowRadius={140} />
         <Spotlight />
         <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
           <Reveal>
@@ -95,24 +117,39 @@ function LeadershipPage() {
         </div>
       </section>
 
-      {/* Stats strip — count-up numbers */}
-      <section className="border-y border-border/70 bg-card">
+      {/* Marquee strip */}
+      <section className="border-y border-border/70 bg-card py-6">
+        <MarqueeCards duration={35}>
+          {marqueeItems.map((item) => (
+            <span
+              key={item}
+              className="whitespace-nowrap font-mono text-sm uppercase tracking-[0.18em] text-muted-foreground"
+            >
+              {item}
+              <span className="ml-5 text-border">·</span>
+            </span>
+          ))}
+        </MarqueeCards>
+      </section>
+
+      {/* Stats */}
+      <section className="border-b border-border/70 bg-card">
         <div className="mx-auto max-w-5xl px-6 py-16">
-          <div className="grid gap-10 sm:grid-cols-3">
-            {stats.map((s, idx) => (
-              <Reveal key={s.label} delay={idx * 0.12} className="text-center">
+          <AnimatedList className="grid gap-10 sm:grid-cols-3">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
                 <div className="text-5xl font-bold text-foreground sm:text-6xl">
                   <CountUp value={s.value} suffix={s.suffix} duration={2} />
                 </div>
                 <p className="mt-3 text-sm font-medium text-foreground">{s.label}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{s.sub}</p>
-              </Reveal>
+              </div>
             ))}
-          </div>
+          </AnimatedList>
         </div>
       </section>
 
-      {/* Founder feature — tilt portrait, parallax, scramble name, scroll-fill bio, magnetic CTA */}
+      {/* Founder */}
       <section className="relative isolate overflow-hidden border-b border-border/70 bg-card grain-veil">
         <Spotlight />
         <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
@@ -121,28 +158,31 @@ function LeadershipPage() {
           </Reveal>
 
           <div className="grid items-start gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
-            {/* Portrait — parallax + 3D tilt */}
+            {/* Portrait */}
             <Reveal className="mx-auto w-full max-w-sm lg:mx-0">
               <ParallaxY from={30} to={-30}>
-                <TiltCard className="overflow-hidden rounded-2xl border border-border/70 bg-card/60 shadow-sm">
-                  <img
-                    src="/images/vidit-portrait.jpg"
-                    alt="Portrait of Vidit Sharma, Founder and CEO of Substrate"
-                    className="aspect-[4/5] h-auto w-full object-cover"
-                  />
-                </TiltCard>
+                <div className="relative overflow-hidden rounded-2xl">
+                  <TiltCard className="overflow-hidden rounded-2xl border border-border/70 bg-card/60 shadow-sm">
+                    <img
+                      src="/images/vidit-portrait.jpg"
+                      alt="Portrait of Vidit Sharma, Founder and CEO of Substrate"
+                      className="aspect-[4/5] h-auto w-full object-cover"
+                    />
+                  </TiltCard>
+                  <BorderBeam color="var(--spectral-b)" duration={5} />
+                </div>
               </ParallaxY>
               <div className="mt-5 px-1">
                 <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  Founder and CEO
+                  <TypewriterText text="Founder and CEO" speed={55} />
                 </p>
                 <h2 className="mt-1.5 text-2xl font-semibold text-foreground">
-                  <ScrambleText text="Vidit Sharma" />
+                  <ShinyText text="Vidit Sharma" />
                 </h2>
               </div>
             </Reveal>
 
-            {/* Bio — scroll-fill gradient text + magnetic CTA */}
+            {/* Bio */}
             <Reveal delay={0.1} className="lg:pt-2">
               <h3 className="text-3xl leading-tight text-foreground sm:text-4xl">
                 <BoxReveal>Close to the code</BoxReveal>
@@ -152,7 +192,7 @@ function LeadershipPage() {
                 className="mt-7 text-base leading-relaxed text-muted-foreground"
               />
 
-              {/* Focus areas — staggered reveal + hover scale */}
+              {/* Focus areas */}
               <div className="mt-10 flex flex-wrap gap-2.5">
                 {["Research", "Product", "Engineering"].map((area, i) => (
                   <Reveal key={area} delay={0.3 + i * 0.1}>
@@ -163,7 +203,7 @@ function LeadershipPage() {
                 ))}
               </div>
 
-              {/* Magnetic CTA */}
+              {/* CTA */}
               <div className="mt-10">
                 <MagneticButton strength={0.4}>
                   <a
@@ -179,7 +219,7 @@ function LeadershipPage() {
         </div>
       </section>
 
-      {/* Values — skiper-style hover-expand panels */}
+      {/* Values */}
       <section className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
         <Reveal>
           <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">

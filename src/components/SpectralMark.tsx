@@ -1,13 +1,40 @@
 type Props = {
-  variant: "kernel" | "void" | "folio" | "substrate" | "arcadia";
+  variant: "kernel" | "void" | "folio" | "substrate" | "arcadia" | "gridline";
   className?: string;
   alt?: string;
 };
 
 /**
- * Official marks & logos for Substrate, Kernel, Folio, VOID, and Arcadia.
+ * Official marks & logos for Substrate, Kernel, Folio, VOID, Arcadia, and Gridline.
  */
 export function SpectralMark({ variant, className = "", alt }: Props) {
+  if (variant === "gridline") {
+    return (
+      <svg
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label={alt || "Gridline mark: a spectral line across the code grid"}
+        className={className}
+      >
+        <path
+          d="M18 18 H82 M18 50 H82 M18 82 H82 M18 18 V82 M50 18 V82 M82 18 V82"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeOpacity="0.3"
+        />
+        <path
+          d="M18 82 L82 18"
+          stroke="var(--spectral-b, #4a7fb5)"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <circle cx="50" cy="50" r="5" fill="var(--spectral-b, #4a7fb5)" />
+        <circle cx="50" cy="50" r="10" stroke="var(--spectral-b, #4a7fb5)" strokeWidth="1" strokeOpacity="0.5" />
+      </svg>
+    );
+  }
   if (variant === "arcadia") {
     return (
       <svg
