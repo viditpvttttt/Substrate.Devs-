@@ -18,6 +18,9 @@ import { SvgScrollDraw } from "@/components/anim/SvgScrollDraw";
 import { TextGradientFill } from "@/components/anim/TextGradientFill";
 import { WordsReveal } from "@/components/anim/WordsReveal";
 import { GridlineMatrix } from "@/components/GridlineMatrix";
+import { Skiper31 } from "@/components/ui/skiper-ui/skiper31";
+import { Skiper19 } from "@/components/ui/skiper-ui/skiper19";
+import { Skiper80 } from "@/components/ui/skiper-ui/skiper80";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -355,13 +358,63 @@ function Index() {
                 </div>
               </div>
             </TiltCard>
-            {/* Gridline Matrix Section */}
-            <section className="my-16">
-              <GridlineMatrix />
-            </section>
           </div>
         </div>
       </section>
+
+      {/* Gridline Matrix — standalone section */}
+      <section className="border-t border-border/70 bg-card/40">
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <Reveal>
+            <p className="rule-label">Gridline</p>
+            <h2 className="mt-4 max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
+              <BoxReveal>AI-powered code editor, reimagined</BoxReveal>
+            </h2>
+          </Reveal>
+          <div className="mt-10">
+            <GridlineMatrix />
+          </div>
+        </div>
+      </section>
+
+      {/* Skiper31 — Text & icon scroll animation */}
+      <section className="border-t border-border/70 bg-card/40">
+        <div className="mx-auto max-w-5xl px-6 py-12">
+          <Reveal>
+            <p className="rule-label text-center">One ecosystem</p>
+            <h2 className="mt-3 text-center text-2xl text-foreground sm:text-3xl">
+              Built on one substrate, every product
+            </h2>
+          </Reveal>
+        </div>
+        <Skiper31 />
+      </section>
+
+      {/* Skiper80 — Portfolio showcase with Gridline */}
+      <section className="border-t border-border/70 bg-card">
+        <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
+          <Reveal>
+            <p className="rule-label">Portfolio</p>
+            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
+              <BoxReveal>The Substrate portfolio</BoxReveal>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.15} className="mt-12">
+            <Skiper80
+              projects={[
+                { id: "kernel", name: "Kernel", description: "One multimodal model across text, vision, audio and video.", badge: "Model" },
+                { id: "void", name: "VOID", description: "A browser with nothing in the way — page, model and intent on one surface.", badge: "Browser" },
+                { id: "folio", name: "Folio", description: "The quiet operating surface for your day — dashboard, assistant and agent runner.", badge: "App" },
+                { id: "arcadia", name: "Arcadia", description: "Autonomous agent assistant that orchestrates fleets of subagents in parallel.", badge: "Agent" },
+                { id: "gridline", name: "Gridline", description: "AI-powered code editor with intelligent completions, inline AI assistance, and multi-modal prompts.", badge: "Editor" },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Skiper19 — SVG scroll stroke with terminal footer */}
+      <Skiper19 />
 
       <section className="relative border-t border-border/70">
         <div className="mx-auto max-w-5xl px-6 pt-24 sm:pt-28">

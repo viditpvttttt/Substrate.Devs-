@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportError } from "../lib/error-reporting";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { ScrollProgress } from "@/components/anim/ScrollProgress";
+import { ScrollTickSound } from "@/components/ScrollTickSound";
+import { CommandOverlay } from "@/components/CommandOverlay";
 
 function NotFoundComponent() {
   return (
@@ -143,6 +145,8 @@ function RootComponent() {
           <Outlet />
         </main>
         <SiteFooter />
+        <ScrollTickSound />
+        <CommandOverlay />
       </div>
     </QueryClientProvider>
   );
