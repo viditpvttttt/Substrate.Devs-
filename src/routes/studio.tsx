@@ -58,6 +58,29 @@ const principles = [
   },
 ];
 
+const faqs = [
+  {
+    q: "What is the substrate?",
+    a: "It is the shared runtime underneath all four products: one model, one memory, one notion of context. Kernel, VOID, Folio and Gridline are surfaces on top of it — they inherit everything the layer below already knows.",
+  },
+  {
+    q: "Why build a model, a browser, an editor and a surface together?",
+    a: "Because the interesting problems live in the joins. A browser that assumes a model is nearby behaves differently from one that treats it as a plugin. Building all four on one runtime lets us solve the join once, properly.",
+  },
+  {
+    q: "Can I use one product without the others?",
+    a: "Yes. Each surface stands on its own. They only get better together: Gridline inherits the same AST lattice Arcadia uses, and VOID can read anything Kernel has already seen.",
+  },
+  {
+    q: "How do you handle my data?",
+    a: "Local first. Weights, files and browsing state stay on your device unless you explicitly hand them to remote compute — and Folio's memory is a list you can read, edit and delete line by line.",
+  },
+  {
+    q: "What does 'measured, not claimed' mean?",
+    a: "Every number we print comes from a run we can reproduce. If we cannot show the method, we do not show the figure.",
+  },
+];
+
 function StudioPage() {
   return (
     <>
@@ -117,6 +140,33 @@ function StudioPage() {
                 <p className="rule-label">{p.index}</p>
                 <h3 className="mt-3 text-2xl text-foreground">{p.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border/70 bg-card/60 grain-veil">
+        <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
+          <Reveal>
+            <h2 className="max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
+              <BoxReveal>Questions, answered plainly</BoxReveal>
+            </h2>
+          </Reveal>
+          <div className="mt-10">
+            {faqs.map((faq, i) => (
+              <Reveal key={faq.q} delay={i * 0.05}>
+                <details className="group border-t border-border py-6 last:border-b">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg text-foreground transition-colors hover:text-muted-foreground [&::-webkit-details-marker]:hidden">
+                    {faq.q}
+                    <span className="text-2xl font-light text-muted-foreground transition-transform duration-300 group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    {faq.a}
+                  </p>
+                </details>
               </Reveal>
             ))}
           </div>

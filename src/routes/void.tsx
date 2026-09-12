@@ -106,7 +106,7 @@ function VoidPage() {
               items={ideas.map((i) => ({
                 key: i.index,
                 content: (
-                  <div className="glass-panel mx-auto flex min-h-[18rem] max-w-2xl flex-col justify-between rounded-3xl p-10 shadow-xl">
+                  <div className="glass-panel mx-auto flex min-h-[18rem] max-w-2xl flex-col justify-between rounded-3xl p-8 shadow-xl">
                     <p className="rule-label">{i.index} / 04</p>
                     <div>
                       <h3 className="text-3xl text-foreground">{i.title}</h3>

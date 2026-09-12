@@ -29,7 +29,7 @@ export function HoverExpand({ items }: { items: HoverExpandItem[] }) {
             tabIndex={0}
             role="button"
             aria-expanded={isActive}
-            className="relative flex cursor-pointer flex-col justify-end overflow-hidden rounded-3xl p-6 shadow-lg transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="relative flex cursor-pointer flex-col justify-end overflow-hidden rounded-3xl p-8 shadow-lg transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={
               {
                 flexGrow: isActive ? 5 : 1,
