@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { WaveGridBackground } from "@/components/WaveGridBackground";
 
 export interface HoverExpandItem {
   key: string;
@@ -28,28 +29,28 @@ export function HoverExpand({ items }: { items: HoverExpandItem[] }) {
             tabIndex={0}
             role="button"
             aria-expanded={isActive}
-            className="tile-aurora relative flex cursor-pointer flex-col justify-end overflow-hidden rounded-3xl p-6 shadow-lg transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="relative flex cursor-pointer flex-col justify-end overflow-hidden rounded-3xl p-6 shadow-lg transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={
               {
                 flexGrow: isActive ? 5 : 1,
                 flexBasis: 0,
                 minHeight: isActive ? "16rem" : "4.5rem",
-                "--tile-a": item.colors.a,
-                "--tile-b": item.colors.b,
-                "--tile-c": item.colors.c,
               } as React.CSSProperties
             }
           >
-            <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/75">
-              {item.index}
-            </p>
-            <h3 className="mt-2 text-2xl leading-snug text-white drop-shadow-sm">{item.title}</h3>
-            <p
-              className="mt-3 max-w-sm text-sm leading-relaxed text-white/85 transition-opacity duration-500"
-              style={{ opacity: isActive ? 1 : 0, maxHeight: isActive ? "10rem" : 0 }}
-            >
-              {item.body}
-            </p>
+            <WaveGridBackground colors={item.colors} seed={i + 1} />
+            <div className="relative z-10 flex flex-col justify-end">
+              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/75">
+                {item.index}
+              </p>
+              <h3 className="mt-2 text-2xl leading-snug text-white drop-shadow-sm">{item.title}</h3>
+              <p
+                className="mt-3 max-w-sm text-sm leading-relaxed text-white/85 transition-opacity duration-500"
+                style={{ opacity: isActive ? 1 : 0, maxHeight: isActive ? "10rem" : 0 }}
+              >
+                {item.body}
+              </p>
+            </div>
           </div>
         );
       })}

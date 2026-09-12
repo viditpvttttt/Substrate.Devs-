@@ -63,7 +63,7 @@ const appLogos = [
   { variant: "void" as const, name: "VOID" },
   { variant: "folio" as const, name: "Folio" },
   { variant: "arcadia" as const, name: "Arcadia" },
-  { variant: "substrate" as const, name: "Substrate" },
+  { variant: "gridline" as const, name: "Gridline" },
 ];
 
 /**

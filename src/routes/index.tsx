@@ -17,10 +17,13 @@ import { StickyCards } from "@/components/anim/StickyCards";
 import { SvgScrollDraw } from "@/components/anim/SvgScrollDraw";
 import { TextGradientFill } from "@/components/anim/TextGradientFill";
 import { WordsReveal } from "@/components/anim/WordsReveal";
-import { GridlineMatrix } from "@/components/GridlineMatrix";
+import { GridlineFeatures } from "@/components/GridlineFeatures";
+import { WaveGridBackground, wavePalettes } from "@/components/WaveGridBackground";
+import type { WavePalette } from "@/components/WaveGridBackground";
 import { Skiper31 } from "@/components/ui/skiper-ui/skiper31";
 import { Skiper19 } from "@/components/ui/skiper-ui/skiper19";
 import { Skiper80 } from "@/components/ui/skiper-ui/skiper80";
+import { Skiper86 } from "@/components/ui/skiper-ui/skiper86";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -211,7 +214,8 @@ function Index() {
               status="New Agent"
               title="Autonomous agent assistant"
               body="Fleets of parallel agents across terminal, Slack and IDE."
-              colors={{ a: "#d97a38", b: "#8f471e", c: "#301d15" }}
+              palette={wavePalettes.magenta}
+              seed={3}
             />
           </Reveal>
           <Reveal delay={0.08}>
@@ -221,7 +225,8 @@ function Index() {
               status="In training"
               title="One model, every modality"
               body="Text, images, audio and video in a single context."
-              colors={{ a: "#d99a4a", b: "#8f5f2d", c: "#30251b" }}
+              palette={wavePalettes.gold}
+              seed={5}
             />
           </Reveal>
           <Reveal delay={0.16}>
@@ -231,7 +236,8 @@ function Index() {
               status="Pre-production"
               title="Nothing in the way"
               body="The page, the model and your intent on the same surface."
-              colors={{ a: "#9b9b92", b: "#4b4b46", c: "#252522" }}
+              palette={wavePalettes.blue}
+              seed={7}
             />
           </Reveal>
           <Reveal delay={0.24}>
@@ -241,7 +247,8 @@ function Index() {
               status="Private beta"
               title="The quiet operating surface"
               body="Weather, files, memory and agents on one canvas."
-              colors={{ a: "#c8b27c", b: "#665638", c: "#29251c" }}
+              palette={wavePalettes.forest}
+              seed={9}
             />
           </Reveal>
         </div>
@@ -362,7 +369,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Gridline Matrix — standalone section */}
+      {/* Gridline — feature cards wrapped in the Skiper86 gradient border */}
       <section className="border-t border-border/70 bg-card/40">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
           <Reveal>
@@ -371,9 +378,13 @@ function Index() {
               <BoxReveal>AI-powered code editor, reimagined</BoxReveal>
             </h2>
           </Reveal>
-          <div className="mt-10">
-            <GridlineMatrix />
-          </div>
+          <Reveal delay={0.1} className="mt-10">
+            <Skiper86 className="rounded-3xl" defaultActive>
+              <div className="p-1">
+                <GridlineFeatures />
+              </div>
+            </Skiper86>
+          </Reveal>
         </div>
       </section>
 
@@ -562,36 +573,34 @@ function ProductTile({
   status,
   title,
   body,
-  colors,
+  palette,
+  seed = 2,
 }: {
   to: "/kernel" | "/void" | "/folio" | "/arcadia";
   label: string;
   status: string;
   title: string;
   body: string;
-  colors: { a: string; b: string; c: string };
+  palette: WavePalette;
+  seed?: number;
 }) {
   return (
     <TiltCard className="h-full">
       <Link
         to={to}
-        className="tile-aurora group flex aspect-[4/5] h-full flex-col justify-between rounded-3xl p-8 shadow-lg transition-shadow hover:shadow-2xl"
-        style={
-          {
-            "--tile-a": colors.a,
-            "--tile-b": colors.b,
-            "--tile-c": colors.c,
-          } as React.CSSProperties
-        }
+        className="group relative flex aspect-[4/5] h-full flex-col justify-between overflow-hidden rounded-3xl p-8 shadow-lg transition-shadow hover:shadow-2xl"
       >
-        <div className="flex items-center gap-3">
+        <WaveGridBackground colors={palette} seed={seed} />
+        <div className="relative z-10 flex items-center gap-3">
           <p className="rule-label !text-white/90">{label}</p>
           <span className="rounded-full border border-white/40 px-2.5 py-0.5 font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-white/85">
             {status}
           </span>
         </div>
-        <div>
-          <h3 className="text-3xl leading-snug text-white drop-shadow-sm sm:text-4xl">{title}</h3>
+        <div className="relative z-10">
+          <h3 className="font-display text-3xl leading-snug text-white drop-shadow-sm sm:text-4xl">
+            {title}
+          </h3>
           <p className="mt-3 text-sm leading-relaxed text-white/85">{body}</p>
           <span className="mt-6 inline-flex items-center gap-2 text-sm text-white">
             Read more

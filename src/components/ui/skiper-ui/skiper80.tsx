@@ -35,10 +35,10 @@ function Skiper80({ projects = defaultProjects }: { projects?: Project[] }) {
           <motion.div
             key={project.id}
             layout
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: index * 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="border-b border-border"
           >
             <button

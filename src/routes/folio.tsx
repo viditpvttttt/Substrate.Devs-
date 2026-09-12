@@ -3,6 +3,8 @@ import { SpectralMark } from "@/components/SpectralMark";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { HoverExpand } from "@/components/anim/HoverExpand";
+import { wavePalettes } from "@/components/WaveGridBackground";
+import type { WavePalette } from "@/components/WaveGridBackground";
 
 export const Route = createFileRoute("/folio")({
   head: () => ({
@@ -26,44 +28,46 @@ export const Route = createFileRoute("/folio")({
   component: FolioPage,
 });
 
-const capColors = [
-  { a: "#c8b27c", b: "#665638", c: "#29251c" },
-  { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
-  { a: "#b99b63", b: "#765a32", c: "#302517" },
-  { a: "#9b9b92", b: "#4b4b46", c: "#252522" },
-  { a: "#bc8b58", b: "#754b2c", c: "#302019" },
-  { a: "#a8a38d", b: "#665f42", c: "#2b291f" },
-];
-
-const capabilities = [
+const capabilities: {
+  index: string;
+  title: string;
+  body: string;
+  colors: WavePalette;
+}[] = [
   {
     index: "01",
     title: "Weather, properly",
+    colors: wavePalettes.gold,
     body: "Live conditions for anywhere on earth, rendered as a card you actually want to look at — hour by hour, what to wear, when the rain lands.",
   },
   {
     index: "02",
     title: "News you choose",
+    colors: wavePalettes.violet,
     body: "Pick your own topics — from world to formula 1 — and Folio keeps a quiet, self-refreshing feed. No algorithm deciding what matters.",
   },
   {
     index: "03",
     title: "Memory that sticks",
+    colors: wavePalettes.teal,
     body: "Tell it once. Your city, your tone, your stack — editable and deletable line by line, never a shadow profile you cannot see.",
   },
   {
     index: "04",
     title: "Workbench",
+    colors: wavePalettes.blue,
     body: "A real editor and your files, with an AI pair-programmer that reads and writes in place while you talk it through.",
   },
   {
     index: "05",
     title: "Work mode",
+    colors: wavePalettes.forest,
     body: "Meeting prep, standups, one-pagers, slide outlines and email drafts — it arrives at the meeting already briefed.",
   },
   {
     index: "06",
     title: "Deep research",
+    colors: wavePalettes.magenta,
     body: "It browses, reads and synthesises multiple sources with citations, instead of guessing from stale training data.",
   },
 ];
@@ -118,12 +122,12 @@ function FolioPage() {
           </h2>
           <Reveal className="mt-14">
             <HoverExpand
-              items={capabilities.map((c, idx) => ({
+              items={capabilities.map((c) => ({
                 key: c.index,
                 index: c.index,
                 title: c.title,
                 body: c.body,
-                colors: capColors[idx],
+                colors: c.colors,
               }))}
             />
           </Reveal>

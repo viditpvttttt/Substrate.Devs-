@@ -12,6 +12,7 @@ import { MagneticButton } from "@/components/anim/MagneticButton";
 import { CountUp } from "@/components/anim/CountUp";
 import { HoverExpand } from "@/components/anim/HoverExpand";
 import type { HoverExpandItem } from "@/components/anim/HoverExpand";
+import { wavePalettes } from "@/components/WaveGridBackground";
 
 export const Route = createFileRoute("/leadership")({
   head: () => ({
@@ -47,21 +48,21 @@ const values: HoverExpandItem[] = [
     index: "01",
     title: "Complete",
     body: "Nothing half-built. If it ships, it works end to end — the model, the browser, the surface.",
-    colors: { a: "oklch(0.55 0.18 255)", b: "oklch(0.48 0.16 250)", c: "oklch(0.42 0.14 245)" },
+    colors: wavePalettes.violet,
   },
   {
     key: "working",
     index: "02",
     title: "Working",
     body: "Every build verified clean — the site, the model, the browser. Reproducible or it doesn't ship.",
-    colors: { a: "oklch(0.55 0.16 155)", b: "oklch(0.48 0.14 160)", c: "oklch(0.42 0.12 150)" },
+    colors: wavePalettes.teal,
   },
   {
     key: "accountable",
     index: "03",
     title: "Accountable",
     body: "No one else's infrastructure. The runtime is ours — moved off its original scaffolding onto an independent, self-hosted stack.",
-    colors: { a: "oklch(0.55 0.20 22)", b: "oklch(0.48 0.18 25)", c: "oklch(0.42 0.16 30)" },
+    colors: wavePalettes.magenta,
   },
 ];
 

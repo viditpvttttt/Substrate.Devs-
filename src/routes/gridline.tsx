@@ -10,6 +10,7 @@ import type { HoverExpandItem } from "@/components/anim/HoverExpand";
 import { Skiper31 } from "@/components/ui/skiper-ui/skiper31";
 import { Skiper19 } from "@/components/ui/skiper-ui/skiper19";
 import { Skiper80 } from "@/components/ui/skiper-ui/skiper80";
+import { wavePalettes } from "@/components/WaveGridBackground";
 
 export const Route = createFileRoute("/gridline")({
   head: () => ({
@@ -39,21 +40,21 @@ const features: HoverExpandItem[] = [
     index: "01",
     title: "Intelligent completion",
     body: "Real-time completions as you type — not just the next word, but the next block, generated from your codebase context and coding patterns.",
-    colors: { a: "oklch(0.55 0.18 255)", b: "oklch(0.48 0.16 250)", c: "oklch(0.42 0.14 245)" },
+    colors: wavePalettes.violet,
   },
   {
     key: "inline",
     index: "02",
     title: "Inline AI assistance",
     body: "Highlight any code and ask in plain language. Gridline explains, refactors, documents, or writes tests — in place, without leaving the editor.",
-    colors: { a: "oklch(0.55 0.16 155)", b: "oklch(0.48 0.14 160)", c: "oklch(0.42 0.12 150)" },
+    colors: wavePalettes.teal,
   },
   {
     key: "multimodal",
     index: "03",
     title: "Multi-modal prompts",
     body: "Paste a screenshot, a design, or a terminal error. Kernel reads it in place and generates code that matches what you showed it.",
-    colors: { a: "oklch(0.55 0.20 22)", b: "oklch(0.48 0.18 25)", c: "oklch(0.42 0.16 30)" },
+    colors: wavePalettes.magenta,
   },
 ];
 

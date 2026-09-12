@@ -13,12 +13,14 @@ function Skiper86({
   className = "",
   children,
   enableSound = true,
+  defaultActive = false,
 }: {
   className?: string;
   children?: React.ReactNode;
   enableSound?: boolean;
+  defaultActive?: boolean;
 }) {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(defaultActive);
   const audioCtxRef = useRef<AudioContext | null>(null);
 
   const playSound = (on: boolean) => {
