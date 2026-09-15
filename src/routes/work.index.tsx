@@ -4,8 +4,8 @@ import { BoxReveal } from "@/components/anim/BoxReveal";
 import { MagneticButton } from "@/components/anim/MagneticButton";
 import { ScrambleText } from "@/components/anim/ScrambleText";
 import { TiltCard } from "@/components/TiltCard";
-import { BrandLogo } from "@/components/BrandLogo";
 import { works } from "@/components/work/workData";
+import { WorkTile } from "@/components/work/WorkTile";
 import { VanishForm } from "@/components/ui/skiper-ui/skiper56";
 
 export const Route = createFileRoute("/work/")({
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/work/")({
       {
         name: "description",
         content:
-          "Deep dives into everything Substrate builds: Kernel, the multimodal model; Folio, the quiet operating surface; and Gridline, the coding agent.",
+          "Deep dives into everything Substrate builds: Kernel, the multimodal LLM chatbot; Folio, the quiet operating surface; and Gridline, the coding agent.",
       },
       { property: "og:title", content: "Work — the Substrate portfolio" },
       {
@@ -51,39 +51,7 @@ function WorkIndex() {
           {works.map((work, i) => (
             <Reveal key={work.slug} delay={i * 0.08} className="h-full">
               <TiltCard className="h-full">
-                <Link
-                  to="/work/$slug"
-                  params={{ slug: work.slug }}
-                  className="tile-aurora group relative flex h-full min-h-[22rem] flex-col justify-between overflow-hidden rounded-3xl p-8 shadow-lg transition-shadow hover:shadow-2xl"
-                  style={
-                    {
-                      "--tile-a": work.colors.a,
-                      "--tile-b": work.colors.b,
-                      "--tile-c": work.colors.c,
-                    } as React.CSSProperties
-                  }
-                >
-                  <div className="relative z-10 flex items-center justify-between">
-                    <BrandLogo
-                      variant={work.logo}
-                      alt=""
-                      className={`h-10 w-10 rounded-full bg-white/80 p-1 ${
-                        work.logo === "kernel" ? "w-14" : ""
-                      }`}
-                    />
-                    <span className="rounded-full border border-white/40 px-2.5 py-0.5 font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-white/85">
-                      {work.badge}
-                    </span>
-                  </div>
-                  <div className="relative z-10">
-                    <h2 className="font-display text-4xl text-white drop-shadow-sm">{work.name}</h2>
-                    <p className="mt-3 text-sm leading-relaxed text-white/85">{work.hero}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm text-white">
-                      Read the detail
-                      <span className="transition-transform group-hover:translate-x-1">→</span>
-                    </span>
-                  </div>
-                </Link>
+                <WorkTile work={work} />
               </TiltCard>
             </Reveal>
           ))}

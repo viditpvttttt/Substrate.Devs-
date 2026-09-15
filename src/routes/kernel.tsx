@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SpectralMark } from "@/components/SpectralMark";
+import { BrandLogo } from "@/components/BrandLogo";
 import { BenchRadar } from "@/components/BenchRadar";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
@@ -8,17 +8,17 @@ import { ScrambleText } from "@/components/anim/ScrambleText";
 export const Route = createFileRoute("/kernel")({
   head: () => ({
     meta: [
-      { title: "Kernel — a multimodal model on one substrate" },
+      { title: "Kernel — the multimodal LLM chatbot" },
       {
         name: "description",
         content:
-          "Kernel is Substrate's multimodal LLM: text, vision, audio and video in a single representation, with long context and local-first inference.",
+          "Kernel is Substrate's multimodal LLM chatbot: talk to it across text, vision, audio and video in a single conversation, with long context and local-first inference.",
       },
-      { property: "og:title", content: "Kernel — a multimodal model on one substrate" },
+      { property: "og:title", content: "Kernel — the multimodal LLM chatbot" },
       {
         property: "og:description",
         content:
-          "One model across text, vision, audio and video — one representation instead of a stack of translators.",
+          "One chat across text, vision, audio and video — one representation instead of a stack of translators.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -49,14 +49,18 @@ function KernelPage() {
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
         <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
-          <SpectralMark variant="kernel" className="mx-auto h-20 w-20 text-clay" />
+          <BrandLogo
+            variant="kernel"
+            alt=""
+            className="mx-auto h-20 w-28 rounded-2xl bg-card p-1 shadow-sm"
+          />
           <p className="rule-label mt-8">Kernel</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
             One model, every <em className="font-light">modality</em>
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            Kernel is a multimodal LLM built to work across text, images, audio and video in a
-            single context — one representation instead of a stack of translators.
+            Kernel is a multimodal LLM chatbot — one conversation across text, images, audio and
+            video in a single context, one representation instead of a stack of translators.
           </p>
         </Reveal>
       </section>
@@ -159,8 +163,8 @@ function KernelPage() {
           ))}
         </dl>
         <div className="mt-14">
-          <Link to="/void" className="group inline-flex items-center gap-2 text-sm text-foreground">
-            Kernel inside VOID
+          <Link to="/gridline" className="group inline-flex items-center gap-2 text-sm text-foreground">
+            Kernel inside Gridline
             <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
               →
             </span>
@@ -171,7 +175,11 @@ function KernelPage() {
       <section className="relative isolate overflow-hidden border-t border-border/70">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
         <div className="relative mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
-          <SpectralMark variant="kernel" className="mx-auto h-28 w-28 text-clay" />
+          <BrandLogo
+            variant="kernel"
+            alt=""
+            className="mx-auto h-28 w-36 rounded-2xl bg-card p-1 shadow-sm"
+          />
           <h2 className="mt-8 text-3xl leading-tight text-foreground sm:text-4xl">
             Research access
           </h2>

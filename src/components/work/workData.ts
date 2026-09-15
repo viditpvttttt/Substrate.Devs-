@@ -34,7 +34,7 @@ export const works: Work[] = [
     colors: { a: "#d99a4a", b: "#8f5f2d", c: "#30251b" },
     hero: "One model, every modality",
     lede:
-      "Kernel is the model underneath everything Substrate builds: text, images, audio and video projected into a single representation — one attention pass instead of a stack of adapters.",
+      "Kernel is the multimodal LLM chatbot underneath everything Substrate builds: one conversation across text, images, audio and video — one attention pass instead of a stack of adapters.",
     problem:
       "Most multimodal systems are a language model wearing adapters: each modality is translated into text-shaped tokens, and the translation losses compound. Meaning that lives in a waveform's timing or a video's motion never survives the trip through the translator.",
     approach:

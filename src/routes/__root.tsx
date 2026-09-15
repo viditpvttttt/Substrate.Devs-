@@ -84,14 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Substrate is a research and product studio building Kernel, a multimodal LLM, and VOID, a browser in pre-production.",
+          "Substrate is a research and product studio building Kernel, a multimodal LLM chatbot; Folio, a quiet operating surface; and Gridline, a coding agent.",
       },
       { name: "author", content: "Substrate" },
       { property: "og:title", content: "Substrate — the layer underneath" },
       {
         property: "og:description",
         content:
-          "A research and product studio building Kernel, a multimodal LLM, and VOID, a browser in pre-production.",
+          "A research and product studio building Kernel, a multimodal LLM chatbot; Folio, a quiet operating surface; and Gridline, a coding agent.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
@@ -25,6 +27,11 @@ function WorkDetail() {
   const { slug } = Route.useParams();
   const work = getWork(slug);
 
+  // Reset scroll on slug change so the next work enters from the top, aligned.
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [slug]);
+
   if (!work) {
     return (
       <section className="mx-auto max-w-3xl px-6 py-32 text-center">
@@ -46,7 +53,12 @@ function WorkDetail() {
   const next = works[(idx + 1) % works.length];
 
   return (
-    <>
+    <motion.div
+      key={slug}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
@@ -228,6 +240,6 @@ function WorkDetail() {
           </Link>
         </Reveal>
       </section>
-    </>
+    </motion.div>
   );
 }

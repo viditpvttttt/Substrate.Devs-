@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SpectralMark } from "@/components/SpectralMark";
+import { BrandLogo } from "@/components/BrandLogo";
 import { Reveal } from "@/components/Reveal";
 import { BoxReveal } from "@/components/anim/BoxReveal";
 import { HoverExpand } from "@/components/anim/HoverExpand";
@@ -97,7 +97,11 @@ function FolioPage() {
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field" aria-hidden="true" />
         <Reveal className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
-          <SpectralMark variant="folio" className="mx-auto h-24 w-24 text-foreground" />
+          <BrandLogo
+            variant="folio"
+            alt=""
+            className="mx-auto h-20 w-20 rounded-2xl bg-card p-1 shadow-sm"
+          />
           <p className="rule-label mt-8">A Substrate company</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
             Folio is the quiet operating surface for your day.
