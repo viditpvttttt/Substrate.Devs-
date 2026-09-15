@@ -19,9 +19,8 @@ type Project = {
 
 const defaultProjects: Project[] = [
   { id: "kernel", name: "Kernel", description: "One multimodal model across text, vision, audio and video.", badge: "Model" },
-  { id: "void", name: "VOID", description: "A browser with nothing in the way — page, model and intent on one surface.", badge: "Browser" },
   { id: "folio", name: "Folio", description: "The quiet operating surface for your day — dashboard, assistant and agent runner.", badge: "App" },
-  { id: "arcadia", name: "Arcadia", description: "Autonomous agent assistant that orchestrates fleets of subagents in parallel.", badge: "Agent" },
+  { id: "gridline", name: "Gridline", description: "A coding agent with intelligent completions, multi-file editing and automations.", badge: "Editor" },
 ];
 
 function Skiper80({ projects = defaultProjects }: { projects?: Project[] }) {

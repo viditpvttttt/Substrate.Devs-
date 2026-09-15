@@ -45,7 +45,7 @@ function Skiper19() {
           </div>
           <div className="flex w-full flex-wrap items-center justify-between gap-12 uppercase lg:w-fit lg:justify-center">
             <p className="w-fit text-sm">
-              kernel · void <br /> folio · arcadia
+              kernel · folio <br /> gridline · studio
             </p>
             <p className="w-fit text-right text-sm">
               self-hosted <br /> local-first

@@ -20,9 +20,8 @@ type Project = {
 
 const defaultProjects: Project[] = [
   { id: 0, name: "Kernel", description: "One multimodal model across text, vision, audio and video", badge: "Model", bgColor: "oklch(0.95 0.05 80)" },
-  { id: 1, name: "VOID", description: "A browser with nothing in the way", badge: "Browser", bgColor: "oklch(0.92 0.08 250)" },
-  { id: 2, name: "Folio", description: "The quiet operating surface for your day", badge: "App", bgColor: "oklch(0.93 0.06 150)" },
-  { id: 3, name: "Arcadia", description: "Autonomous agent assistant with fleet orchestration", badge: "Agent", bgColor: "oklch(0.94 0.07 30)" },
+  { id: 1, name: "Folio", description: "The quiet operating surface for your day", badge: "App", bgColor: "oklch(0.93 0.06 150)" },
+  { id: 2, name: "Gridline", description: "A coding agent for ambitious software", badge: "Editor", bgColor: "oklch(0.92 0.08 250)" },
 ];
 
 function Skiper24({

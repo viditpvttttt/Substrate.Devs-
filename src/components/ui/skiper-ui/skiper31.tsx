@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
-import { SpectralMark } from "@/components/SpectralMark";
+import { BrandLogo } from "@/components/BrandLogo";
 
 type CharacterProps = {
   char: string;
@@ -60,9 +60,7 @@ const CharacterV3 = ({ char, index, centerIndex, scrollYProgress }: CharacterPro
 
 const appLogos = [
   { variant: "kernel" as const, name: "Kernel" },
-  { variant: "void" as const, name: "VOID" },
   { variant: "folio" as const, name: "Folio" },
-  { variant: "arcadia" as const, name: "Arcadia" },
   { variant: "gridline" as const, name: "Gridline" },
 ];
 
@@ -135,10 +133,13 @@ function Skiper31() {
         </div>
         <div className="mt-6 flex items-center justify-center gap-6">
           {appLogos.map((app) => (
-            <SpectralMark
+            <BrandLogo
               key={`mark-${app.name}`}
               variant={app.variant}
-              className="h-12 w-12 text-foreground"
+              alt=""
+              className={`h-12 w-12 rounded-full bg-card p-1 shadow-sm ${
+                app.variant === "kernel" ? "w-16" : ""
+              }`}
             />
           ))}
         </div>

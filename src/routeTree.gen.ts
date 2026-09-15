@@ -10,23 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ArcadiaRouteImport } from './routes/arcadia'
 import { Route as FolioRouteImport } from './routes/folio'
 import { Route as GridlineRouteImport } from './routes/gridline'
 import { Route as KernelRouteImport } from './routes/kernel'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as ToolsRouteImport } from './routes/tools'
-import { Route as VoidRouteImport } from './routes/void'
+import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ArcadiaRoute = ArcadiaRouteImport.update({
-  id: '/arcadia',
-  path: '/arcadia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FolioRoute = FolioRouteImport.update({
@@ -59,92 +54,97 @@ const ToolsRoute = ToolsRouteImport.update({
   path: '/tools',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VoidRoute = VoidRouteImport.update({
-  id: '/void',
-  path: '/void',
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
   '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
-  '/void': typeof VoidRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
   '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
-  '/void': typeof VoidRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/arcadia': typeof ArcadiaRoute
   '/folio': typeof FolioRoute
   '/gridline': typeof GridlineRoute
   '/kernel': typeof KernelRoute
   '/leadership': typeof LeadershipRoute
   '/studio': typeof StudioRoute
   '/tools': typeof ToolsRoute
-  '/void': typeof VoidRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/arcadia'
     | '/folio'
     | '/gridline'
     | '/kernel'
     | '/leadership'
     | '/studio'
     | '/tools'
-    | '/void'
+    | '/work/$slug'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/arcadia'
     | '/folio'
     | '/gridline'
     | '/kernel'
     | '/leadership'
     | '/studio'
     | '/tools'
-    | '/void'
+    | '/work/$slug'
+    | '/work'
   id:
     | '__root__'
     | '/'
-    | '/arcadia'
     | '/folio'
     | '/gridline'
     | '/kernel'
     | '/leadership'
     | '/studio'
     | '/tools'
-    | '/void'
+    | '/work/$slug'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArcadiaRoute: typeof ArcadiaRoute
   FolioRoute: typeof FolioRoute
   GridlineRoute: typeof GridlineRoute
   KernelRoute: typeof KernelRoute
   LeadershipRoute: typeof LeadershipRoute
   StudioRoute: typeof StudioRoute
   ToolsRoute: typeof ToolsRoute
-  VoidRoute: typeof VoidRoute
+  WorkSlugRoute: typeof WorkSlugRoute
+  WorkIndexRoute: typeof WorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -154,13 +154,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/arcadia': {
-      id: '/arcadia'
-      path: '/arcadia'
-      fullPath: '/arcadia'
-      preLoaderRoute: typeof ArcadiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/folio': {
@@ -205,11 +198,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/void': {
-      id: '/void'
-      path: '/void'
-      fullPath: '/void'
-      preLoaderRoute: typeof VoidRouteImport
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -217,14 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArcadiaRoute: ArcadiaRoute,
   FolioRoute: FolioRoute,
   GridlineRoute: GridlineRoute,
   KernelRoute: KernelRoute,
   LeadershipRoute: LeadershipRoute,
   StudioRoute: StudioRoute,
   ToolsRoute: ToolsRoute,
-  VoidRoute: VoidRoute,
+  WorkSlugRoute: WorkSlugRoute,
+  WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -10,11 +10,10 @@ import {
 // List of tool routes – mirrors the main site navigation
 const tools = [
   { to: "/kernel", label: "Kernel" },
-  { to: "/void", label: "VOID" },
   { to: "/folio", label: "Folio" },
-  { to: "/arcadia", label: "Arcadia" },
-  { to: "/studio", label: "Studio" },
   { to: "/gridline", label: "Gridline" },
+  { to: "/work", label: "Work" },
+  { to: "/studio", label: "Studio" },
 ] as const;
 
 /**
