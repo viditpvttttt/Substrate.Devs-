@@ -56,11 +56,11 @@ function KernelPage() {
           />
           <p className="rule-label mt-8">Kernel</p>
           <h1 className="mt-5 text-5xl leading-[1.05] text-foreground sm:text-6xl">
-            One model, every <em className="font-light">modality</em>
+            The multimodal LLM <em className="font-light">chatbot</em>
           </h1>
           <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-muted-foreground">
             Kernel is a multimodal LLM chatbot — one conversation across text, images, audio and
-            video in a single context, one representation instead of a stack of translators.
+            video in a single context. One representation instead of a stack of translators.
           </p>
         </Reveal>
       </section>
@@ -149,6 +149,34 @@ function KernelPage() {
           <div className="mt-12">
             <BenchRadar />
           </div>
+        </div>
+      </section>
+
+      <section className="relative isolate overflow-hidden">
+        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+        <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-28">
+          <Reveal>
+            <p className="rule-label">Try it</p>
+            <h2 className="mt-4 text-3xl leading-tight text-foreground sm:text-4xl">
+              <BoxReveal>A chatbot that sees, hears, and reads</BoxReveal>
+            </h2>
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
+              Kernel is not a text box with adapters. It is a single chatbot that attends to text,
+              images, audio and video in one pass — ask it anything, in any modality, and it answers
+              with the full context intact.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1} className="mt-10">
+            <Skiper86 className="mx-auto max-w-md rounded-2xl">
+              <div className="flex items-center gap-3 p-5">
+                <BrandLogo variant="kernel" alt="" className="h-10 w-14 rounded-lg bg-card p-1" />
+                <div>
+                  <p className="text-sm font-medium text-foreground">Kernel Chatbot</p>
+                  <p className="text-xs text-muted-foreground">Click to see the gradient border</p>
+                </div>
+              </div>
+            </Skiper86>
+          </Reveal>
         </div>
       </section>
 

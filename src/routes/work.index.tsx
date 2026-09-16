@@ -7,6 +7,7 @@ import { TiltCard } from "@/components/TiltCard";
 import { works } from "@/components/work/workData";
 import { WorkTile } from "@/components/work/WorkTile";
 import { VanishForm } from "@/components/ui/skiper-ui/skiper56";
+import { Skiper24 } from "@/components/ui/skiper-ui/skiper24";
 
 export const Route = createFileRoute("/work/")({
   head: () => ({
@@ -57,6 +58,9 @@ function WorkIndex() {
           ))}
         </div>
       </section>
+
+      {/* Skiper24 — scroll-driven color list */}
+      <Skiper24 />
 
       <section className="border-t border-border/70 bg-card/40">
         <div className="mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">

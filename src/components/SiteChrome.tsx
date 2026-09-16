@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { BrandLogo, type BrandVariant } from "@/components/BrandLogo";
 import { FlipText } from "@/components/anim/FlipLink";
@@ -10,6 +9,14 @@ const nav: { to: string; label: string; mark?: BrandVariant }[] = [
   { to: "/work", label: "Work" },
   { to: "/studio", label: "Studio" },
   { to: "/leadership", label: "Leadership" },
+];
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/Substrate-devs" },
+  { label: "Instagram", href: "https://www.instagram.com/substrate.devs/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/substratedevs" },
+  { label: "X", href: "https://x.com/Substratedevs" },
+  { label: "YouTube", href: "https://www.youtube.com/@Substrate-devs" },
 ];
 
 export function SiteHeader() {
@@ -60,25 +67,6 @@ export function SiteHeader() {
   );
 }
 
-/** Live local-time readout — a tiny, quiet footer detail. */
-function LocalTime() {
-  const [now, setNow] = useState<string | null>(null);
-  useEffect(() => {
-    const fmt = () =>
-      setNow(
-        new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
-      );
-    fmt();
-    const id = setInterval(fmt, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return (
-    <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-foreground">
-      {now ?? "--:--:--"} — local
-    </span>
-  );
-}
-
 export function SiteFooter() {
   return (
     <footer className="relative isolate overflow-hidden border-t border-border/70 bg-card/30">
@@ -105,11 +93,23 @@ export function SiteFooter() {
             ))}
           </nav>
         </div>
-        <div className="mt-14 flex flex-col gap-3 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Substrate — Kernel · Folio · Gridline
           </p>
-          <LocalTime />
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

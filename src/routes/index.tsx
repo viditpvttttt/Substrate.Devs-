@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { BrandLogo } from "@/components/BrandLogo";
 import { TiltCard } from "@/components/TiltCard";
@@ -12,12 +13,11 @@ import { ScrambleText } from "@/components/anim/ScrambleText";
 import { Spotlight } from "@/components/anim/Spotlight";
 import { WordsReveal } from "@/components/anim/WordsReveal";
 import { VanishForm } from "@/components/ui/skiper-ui/skiper56";
-import { Skiper19 } from "@/components/ui/skiper-ui/skiper19";
 import { Skiper31 } from "@/components/ui/skiper-ui/skiper31";
 import { Skiper48 } from "@/components/ui/skiper-ui/skiper48";
+import { Skiper80 } from "@/components/ui/skiper-ui/skiper80";
 import { GridlineTeaser } from "@/components/gridline/GridlineTeaser";
-import { WorkTile } from "@/components/work/WorkTile";
-import { works } from "@/components/work/workData";
+import { HeroCanvas } from "@/components/HeroCanvas";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,16 +57,64 @@ const stats = [
   { value: 0, suffix: "", label: "Translators in between" },
 ];
 
+const productCards = [
+  {
+    slug: "kernel",
+    name: "Kernel",
+    badge: "Model",
+    hero: "One model, every modality",
+    lede: "A multimodal LLM chatbot — one conversation across text, images, audio and video in a single context.",
+    image: "https://images.pexels.com/photos/17483871/pexels-photo-17483871.png?auto=compress&cs=tinysrgb&h=650&w=940",
+    to: "/kernel" as const,
+  },
+  {
+    slug: "folio",
+    name: "Folio",
+    badge: "App",
+    hero: "The quiet operating surface",
+    lede: "One canvas that already knows the shape of your morning — weather, news, memory, and an assistant that acts.",
+    image: "https://images.pexels.com/photos/31216389/pexels-photo-31216389.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    to: "/folio" as const,
+  },
+  {
+    slug: "gridline",
+    name: "Gridline",
+    badge: "Editor",
+    hero: "Your coding agent for ambitious software",
+    lede: "Agents plan, ask clarifying questions, edit across files, and prove their work with artifacts.",
+    image: "https://images.pexels.com/photos/13807430/pexels-photo-13807430.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    to: "/gridline" as const,
+  },
+];
+
+const researchAreas = [
+  {
+    title: "Unified multimodal representation",
+    body: "Every modality — text, vision, audio, video — projected into one continuous space. No adapter stack, no translation loss.",
+  },
+  {
+    title: "Local-first inference",
+    body: "Weights and context stay on your device. Remote compute is an option you flip on, not a default you opt out of.",
+  },
+  {
+    title: "Agent-native architecture",
+    body: "The runtime treats agents as first-class: plans, tool calls, verification loops — not bolted on after the fact.",
+  },
+  {
+    title: "Shared memory across surfaces",
+    body: "Kernel, Folio and Gridline read the same memory. Work started in one surface finishes in another.",
+  },
+];
+
 function Index() {
   return (
     <>
       <Preloader />
 
-      {/* Hero — the original cloudscape, restored */}
+      {/* Hero — Anthropic-style flowing canvas animation */}
       <section className="relative isolate overflow-hidden">
-        <div className="hero-cloudscape" aria-hidden="true" />
-        <Spotlight />
-        <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-center justify-center px-6 py-20">
+        <HeroCanvas />
+        <div className="relative mx-auto flex min-h-[92svh] max-w-6xl items-center justify-center px-6 py-20">
           <div className="relative z-10 max-w-3xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -155,7 +203,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Products */}
+      {/* Products — illustration cards replacing golden/silver */}
       <section className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
         <Reveal className="text-center">
           <p className="rule-label">
@@ -170,10 +218,29 @@ function Index() {
           </p>
         </Reveal>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {works.map((work, i) => (
-            <Reveal key={work.slug} delay={i * 0.08} className="h-full">
+          {productCards.map((card, i) => (
+            <Reveal key={card.slug} delay={i * 0.08} className="h-full">
               <TiltCard className="h-full">
-                <WorkTile work={work} />
+                <Link to={card.to} className="group block h-full overflow-hidden rounded-2xl border border-border/70 bg-card/60 shadow-sm transition-all duration-300 hover:shadow-lg">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={card.image}
+                      alt={card.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    <span className="absolute left-4 top-4 rounded-full border border-border/70 bg-card/80 px-3 py-1 font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm">
+                      {card.badge}
+                    </span>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl text-foreground">{card.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{card.lede}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm text-foreground transition-transform group-hover:translate-x-1">
+                      Explore <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </Link>
               </TiltCard>
             </Reveal>
           ))}
@@ -196,6 +263,33 @@ function Index() {
         </div>
       </section>
 
+      {/* Research areas — AI lab style */}
+      <section className="relative isolate overflow-hidden">
+        <div className="spectral-field spectral-field-soft" aria-hidden="true" />
+        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-28">
+          <Reveal className="text-center">
+            <p className="rule-label">
+              <ScrambleText text="Research" />
+            </p>
+            <h2 className="mt-5 text-3xl leading-tight text-foreground sm:text-4xl">
+              <BoxReveal>What we are working on</BoxReveal>
+            </h2>
+            <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
+              The problems that live in the joins between modalities, surfaces and agents —
+              solved once, properly, on one substrate.
+            </p>
+          </Reveal>
+          <div className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
+            {researchAreas.map((area, i) => (
+              <Reveal key={area.title} delay={(i % 2) * 0.08} className="border-t border-border pt-6">
+                <h3 className="text-2xl text-foreground">{area.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{area.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Surfaces — Skiper48 card carousel */}
       <section className="relative isolate overflow-hidden">
         <div className="spectral-field spectral-field-soft" aria-hidden="true" />
@@ -215,11 +309,23 @@ function Index() {
       {/* Gridline section */}
       <GridlineTeaser />
 
+      {/* Skiper80 — expandable product showcase */}
+      <section className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
+        <Reveal>
+          <p className="rule-label">
+            <ScrambleText text="Portfolio" />
+          </p>
+          <h2 className="mt-4 max-w-xl text-3xl leading-tight text-foreground sm:text-4xl">
+            <BoxReveal>Click to explore each product</BoxReveal>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1} className="mt-12">
+          <Skiper80 />
+        </Reveal>
+      </section>
+
       {/* Skiper31 — one substrate, every product */}
       <Skiper31 />
-
-      {/* Skiper19 — the stroke that follows the scroll */}
-      <Skiper19 />
 
       {/* Closing CTA */}
       <section className="mx-auto max-w-2xl px-6 py-24 text-center sm:py-28">
